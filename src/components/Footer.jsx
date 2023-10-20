@@ -30,7 +30,7 @@ export default function Footer() {
 
                     <ul className={styles.footer__links}>
                         {footerLinks.map((item, index) => (
-                            <li key={index}>
+                            <li key={crypto.randomUUID()}>
                                 <Link
                                     href={item.href}
                                     className={styles.footer__link}
@@ -44,6 +44,7 @@ export default function Footer() {
                     <div className={styles.footer__socials}>
                         {footerSocials.map((item, index) => (
                             <Link
+                                key={crypto.randomUUID()}
                                 href={item.href}
                                 className={styles.footer__social}
                                 target="_blank"
