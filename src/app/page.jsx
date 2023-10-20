@@ -1,14 +1,13 @@
-import Link from 'next/link'
-import styles from './page.module.css'
+import Header from '@/components/Header'
+import styles from './main.module.css'
 
 export default function Home() {
   return (
-    <main className={styles.default}>
-      <div>
-            <h1>Whoishayyan Home Page.</h1>
-            <p>Silahkan pilih menu dibawah :</p>
-            <Link href="/pddikti">PDDIKTI</Link>
-      </div>
-    </main>
+    <>
+      <Header/>
+      <main className={styles.main}>
+
+      </main>
+    </>
 )
 }
