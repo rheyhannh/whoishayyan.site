@@ -335,9 +335,15 @@ li.nav__item:nth-child(1) {
   row-gap: 1rem;
 }
 
-.home__social-icon {
+.home__social_icon {
   font-size: .975rem;
   color: var(--white-color);
+}
+
+.home__social_icon svg {
+  display: flex;
+  width: 18.8px;
+  height: 18.8px;
 }
 
 .social__box {
@@ -346,35 +352,21 @@ li.nav__item:nth-child(1) {
   align-items: center;
   width: 1.95rem;
   height: 1.95rem;
+  cursor: pointer;
   background: var(--first-color);
+  border: 2.75px solid transparent;
   border-radius: 50%;
   transition: all .5s ease-in-out;
 }
 
-.social__box.linked:hover .home__social-icon {
-  /* Can add animation with changing icon color,
-  border color with icon color and background with
-  white color */
-  color: var(--first-color);
-}
-
-.social__box.github:hover .home__social-icon {
-  /* Can add animation with changing icon color,
-  border color with icon color and background with
-  white color */
-  color: var(--first-color);
-}
-
-.social__box.instagram:hover .home__social-icon {
-  /* Can add animation with changing icon color,
-  border color with icon color and background with
-  white color */
-  color: var(--first-color);
-}
-
 .social__box:hover {
   background: var(--white-color);
+  border-color: var(--first-color);
   transform: rotate(360deg) scale(1.25);
+}
+
+.social__box:hover .home__social_icon {
+  color: var(--first-color);
 }
 
 .home__blob {
@@ -396,7 +388,7 @@ li.nav__item:nth-child(1) {
   background-color: transparent;
 }
 
-.home__blob-img {
+.home__blob_img {
   width: var(--blob-size);
   display: block;
   margin: auto;
@@ -455,28 +447,40 @@ li.nav__item:nth-child(1) {
   display: none;
 }
 
-.home__scroll-button {
+.home__scroll_button {
   color: var(--first-color);
   transition: .3s;
 }
 
-.home__scroll-button:hover {
+.home__scroll_button:hover {
   transform: translateY(0.25rem);
 }
 
-.home__scroll-mouse {
+.home__scroll_mouse {
   font-size: 2rem;
 }
 
-.home__scroll-name {
+.home__scroll_mouse svg {
+  display: flex;
+  width: 35px;
+  height: 35px;
+}
+
+.home__scroll_name {
   font-size: var(--small-font-size);
   color: var(--title-color);
   font-weight: var(--font-medium);
   margin-right: var(--mb-0-25);
 }
 
-.home__scroll-arrow {
+.home__scroll_arrow {
   font-size: 1.25rem;
+}
+
+.home__scroll_arrow svg {
+  display: flex;
+  width: 20px;
+  height: 20px;
 }
 
 .button {
@@ -506,7 +510,14 @@ li.nav__item:nth-child(1) {
   transition: .3s;
 }
 
-.button--flex {
+.button__icon svg {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  transition: .3s;
+}
+
+.button__flex {
   display: inline-flex;
   align-items: center;
 }
@@ -1277,7 +1288,7 @@ li.nav__item:nth-child(1) {
     margin-bottom: 4rem;
   }
 
-  .home__social-icon {
+  .home__social_icon {
     font-size: 1.175rem;
   }
 
@@ -1357,8 +1368,8 @@ li.nav__item:nth-child(1) {
     display: block;
   }
 
-  .home__scroll-button {
-    margin-left: 3.5rem;
+  .home__scroll_button {
+    margin-left: 4rem;
   }
 
   .about__container {
@@ -1458,7 +1469,7 @@ li.nav__item:nth-child(1) {
     transform: translateX(-6rem);
   }
 
-  .home__social-icon {
+  .home__social_icon {
     font-size: 1.25rem;
   }
 
