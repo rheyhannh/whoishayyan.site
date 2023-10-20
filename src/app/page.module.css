@@ -1,10 +1,21 @@
-.main {
+.main,
+.default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
+}
+
+.default {
+  justify-content: center;
+  text-align: center;
+}
+
+.default div * {
+  display: block;
+  margin: .5rem auto;
 }
 
 .description {
