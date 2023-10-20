@@ -1,7 +1,7 @@
 import styles from '../page.module.css'
 import Link from 'next/link'
 
-const Pddikti = async () => {
+export default function Pddikti () {
     return (
         <main className={styles.default}>
             <div>
@@ -12,5 +12,3 @@ const Pddikti = async () => {
         </main>
     )
 }
-
-export default Pddikti;

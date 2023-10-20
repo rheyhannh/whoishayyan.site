@@ -4,6 +4,7 @@ export const metadata = {
   keywords: 'pddikti, crawl, data, mahasiswa, universitas, search, engine',
   author: 'Reyhan Naufal Hayyan',
 }
+
 export default function PddiktiLayout({
   children,
 }) {
