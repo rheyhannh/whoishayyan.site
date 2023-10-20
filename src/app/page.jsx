@@ -1,4 +1,5 @@
 import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 import styles from './_root.module.css'
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <main className={styles.main}>
 
       </main>
+      <Footer/>
     </>
 )
 }
