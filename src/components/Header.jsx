@@ -34,7 +34,7 @@ export default function Header() {
                 <div className={styles.nav__menu} id="nav-menu">
                     <ul className={`${styles.nav__list} ${styles.grid}`}>
                         {navList.map((item, index) => (
-                            <li className={styles.nav__item}>
+                            <li key={index} className={styles.nav__item}>
                                 <Link 
                                     href={item.href}
                                     className={`${styles.nav__link} ${index === 0 ? styles.active_link : ''}`}
