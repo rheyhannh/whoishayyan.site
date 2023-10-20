@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import styles from '../app/main.module.css'
+import styles from '../app/_root.module.css'
 import { 
     UilUser, 
     UilBookAlt, 

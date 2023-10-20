@@ -1,4 +1,4 @@
-import './globals.css'
+import './_globals.css'
 
 export const metadata = {
   title: 'Who is Hayyan',

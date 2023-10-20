@@ -1,4 +1,4 @@
-import styles from './main.module.css'
+import styles from './_root.module.css'
 
 const LoaderPage = () => {
     return (
