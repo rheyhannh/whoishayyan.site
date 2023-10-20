@@ -1073,6 +1073,11 @@ li.nav__item:nth-child(1) {
   color: var(--first-color-lighter);
 }
 
+.footer__social svg {
+  width: 20px;
+  height: 20px;
+}
+
 .footer__copy {
   font-size: var(--smaller-font-size);
   text-align: center;
