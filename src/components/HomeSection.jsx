@@ -39,8 +39,9 @@ export default function HomeSection() {
                         <div className={styles.home__blob} id="home__blob">
                             <Image
                                 src={'/profil-nobg-min.png'}
-                                width={250}
-                                height={250}
+                                width={449}
+                                height={556}
+                                quality={100}
                                 alt={'Home Image'}
                                 className={styles.home__blob_img}
                                 priority={true}
