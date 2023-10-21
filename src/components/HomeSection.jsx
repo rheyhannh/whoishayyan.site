@@ -57,9 +57,12 @@ export default function HomeSection() {
                             Possess a sharp eye for detail, thrive in collaborative environments, and eagerly
                             embrace new technologies and methodologies.
                         </p>
-                        <a href="#contact" className={`${styles.button} ${styles.button__flex}`}>
+                        <Link
+                            href={'/#contact'}
+                            className={`${styles.button} ${styles.button__flex}`}
+                        >
                             Contact Me <i className={styles.button__icon}><UilMessage/></i>
-                        </a>
+                        </Link>
                     </div>
                 </div>
 

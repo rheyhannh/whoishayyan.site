@@ -72,6 +72,14 @@
   --z-tooltip: 10;
   --z-fixed: 100;
   --z-modal: 1000;
+
+  /* Box-Shaodw */
+  --box-shadow-default: 0 3px 10px rgba(0, 0, 0, 0.25);
+  --box-shadow-active: 0 3px 10px rgba(0, 0, 0, 0.5);
+
+  /* Transition */
+  --transition-default: .3s;
+  
 }
 
 .dark-theme-variables {
