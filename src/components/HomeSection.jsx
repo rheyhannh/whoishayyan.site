@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import Button from "./Button"
 import styles from '../app/_root.module.css'
 import {
     UilLinkedin,
@@ -12,9 +12,9 @@ import {
 
 export default function HomeSection() {
     const homeSocials = [
-        { href: 'https://www.linkedin.com/in/rheyhannh/', uil: <UilLinkedin/> },
-        { href: 'https://github.com/rheyhannh/', uil: <UilGithub/> },
-        { href: 'https://www.instagram.com/rheyhannh/', uil: <UilInstagram/> },
+        { href: 'https://www.linkedin.com/in/rheyhannh/', uil: <UilLinkedin className={styles.home__social_icon}/> },
+        { href: 'https://github.com/rheyhannh/', uil: <UilGithub className={styles.home__social_icon}/> },
+        { href: 'https://www.instagram.com/rheyhannh/', uil: <UilInstagram className={styles.home__social_icon}/> },
     ]
 
     return (
@@ -24,13 +24,11 @@ export default function HomeSection() {
                     <div className={styles.home__social}>
                         {homeSocials.map((item, index) => (
                             <div className={styles.social__box} key={crypto.randomUUID()}>
-                                    <Link
-                                        href={item.href}
-                                        className={styles.home__social_icon}
-                                        target="_blank"
-                                    >
-                                        <i>{item.uil}</i>
-                                    </Link>
+                                <Button 
+                                    href={item.href} 
+                                    target="_blank" 
+                                    icon={item.uil}
+                                />
                             </div>
                         ))}
                     </div>
@@ -57,20 +55,20 @@ export default function HomeSection() {
                             Possess a sharp eye for detail, thrive in collaborative environments, and eagerly
                             embrace new technologies and methodologies.
                         </p>
-                        <Link
-                            href={'/#contact'}
+                        <Button 
+                            href="/#contact" 
                             className={`${styles.button} ${styles.button__flex}`}
-                        >
-                            Contact Me <i className={styles.button__icon}><UilMessage/></i>
-                        </Link>
+                            text="Contact Me" 
+                            icon={<UilMessage className={styles.button__icon}/>}
+                        />
                     </div>
                 </div>
 
                 <div className={styles.home__scroll}>
                     <a href="#about" className={`${styles.home__scroll_button} ${styles.button__flex}`}>
-                        <i className={styles.home__scroll_mouse}><UilMouseAlt/></i>
+                        <UilMouseAlt className={styles.home__scroll_mouse}/>
                         <span className={styles.home__scroll_name}>Scroll down</span>
-                        <i className={styles.home__scroll_arrow}><UilArrowDown/></i>
+                        <UilArrowDown className={styles.home__scroll_arrow}/>
                     </a>
                 </div>
             </div>

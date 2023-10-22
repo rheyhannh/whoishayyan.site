@@ -340,7 +340,7 @@ li.nav__item:nth-child(1) {
   color: var(--white-color);
 }
 
-.home__social_icon svg {
+.home__social_icon {
   display: flex;
   width: 15.5px;
   height: 15.5px;
@@ -458,13 +458,10 @@ li.nav__item:nth-child(1) {
 }
 
 .home__scroll_mouse {
-  font-size: 2rem;
-}
-
-.home__scroll_mouse svg {
   display: flex;
   width: 35px;
   height: 35px;
+  font-size: 2rem;
 }
 
 .home__scroll_name {
@@ -475,13 +472,10 @@ li.nav__item:nth-child(1) {
 }
 
 .home__scroll_arrow {
-  font-size: 1.25rem;
-}
-
-.home__scroll_arrow svg {
   display: flex;
   width: 20px;
   height: 20px;
+  font-size: 1.25rem;
 }
 
 .button {
@@ -505,16 +499,16 @@ li.nav__item:nth-child(1) {
   background-color: var(--first-color-alt);
 }
 
-.button__icon {
-  font-size: 1.25rem;
-  margin-left: var(--mb-0-5);
-  transition: var(--transition-default);
+.button:hover .button__icon {
+  transform: translateX(.1rem);
 }
 
-.button__icon svg {
-  vertical-align: middle;
+.button__icon {
   width: 20px;
   height: 20px;
+  font-size: 1.25rem;
+  vertical-align: middle;
+  margin-left: var(--mb-0-5);
   transition: var(--transition-default);
 }
 
@@ -1306,7 +1300,7 @@ li.nav__item:nth-child(1) {
     font-size: 1.175rem;
   }
 
-  .home__social_icon svg {
+  .home__social_icon {
     width: 18.8px;
     height: 18.8px;
   }
@@ -1487,7 +1481,7 @@ li.nav__item:nth-child(1) {
     font-size: 1.25rem;
   }
 
-  .home__social_icon svg {
+  .home__social_icon {
     width: 20px;
     height: 20px;
   }
