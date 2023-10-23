@@ -1,7 +1,7 @@
-import AboutSection from "./AboutSection"
-import HomeSection from "./HomeSection"
+import AboutSection from "./about/AboutSection"
+import HomeSection from "./home/HomeSection"
 
-export default function Sections() {
+export default async function Sections() {
     return (
         <>
             <HomeSection/>

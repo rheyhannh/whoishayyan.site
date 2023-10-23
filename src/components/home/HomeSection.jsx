@@ -1,6 +1,7 @@
 import Image from "next/image"
-import Button from "./Button"
-import styles from '../app/_root.module.css'
+import HomeData from "./HomeData"
+import Button from "@/components/Button"
+import styles from '@/app/_root.module.css'
 import {
     UilLinkedin,
     UilGithub,
@@ -10,7 +11,8 @@ import {
     UilMouseAlt
 } from '@iconscout/react-unicons'
 
-export default function HomeSection() {
+export default async function HomeSection() {
+    
     const homeSocials = [
         { href: 'https://www.linkedin.com/in/rheyhannh/', uil: <UilLinkedin className={styles.home__social_icon}/> },
         { href: 'https://github.com/rheyhannh/', uil: <UilGithub className={styles.home__social_icon}/> },
@@ -48,29 +50,11 @@ export default function HomeSection() {
                     </div>
 
                     <div className={styles.home__data}>
-                        <h1 className={styles.home__title}>Reyhan Naufal <span id="changeFont">Hayyan</span></h1>
-                        <h3 className={styles.home__subtitle}><span className={styles.typed__text}></span><span
-                                className={`${styles.cursor} ${styles.blink}`}>&nbsp</span></h3>
-                        <p className={styles.home__description}>
-                            Possess a sharp eye for detail, thrive in collaborative environments, and eagerly
-                            embrace new technologies and methodologies.
-                        </p>
-                        <Button 
-                            href="/#contact" 
-                            className={`${styles.button} ${styles.button__flex}`}
-                            text="Contact Me" 
-                            icon={<UilMessage className={styles.button__icon}/>}
-                        />
+                        <HomeData/>
                     </div>
                 </div>
 
-                <div className={styles.home__scroll}>
-                    <a href="#about" className={`${styles.home__scroll_button} ${styles.button__flex}`}>
-                        <UilMouseAlt className={styles.home__scroll_mouse}/>
-                        <span className={styles.home__scroll_name}>Scroll down</span>
-                        <UilArrowDown className={styles.home__scroll_arrow}/>
-                    </a>
-                </div>
+
             </div>
     </section>
     )

@@ -26,6 +26,8 @@
   --body-color: hsl(var(--hue-color), 60%, 99%);
   --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
+  --skeleton-base: hsl(var(--hue-color), 8%, 92%);
+  --skeleton-highlight: hsl(var(--hue-color), 8%, 99%);
 
   /* Custom Color */
   --container-color: #FFF;
@@ -74,15 +76,16 @@
   --z-modal: 1000;
 
   /* Box-Shaodw */
-  --box-shadow-default: 0 3px 10px rgba(0, 0, 0, 0.25);
-  --box-shadow-active: 0 3px 10px rgba(0, 0, 0, 0.5);
+  --box-shadow-default: 0 0 5px rgba(0, 0, 0, 0.2);
+  --box-shadow-active: 0 0 8px rgba(0, 0, 0, 0.4);
+  --eclipse-shadow-active: 0 3px 8px rgba(0, 0, 0, 0.4); 
 
   /* Transition */
   --transition-default: .3s;
   
 }
 
-.dark-theme-variables {
+.dark-theme {
   --first-color-second: hsl(var(--hue-color), 30%, 8%);
   --title-color: hsl(var(--hue-color), 8%, 95%);
   --text-color: hsl(var(--hue-color), 8%, 75%);
@@ -91,6 +94,11 @@
   --container-color: hsl(var(--hue-color), 29%, 16%);
   --scroll-bar-color: hsl(var(--hue-color), 12%, 48%);
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
+  --skeleton-base: hsl(var(--hue-color), 30%, 20%);
+  --skeleton-highlight: hsl(var(--hue-color), 30%, 35%);
+  --box-shadow-default: none;
+  --box-shadow-active: 0 0 8px var(--first-color);
+  --eclipse-shadow-active: 0 3px 8px var(--first-color); 
 }
 
 /* Base */
