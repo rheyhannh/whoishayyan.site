@@ -5,10 +5,7 @@ import styles from '@/app/_root.module.css'
 import {
     UilLinkedin,
     UilGithub,
-    UilInstagram,
-    UilMessage,
-    UilArrowDown,
-    UilMouseAlt
+    UilInstagram
 } from '@iconscout/react-unicons'
 
 export default async function HomeSection() {
@@ -21,7 +18,7 @@ export default async function HomeSection() {
 
     return (
         <section className={`${styles.home} ${styles.section}`} id="home">
-            <div className={`${styles.home__container} ${styles.container} ${styles.grid}`}>
+            <div className={`${styles.container} ${styles.grid}`}>
                 <div className={`${styles.home__content} ${styles.grid}`}>
                     <div className={styles.home__social}>
                         {homeSocials.map((item, index) => (
