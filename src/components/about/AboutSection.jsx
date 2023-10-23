@@ -1,6 +1,6 @@
 import Image from "next/image"
-import Button from "./Button"
-import styles from '../app/_root.module.css'
+import Button from "@/components/Button"
+import styles from '@/app/_root.module.css'
 import {
     UilDownloadAlt
 } from '@iconscout/react-unicons'
@@ -40,7 +40,7 @@ export default function AboutSection() {
                     </p>
                     <div className={styles.about__info}>
                         <div>
-                            <span className={styles.about__info_title}>I'm interested in</span>
+                            <span className={styles.about__info_title}>Im interested in</span>
                         </div>
                         <div>
                             <span className={styles.about__info_name} id="interestedText">Internet of Things</span>
