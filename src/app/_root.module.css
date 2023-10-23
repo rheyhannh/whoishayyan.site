@@ -99,11 +99,11 @@
   display: flex;
   justify-content: center;
   align-items: center;  
-  cursor: pointer;
 }
 
 .error__fetch_msg {
   display: inline-block;
+  cursor: pointer;
   padding: .5rem;
   margin: 1rem auto;
   text-align: center;
@@ -561,6 +561,16 @@ li.nav__item:nth-child(1) {
 .button--link:hover {
   background-color: transparent;
   color: var(--first-color-alt);
+}
+
+.about__data {
+  padding: .5rem;
+}
+
+.about__data:has(.error__fetch) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .about__img {
