@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import AboutSkeleton from './AboutSkeleton';
-import GetIdentifier from '@/components/_helper';
+import { FetchData } from '@/components/_ClientHelper';
 import ErrorFetch from '@/components/ErrorFetch';
 import Button from '@/components/Button';
 import {
@@ -15,40 +15,9 @@ export default function AboutData() {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
 
-    const fetchData = async () => {
-        const type = 'about';
-        const uuid = crypto.randomUUID();
-        const stamp = Math.floor(Date.now() / 1000).toString();
-        const identifier = await GetIdentifier(type, uuid, stamp);
+    useEffect(() => { FetchData('about', setData, setIsLoading, setIsError) }, []);
 
-        try {
-            if (identifier === -1) { throw new Error(`Something went wrong`) }
-            const response = await fetch(`http://localhost:5000/${uuid}?stamp=${stamp}&type=${type}&identifier=${identifier}`, {
-                method: "GET",
-                cache: "no-cache",
-            });
-            
-            if (!response.ok) { throw new Error(`Failed to fetch data`) }
-
-            const data = await response.json();
-            setData(data);
-        } catch (error) {
-            setIsError(true);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    const handleReload = () => {
-        setIsLoading(true);
-        setIsError(false);
-        setData(null);
-        fetchData();
-    };
+    const handleReload = () => { setIsLoading(true); setIsError(false); setData(null); FetchData('about', setData, setIsLoading, setIsError); };
 
     return (
         <>
