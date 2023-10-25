@@ -8,7 +8,7 @@ import {
     UilInstagram
 } from '@iconscout/react-unicons'
 
-export default async function HomeSection() {
+export default function HomeSection() {
     
     const homeSocials = [
         { href: 'https://www.linkedin.com/in/rheyhannh/', uil: <UilLinkedin className={styles.home__social_icon}/> },
