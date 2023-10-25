@@ -728,7 +728,10 @@ li.nav__item:nth-child(1) {
 }
 
 .qualification__icon {
+  display: flex;
   font-size: 1.8rem;
+  width: 28.8px;
+  height: 28.8px;
 }
 
 .qualification__data {
@@ -761,6 +764,12 @@ li.nav__item:nth-child(1) {
   color: var(--text-color-light);
 }
 
+.qualification__calendar svg {
+  width: 12px;
+  height: 12px;
+  margin-right: .2rem;
+}
+
 .qualification__rounder {
   display: inline-block;
   width: 13px;
@@ -777,11 +786,11 @@ li.nav__item:nth-child(1) {
   transform: translate(6px, -7px);
 }
 
-.qualification [tabsData] {
+.qualification [tabsdata] {
   display: none;
 }
 
-.qualification__active[tabsData] {
+.qualification__active[tabsdata] {
   display: block;
 }
 
