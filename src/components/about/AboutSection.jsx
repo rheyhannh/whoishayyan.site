@@ -2,7 +2,7 @@ import Image from "next/image"
 import AboutData from "./AboutData"
 import styles from '@/app/_root.module.css'
 
-export default function AboutSection() {
+export default function AboutSection({ initdata }) {
     return (
         <section className={`${styles.about} ${styles.section}`} id="about">
             <h2 className={styles.section__title}>About Me</h2>
@@ -21,7 +21,7 @@ export default function AboutSection() {
                 </div>
 
                 <div className={styles.about__data}>
-                    <AboutData/>
+                    <AboutData initdata={initdata} />
                 </div>
             </div>
         </section>

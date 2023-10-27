@@ -8,40 +8,43 @@ import ErrorFetch from '@/components/ErrorFetch';
 import * as Unicons from '@iconscout/react-unicons';
 import styles from '@/app/_root.module.css'
 
-export default function QualificationData({ part }) {
+export default function QualificationData({ part, initdata }) {
     const [data, setData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+    const [activeTab, setActiveTab] = useState(0);
 
-    useEffect(() => { FetchData('qualification', setData, setIsLoading, setIsError) }, []);
+    useEffect(() => {
+        setLoading(false);
+        setData(initdata ? initdata : null);
+        setError(initdata ? false : true );
+    }, [initdata, activeTab])
 
-    const handleReload = () => { setIsLoading(true); setIsError(false); setData(null); FetchData('qualification', setData, setIsLoading, setIsError); };
+    const clickReload = () => {
+        setLoading(true);
+        setError(false);
+        setData(null);
+        FetchData('qualification', setData, setLoading, setError);
+    }
 
-    const changeTab = (event) => {
-        if (event.target.classList.contains(styles.qualification__active)) {
-            return;
-        }
-        const tabs = document.querySelectorAll('[tabs]');
-        const tabsData = document.querySelectorAll('[tabsdata]');
-        const targetTab = event.target;
-        const targetData = document.getElementById(event.target.getAttribute('tabs'))
-        tabs.forEach(tab => tab.classList.remove(styles.qualification__active));
-        tabsData.forEach(tabData => tabData.classList.remove(styles.qualification__active));
-        targetTab.classList.add(styles.qualification__active);
-        targetData.classList.add(styles.qualification__active);
+    const clickTab = (tabIndex) => {
+        setActiveTab(tabIndex);
     }
 
     if (part === "tabs") {
         return (
             <>
-                {isLoading && <QualificationSkeleton part="tabs" />}
+                {loading && <QualificationSkeleton part="tabs" />}
                 {
-                    data && !isLoading && !isError &&
+                    data && !loading && !error &&
                     <>
                         {data.map((item, index) => {
                             const Icon = Unicons[item.icon];
                             return (
-                                <div className={`${styles.qualification__button} ${styles.button__flex} ${index === 0 ? styles.qualification__active : ""}`} tabs={item.title ? item.title.toLowerCase() : item.title} onClick={changeTab} key={crypto.randomUUID()}>
+                                <div 
+                                    className={`${styles.qualification__button} ${styles.button__flex} ${activeTab === index ? styles.qualification__active : ""}`} 
+                                    onClick={() => clickTab(index)} key={crypto.randomUUID()}
+                                    >
                                     {Icon ? <Icon className={styles.qualification__icon} /> : null}
                                     {item.title}
                                 </div>
@@ -49,7 +52,7 @@ export default function QualificationData({ part }) {
                         })}
                     </>
                 }
-                {isError && <></>}
+                {error && <></>}
             </>
         )
     }
@@ -57,7 +60,7 @@ export default function QualificationData({ part }) {
         return (
             <>
                 {
-                    isLoading &&
+                    loading &&
                     <>
                         <div className={styles.qualification__active} tabsdata={'true'}>
                             <QualificationSkeleton part="content" />
@@ -65,10 +68,14 @@ export default function QualificationData({ part }) {
                     </>
                 }
                 {
-                    data && !isError && !isLoading &&
+                    data && !error && !loading &&
                     <>
                         {data.map((item, index) => (
-                            <div className={index === 0 ? styles.qualification__active : styles.qualification} tabsdata={'true'} id={item.title ? item.title.toLowerCase() : item.title} key={crypto.randomUUID()}>
+                            <div 
+                                className={activeTab === index ? styles.qualification__active : styles.qualification} 
+                                tabsdata={index}
+                                key={crypto.randomUUID()}
+                                >
                                 {item.data.map((value, index) => (
                                     index % 2 === 0 ? (
                                         <div className={styles.qualification__data} key={crypto.randomUUID()}>
@@ -126,10 +133,10 @@ export default function QualificationData({ part }) {
 
                 }
                 {
-                    isError &&
+                    error &&
                     <>
                         <div className={styles.qualification__active} tabsdata={'true'}>
-                            <ErrorFetch clickEvent={handleReload} />
+                            <ErrorFetch clickEvent={clickReload} />
                         </div>
                     </>
                 }

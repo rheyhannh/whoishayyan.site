@@ -12,21 +12,30 @@ import {
 } from '@iconscout/react-unicons'
 import styles from '@/app/_root.module.css'
 
-export default function HomeData() {
+export default function HomeData({ initdata }) {
     const [data, setData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-    useEffect(() => { FetchData('home', setData, setIsLoading, setIsError) }, []);
+    useEffect(() => {
+        setLoading(false);
+        setData(initdata ? initdata : null);
+        setError(initdata ? false : true );
+    }, [initdata])
 
-    const handleReload = () => { setIsLoading(true); setIsError(false); setData(null); FetchData('home', setData, setIsLoading, setIsError); };
+    const clickReload = () => {
+        setLoading(true);
+        setError(false);
+        setData(null);
+        FetchData('home', setData, setLoading, setError);
+    }
 
     return (
-        <>  
-            { isLoading && <HomeSkeleton/> }
+        <>
+            {loading && <HomeSkeleton />}
             {
-                data && !isLoading && !isError &&
-                <> 
+                data && !loading && !error &&
+                <>
                     <h1 className={styles.home__title}>
                         {data.title}
                     </h1>
@@ -40,23 +49,23 @@ export default function HomeData() {
                         {data.description}
                     </p>
 
-                    <Button 
-                        href="/#contact" 
+                    <Button
+                        href="/#contact"
                         className={`${styles.button} ${styles.button__flex}`}
-                        text="Contact Me" 
-                        icon={<UilMessage className={styles.button__icon}/>}
+                        text="Contact Me"
+                        icon={<UilMessage className={styles.button__icon} />}
                     />
-                    
+
                     <div className={styles.home__scroll}>
                         <a href="#about" className={`${styles.home__scroll_button} ${styles.button__flex}`}>
-                            <UilMouseAlt className={styles.home__scroll_mouse}/>
+                            <UilMouseAlt className={styles.home__scroll_mouse} />
                             <span className={styles.home__scroll_name}>Scroll down</span>
-                            <UilArrowDown className={styles.home__scroll_arrow}/>
+                            <UilArrowDown className={styles.home__scroll_arrow} />
                         </a>
-                    </div>                
+                    </div>
                 </>
             }
-            { isError && <ErrorFetch clickEvent={handleReload}/> }
+            {error && <ErrorFetch clickEvent={clickReload} />}
         </>
     )
 }

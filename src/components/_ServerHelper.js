@@ -2,32 +2,29 @@
 
 import cryptoJS from 'crypto-js';
 
-const GetNewContent = async (type, uuid, stamp, data = null) => {
+const GetNewContent = async (stamp, data = null) => {
     const config = process.env;
 
     try {
         const signData = {
-            type: `${type}`,
-            stamp: `${stamp[1]}${stamp[2]}${stamp[4]}${stamp[3]}${stamp[5]}${stamp[7]}${stamp[6]}`,
-            uuid: `${uuid}`,
+            stamp: `${stamp[7]}${stamp[9]}${stamp[8]}${stamp[6]}${stamp[5]}`,
+            key: `${config.USER_UUID}`,
+            method: `GET`
         };
 
-        const token = cryptoJS.HmacSHA1(JSON.stringify(signData), config.SECRET_KEY).toString(cryptoJS.enc.Hex);
+        const token = cryptoJS.HmacSHA256(JSON.stringify(signData), config.SECRET_KEY).toString(cryptoJS.enc.Hex);
 
         const response = await (
             data
-                ? fetch(`${config.API_URI}/${uuid}?stamp=${stamp}&type=${type}&identifier=${token}`, {
-                    method: "POST",
+                ? fetch(`${config.API_URI}/journey/${config.USER_UUID}?validate=${data}&stamp=${stamp}&identifier=${token}`, {
+                    method: "GET",
                     mode: "cors",
                     cache: "no-cache",
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({
-                        [stamp]: data,
-                    }),
                 })
-                : fetch(`${config.API_URI}/${uuid}?stamp=${stamp}&type=${type}&identifier=${token}`, {
+                : fetch(`${config.API_URI}/journey/${config.USER_UUID}?stamp=${stamp}&identifier=${token}`, {
                     method: "GET",
                     mode: "cors",
                     cache: "no-cache",
@@ -41,7 +38,9 @@ const GetNewContent = async (type, uuid, stamp, data = null) => {
             throw new Error("Failed to fetch data");
         }
 
-        return response.json();
+        const { data: newData } = await response.json();
+        return newData;
+        
     } catch (error) {
         throw error;
     }

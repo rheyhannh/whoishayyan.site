@@ -786,7 +786,7 @@ li.nav__item:nth-child(1) {
   transform: translate(6px, -7px);
 }
 
-.qualification [tabsdata] {
+.qualification[tabsdata]{
   display: none;
 }
 

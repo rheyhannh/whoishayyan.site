@@ -14,37 +14,59 @@ const GetSignature = (data, key) => {
     });
 }
 
-const FetchData = async (type, setData, setIsLoading, setIsError) => {
-    const uuid = crypto.randomUUID();
+const FetchData = async (type, setData, setLoading, setError) => {
     const stamp = Math.floor(Date.now() / 1000).toString();
-    const localData = localStorage.getItem(`${type}_data`);
-    if (localData){
+    const localData = localStorage.getItem(`_data`);
+    if (localData) {
         GetSignature(localData, stamp)
             .then(localDataSign => {
-                GetNewContent(type, uuid, stamp, localDataSign)
+                GetNewContent(stamp, localDataSign)
                     .then((newContent) => {
-                        if (newContent === false) { setData(JSON.parse(localData)) }
-                        else { 
-                            SetLocalStorage(JSON.stringify(newContent), `${type}_data`); 
-                            setData(newContent); 
+                        if (!newContent) {
+                            if (type) { setData(JSON.parse(localData)[type]) }
+                            else { setData(JSON.parse(localData)) }
+                        }
+                        else {
+                            SetLocalStorage(JSON.stringify(newContent), `_data`);
+                            if (type) { setData(newContent[type]) }
+                            else { setData(newContent) }
                         }
                     })
-                    .catch(error => { 
-                        FetchErrorHandler(error, type);
+                    .catch(_ => {
+                        console.error(`Failed to fetch new data`)
                         try {
-                            setData(JSON.parse(localData));
+                            const data = JSON.parse(localData);
+                            if (type) {
+                                if (data[type]) { setData(data[type]) }
+                                else { throw new Error(`Local ${type} data not found`) }
+                            }
+                            else {
+                                if (data) { setData(data) }
+                                else { throw new Error(`Local data not found`) }
+                            }
                         } catch (error) {
-                            setIsError(true);
+                            if (type) { console.error(`Failed to load local ${type} data`); setError(true); }
+                            else { console.error(`Failed to load local data`) }
                         }
                     })
             })
-            .catch(error => { FetchErrorHandler(error, type); setIsError(true); })
-            .finally(_ => { setIsLoading(false) })
+            .catch(_ => {
+                console.error(`Failed to fetch new data`)
+                if (type) { setError(true); }
+            })
+            .finally(_ => { if (type) { setLoading(false); } })
     } else {
-        GetNewContent(type, uuid, stamp)
-            .then((newContent) => { SetLocalStorage(JSON.stringify(newContent), `${type}_data`); setData(newContent); })
-            .catch(error => { FetchErrorHandler(error, type); setIsError(true); })
-            .finally(_ => { setIsLoading(false) })
+        GetNewContent(stamp)
+            .then((newContent) => {
+                SetLocalStorage(JSON.stringify(newContent), `_data`);
+                if (type) { setData(newContent[type]) }
+                else { setData(newContent) }
+            })
+            .catch(_ => {
+                if (type) { console.error(`Failed to fetch new ${type} data`); setError(true); }
+                else { console.error(`Failed to fetch new data`) }
+            })
+            .finally(_ => { if (type) { setLoading(false); } })
     }
 };
 
@@ -53,7 +75,7 @@ const SetLocalStorage = (data, key) => {
 }
 
 const FetchErrorHandler = (error, type) => {
-    if (process.env.NEXT_PUBLIC_ENV === "development"){
+    if (process.env.NEXT_PUBLIC_ENV === "development") {
         console.log(error);
     }
     console.error(`Failed to fetch new ${type} content`);

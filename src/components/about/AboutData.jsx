@@ -10,20 +10,29 @@ import {
 } from '@iconscout/react-unicons'
 import styles from '@/app/_root.module.css'
 
-export default function AboutData() {
+export default function AboutData({ initdata }) {
     const [data, setData] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
-    useEffect(() => { FetchData('about', setData, setIsLoading, setIsError) }, []);
+    useEffect(() => {
+        setLoading(false);
+        setData(initdata ? initdata : null);
+        setError(initdata ? false : true );
+    }, [initdata])
 
-    const handleReload = () => { setIsLoading(true); setIsError(false); setData(null); FetchData('about', setData, setIsLoading, setIsError); };
+    const clickReload = () => {
+        setLoading(true);
+        setError(false);
+        setData(null);
+        FetchData('about', setData, setLoading, setError);
+    }
 
     return (
         <>
-            { isLoading && <AboutSkeleton/> }
+            { loading && <AboutSkeleton/> }
             {
-                data && !isLoading && !isError &&
+                data && !loading && !error &&
                 <>
                     <p className={styles.about__description}>
                         {data.description}
@@ -48,7 +57,7 @@ export default function AboutData() {
                     </div>
                 </>
             }
-            { isError && <ErrorFetch clickEvent={handleReload}/> }
+            { error && <ErrorFetch clickEvent={clickReload}/> }
         </>
     )
 }

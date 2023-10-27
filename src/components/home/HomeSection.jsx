@@ -8,12 +8,11 @@ import {
     UilInstagram
 } from '@iconscout/react-unicons'
 
-export default function HomeSection() {
-    
+export default function HomeSection({ initdata }) {
     const homeSocials = [
-        { href: 'https://www.linkedin.com/in/rheyhannh/', uil: <UilLinkedin className={styles.home__social_icon}/> },
-        { href: 'https://github.com/rheyhannh/', uil: <UilGithub className={styles.home__social_icon}/> },
-        { href: 'https://www.instagram.com/rheyhannh/', uil: <UilInstagram className={styles.home__social_icon}/> },
+        { href: 'https://www.linkedin.com/in/rheyhannh/', uil: <UilLinkedin className={styles.home__social_icon} /> },
+        { href: 'https://github.com/rheyhannh/', uil: <UilGithub className={styles.home__social_icon} /> },
+        { href: 'https://www.instagram.com/rheyhannh/', uil: <UilInstagram className={styles.home__social_icon} /> },
     ]
 
     return (
@@ -23,9 +22,9 @@ export default function HomeSection() {
                     <div className={styles.home__social}>
                         {homeSocials.map((item, index) => (
                             <div className={styles.social__box} key={crypto.randomUUID()}>
-                                <Button 
-                                    href={item.href} 
-                                    target="_blank" 
+                                <Button
+                                    href={item.href}
+                                    target="_blank"
                                     icon={item.uil}
                                 />
                             </div>
@@ -47,12 +46,10 @@ export default function HomeSection() {
                     </div>
 
                     <div className={styles.home__data}>
-                        <HomeData/>
+                        <HomeData initdata={initdata} />
                     </div>
                 </div>
-
-
             </div>
-    </section>
+        </section>
     )
 }
