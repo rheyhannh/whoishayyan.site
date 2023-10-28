@@ -16,26 +16,23 @@ import {
     UilApps
 } from '@iconscout/react-unicons'
 
-function ThemeSwitcher() {
+export default function Header() {
     const [theme, setTheme] = useState('light');
 
     useEffect(() => {
-        localStorage.setItem('_theme', theme)
-        document.body.classList.toggle('dark-theme', theme === 'dark');
-    });
+        const localTheme = localStorage.getItem('_theme');
+        if (localTheme === 'dark') {
+            setTheme(localTheme);
+            document.body.classList.add('dark-theme');
+        }
+    }, []);
 
     const toggleTheme = () => {
         setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
+        document.body.classList.toggle('dark-theme', theme !== 'dark');
+        localStorage.setItem('_theme', theme === 'dark' ? 'light' : 'dark')
     };
 
-    return (
-        <i className={styles.change_theme} onClick={toggleTheme}>
-            {theme === "dark" ? <UilSun /> : <UilMoon />}
-        </i>
-    )
-}
-
-export default function Header() {
     const navList = [
         { href: '/#home', text: 'Home' },
         { href: '/#about', text: 'About', uil: <UilUser /> },
@@ -76,7 +73,9 @@ export default function Header() {
                 </div>
 
                 <div className={styles.nav__btns}>
-                    <ThemeSwitcher/>
+                    <i className={styles.change_theme} onClick={toggleTheme}>
+                        {theme === "dark" ? <UilSun /> : <UilMoon />}
+                    </i>
                     <div className={styles.nav__toggle} id="nav-toggle">
                         <i><UilApps /></i>
                     </div>
