@@ -8,27 +8,22 @@ import ErrorFetch from '@/components/ErrorFetch';
 import * as Unicons from '@iconscout/react-unicons';
 import styles from '@/app/_root.module.css'
 
-export default function QualificationData({ part, initdata }) {
+export default function QualificationData({ initdata, part, tab, tabclick }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [activeTab, setActiveTab] = useState(0);
 
     useEffect(() => {
         setLoading(false);
         setData(initdata ? initdata : null);
         setError(initdata ? false : true );
-    }, [initdata, activeTab])
+    }, [initdata])
 
     const clickReload = () => {
         setLoading(true);
         setError(false);
         setData(null);
         FetchData('qualification', setData, setLoading, setError);
-    }
-
-    const clickTab = (tabIndex) => {
-        setActiveTab(tabIndex);
     }
 
     if (part === "tabs") {
@@ -42,8 +37,8 @@ export default function QualificationData({ part, initdata }) {
                             const Icon = Unicons[item.icon];
                             return (
                                 <div 
-                                    className={`${styles.qualification__button} ${styles.button__flex} ${activeTab === index ? styles.qualification__active : ""}`} 
-                                    onClick={() => clickTab(index)} key={crypto.randomUUID()}
+                                    className={`${styles.qualification__button} ${styles.button__flex} ${tab === index ? styles.qualification__active : ""}`} 
+                                    onClick={() => tabclick(index)} key={crypto.randomUUID()}
                                     >
                                     {Icon ? <Icon className={styles.qualification__icon} /> : null}
                                     {item.title}
@@ -72,7 +67,7 @@ export default function QualificationData({ part, initdata }) {
                     <>
                         {data.map((item, index) => (
                             <div 
-                                className={activeTab === index ? styles.qualification__active : styles.qualification} 
+                                className={tab === index ? styles.qualification__active : styles.qualification} 
                                 tabsdata={index}
                                 key={crypto.randomUUID()}
                                 >
