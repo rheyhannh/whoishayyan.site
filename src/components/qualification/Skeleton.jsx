@@ -47,7 +47,7 @@ export default function QualificationSkeleton({ part }) {
                                 baseColor="var(--skeleton-base)"
                                 highlightColor="var(--skeleton-highlight)"
                             >
-                                <Skeleton width={"80%"} count={1} className={styles.qualification__title} />
+                                <Skeleton style={{marginBottom: 'var(--mb-0-5)'}} width={"80%"} count={1} className={styles.qualification__title} />
                             </SkeletonTheme>
 
                             <SkeletonTheme
@@ -85,7 +85,7 @@ export default function QualificationSkeleton({ part }) {
                                     baseColor="var(--skeleton-base)"
                                     highlightColor="var(--skeleton-highlight)"
                                 >
-                                    <Skeleton width={"80%"} count={1} />
+                                    <Skeleton style={{marginBottom: 'var(--mb-0-5)'}} width={"80%"} count={1} />
                                 </SkeletonTheme>
                             </h3>
 
