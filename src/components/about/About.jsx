@@ -80,12 +80,11 @@ export default function AboutSection({ initdata, unicons }) {
                             quality={100}
                             alt={'About Image'}
                             priority={true}
-                            onClick={toggleLoading}
                         />
                     </div>
                 }
 
-                <div onClick={toggleError} className={styles.about__data}>
+                <div className={styles.about__data}>
                     {loading && <AboutSkeleton part={'data'} />}
                     {data && !loading && !error && <AboutData data={data} />}
                 </div>
