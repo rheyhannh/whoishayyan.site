@@ -2,7 +2,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import styles from "@/app/_root.module.css";
 
-export default function QualificationSkeleton({ part, loadingClick }) {
+export default function QualificationSkeleton({ part }) {
     if (part === "tabs") {
         return (
             <>

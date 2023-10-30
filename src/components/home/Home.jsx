@@ -1,28 +1,26 @@
+import HomeSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import Image from "next/image"
 import { useState, useEffect } from 'react';
 import getData from "@/components/_ServerHelper";
-import Button from "@/components/Button"
 import styles from '@/app/_root.module.css'
-import {
-    UilLinkedin,
-    UilGithub,
-    UilInstagram
-} from '@iconscout/react-unicons'
 
-const HomeSkeleton = dynamic(() => import("./Skeleton"))
 const HomeData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export default function HomeSection({ initdata }) {
     const [data, setData] = useState(null);
+    const [icons, setIcons] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        setData(initdata && initdata);
-        setError(!initdata && true);
-        setLoading(false);
+        import('@iconscout/react-unicons').then((Unicons) => { 
+            setIcons(Unicons);
+            setData(initdata && initdata);
+            setLoading(false);
+            setError(!initdata && true);
+        });
     }, [initdata])
 
     const toggleLoading = () => {
@@ -32,7 +30,7 @@ export default function HomeSection({ initdata }) {
     const toggleError = () => {
         setError((current) => (current === true ? false : true));
     };
-     
+
     const clickReload = () => {
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
@@ -40,7 +38,7 @@ export default function HomeSection({ initdata }) {
         if (localData) {
             try {
                 const dataJson = JSON.parse(localData).home;
-                if (dataJson) { 
+                if (dataJson) {
                     setData(dataJson);
                     setLoading(false);
                     return;
@@ -68,12 +66,6 @@ export default function HomeSection({ initdata }) {
         }
     }
 
-    const homeSocials = [
-        { href: 'https://www.linkedin.com/in/rheyhannh/', uil: <UilLinkedin className={styles.home__social_icon} /> },
-        { href: 'https://github.com/rheyhannh/', uil: <UilGithub className={styles.home__social_icon} /> },
-        { href: 'https://www.instagram.com/rheyhannh/', uil: <UilInstagram className={styles.home__social_icon} /> },
-    ]
-
     return (
         <section className={`${styles.home} ${styles.section}`} id="home">
             <div className={`${styles.container} ${styles.grid}`}>
@@ -82,22 +74,12 @@ export default function HomeSection({ initdata }) {
 
                     <div className={styles.home__social}>
                         {loading && <HomeSkeleton part={'social'} />}
-                        {data && !loading && !error &&
-                            homeSocials.map((item, index) => (
-                                <div className={styles.social__box} key={crypto.randomUUID()}>
-                                    <Button
-                                        href={item.href}
-                                        target="_blank"
-                                        icon={item.uil}
-                                    />
-                                </div>
-                            ))
-                        }
+                        {data && icons && !loading && !error && <HomeData data={data} part={'social'} unicons={icons} />}
                     </div>
 
                     <div className={styles.home__img}>
                         {loading && <HomeSkeleton part={'blob'} loadingClick={toggleLoading} />}
-                        {data && !loading && !error &&
+                        {data && icons && !loading && !error &&
                             <div onClick={toggleLoading} className={styles.home__blob} id="home__blob">
                                 <Image
                                     src={'/profil-nobg-min.png'}
@@ -114,7 +96,7 @@ export default function HomeSection({ initdata }) {
 
                     <div onClick={toggleError} className={styles.home__data}>
                         {loading && <HomeSkeleton part={'data'} />}
-                        {data && !loading && !error && <HomeData data={data} />}
+                        {data && icons && !loading && !error && <HomeData data={data} part={'content'} unicons={icons} />}
                     </div>
                 </div>
             </div>

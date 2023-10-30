@@ -41,9 +41,9 @@ export default function Sections() {
 
     return (
         <>
-            <HomeSection initdata={data && data.home} />
+            <HomeSection initdata={data && data.home}/>
             <AboutSection initdata={data && data.about} />
-            <QualificationSection initdata={data && data.qualification}/>
+            <QualificationSection initdata={data && data.qualification} />
         </>
     )
 }

@@ -1,14 +1,14 @@
+import AboutSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import Image from "next/image"
 import { useState, useEffect } from 'react';
 import getData from "@/components/_ServerHelper";
 import styles from '@/app/_root.module.css'
 
-const AboutSkeleton = dynamic(() => import("./Skeleton"))
 const AboutData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
-export default function AboutSection({ initdata }) {
+export default function AboutSection({ initdata, unicons }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -66,11 +66,11 @@ export default function AboutSection({ initdata }) {
 
     return (
         <section className={`${styles.about} ${styles.section}`} id="about">
-            <h2 className={styles.section__title}>About Me</h2>
-            <span className={styles.section__subtitle}>My Introduction</span>
+            <h2 onClick={toggleLoading} className={styles.section__title}>About Me</h2>
+            <span onClick={toggleError} className={styles.section__subtitle}>My Introduction</span>
             <div className={`${styles.about__container} ${styles.container} ${styles.grid}`}>
                 {error && <ErrorFetch clickEvent={clickReload} type={'about'} />}
-                {loading && <AboutSkeleton part={'image'} loadingClick={toggleLoading} />}
+                {loading && <AboutSkeleton part={'image'} />}
                 {data && !loading && !error &&
                     <div className={styles.about__img}>
                         <Image

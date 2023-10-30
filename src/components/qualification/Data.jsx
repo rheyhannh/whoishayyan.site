@@ -1,23 +1,30 @@
 import Link from 'next/link';
-import * as Unicons from '@iconscout/react-unicons';
 import styles from '@/app/_root.module.css'
 
-export default function QualificationData({ data, part, tab, tabclick }) {
+export default function QualificationData({ data, unicons, part, tab, tabclick }) {
+    const getIcons = (iconName, className) => {
+        const Icon = unicons[iconName];
+        if (!Icon) {
+            return null;
+        }
+        return (
+            <Icon className={className ? styles[className] : ''} />
+        )
+    }
+
     if (part === "tabs") {
         return (
             <>
-                {data.map((item, index) => {
-                    const Icon = Unicons[item.icon];
-                    return (
-                        <div
-                            className={`${styles.qualification__button} ${styles.button__flex} ${tab === index ? styles.qualification__active : ""}`}
-                            onClick={() => tabclick(index)} key={crypto.randomUUID()}
-                        >
-                            {Icon ? <Icon className={styles.qualification__icon} /> : null}
-                            {item.title}
-                        </div>
-                    )
-                })}
+                {data.map((item, index) => (
+                    <div
+                        className={`${styles.qualification__button} ${styles.button__flex} ${tab === index ? styles.qualification__active : ""}`}
+                        onClick={() => tabclick(index)} key={crypto.randomUUID()}
+                    >
+                        {getIcons(item.icon, 'qualification__icon')}
+                        {item.title}
+                    </div>
+                )
+                )}
             </>
         )
     }
@@ -44,7 +51,7 @@ export default function QualificationData({ data, part, tab, tabclick }) {
                                         </h3>
                                         <span className={styles.qualification__subtitle}>{value.subtitle}</span>
                                         <div className={styles.qualification__calendar}>
-                                            <Unicons.UilCalendarAlt />
+                                            {getIcons('UilCalendarAlt')}
                                             {value.date}
                                         </div>
                                     </div>
@@ -74,7 +81,7 @@ export default function QualificationData({ data, part, tab, tabclick }) {
                                         </h3>
                                         <span className={styles.qualification__subtitle}>{value.subtitle}</span>
                                         <div className={styles.qualification__calendar}>
-                                            <Unicons.UilCalendarAlt />
+                                            {getIcons('UilCalendarAlt')}
                                             {value.date}
                                         </div>
                                     </div>

@@ -2,13 +2,13 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import styles from '@/app/_root.module.css'
 
-export default function AboutSkeleton({ part, loadingClick }) {
+export default function AboutSkeleton({ part }) {
     if (part === 'data') {
         return (
             <>
                 <p className={styles.about__description}>
                     <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
-                        <Skeleton width={'100%'} count={5} style={{marginBottom: 'var(--mb-0-5)'}} />
+                        <Skeleton width={'100%'} count={5} style={{ marginBottom: 'var(--mb-0-5)' }} />
                     </SkeletonTheme>
                 </p>
 
@@ -30,7 +30,7 @@ export default function AboutSkeleton({ part, loadingClick }) {
     }
     else if (part === 'image') {
         return (
-            <div onClick={loadingClick}>
+            <div>
                 <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
                     <Skeleton className={styles.about__img_skeleton} count={1} />
                 </SkeletonTheme>
