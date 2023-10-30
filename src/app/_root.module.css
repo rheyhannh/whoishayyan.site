@@ -836,12 +836,20 @@ li.nav__item:nth-child(1) {
   border-radius: 50%;
 }
 
+.qualification__rounder.skeleton {
+  background-color: var(--skeleton-base);
+}
+
 .qualification__line {
   display: block;
   width: 1px;
   height: 100%;
   background-color: var(--first-color);
   transform: translate(6px, -7px);
+}
+
+.qualification__line.skeleton {
+  background-color: var(--skeleton-base);
 }
 
 .qualification[tabsdata] {

@@ -65,8 +65,8 @@ export default function QualificationSkeleton({ part }) {
                             </SkeletonTheme>
                         </div>
                         <div>
-                            <span className={styles.qualification__rounder}></span>
-                            <span className={styles.qualification__line}></span>
+                            <span className={`${styles.qualification__rounder} ${styles.skeleton}`}></span>
+                            <span className={`${styles.qualification__line} ${styles.skeleton}`}></span>
                         </div>
                         <div></div>
                     </div>
@@ -75,8 +75,8 @@ export default function QualificationSkeleton({ part }) {
                         <div></div>
 
                         <div>
-                            <span className={styles.qualification__rounder}></span>
-                            <span className={styles.qualification__line}></span>
+                        <span className={`${styles.qualification__rounder} ${styles.skeleton}`}></span>
+                            <span className={`${styles.qualification__line} ${styles.skeleton}`}></span>
                         </div>
 
                         <div>
