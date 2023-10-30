@@ -2,48 +2,64 @@
 
 import cryptoJS from 'crypto-js';
 
-const GetNewContent = async (stamp, data = null) => {
-    const config = process.env;
-
-    try {
-        const signData = {
-            stamp: `${stamp[7]}${stamp[9]}${stamp[8]}${stamp[6]}${stamp[5]}`,
-            key: `${config.USER_UUID}`,
-            method: `GET`
-        };
-
-        const token = cryptoJS.HmacSHA256(JSON.stringify(signData), config.SECRET_KEY).toString(cryptoJS.enc.Hex);
-
-        const response = await (
-            data
-                ? fetch(`${config.API_URI}/journey/${config.USER_UUID}?validate=${data}&stamp=${stamp}&identifier=${token}`, {
-                    method: "GET",
-                    mode: "cors",
-                    cache: "no-cache",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-                : fetch(`${config.API_URI}/journey/${config.USER_UUID}?stamp=${stamp}&identifier=${token}`, {
-                    method: "GET",
-                    mode: "cors",
-                    cache: "no-cache",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-        );
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch data");
+const getSignature = (data, key) => {
+    return new Promise((resolve, reject) => {
+        try {
+            var signature = cryptoJS.HmacSHA256(data, key).toString(cryptoJS.enc.Hex);
+            resolve(signature);
+        } catch (error) {
+            reject(error);
         }
+    });
+}
 
-        const { data: newData } = await response.json();
-        return newData;
-        
-    } catch (error) {
-        throw error;
+export default async function getData(localData) {
+    const config = process.env;
+    const stamp = Math.floor(Date.now() / 1000).toString();
+    const identifierData = {
+        stamp: `${stamp[7]}${stamp[9]}${stamp[8]}${stamp[6]}${stamp[5]}`,
+        key: `${config.USER_UUID}`,
+        method: `GET`
+    };
+
+    const requestOptions = {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+            "Content-Type": "application/json",
+        },
     }
-};
 
-export default GetNewContent;
+    if (localData) {
+        try {
+            const localDataSign = await getSignature(localData, stamp);
+            const identifierSign = await getSignature(JSON.stringify(identifierData), config.SECRET_KEY);
+            const response = await fetch(`${config.API_URI}/journey/${config.USER_UUID}?validate=${localDataSign}&stamp=${stamp}&identifier=${identifierSign}`, requestOptions)
+
+            if (!response.ok) { throw new Error("Failed to fetch data") }
+
+            const responseJSON = await response.json()
+
+            if (responseJSON.data) { return responseJSON.data }
+            else { return false }
+        } catch (error) {
+            console.error(error);
+            throw error
+        }
+    } else {
+        try {
+            const identifierSign = await getSignature(JSON.stringify(identifierData), config.SECRET_KEY);
+            const response = await fetch(`${config.API_URI}/journey/${config.USER_UUID}?stamp=${stamp}&identifier=${identifierSign}`, requestOptions)
+
+            if (!response.ok) { throw new Error("Failed to fetch data") }
+
+            const responseJSON = await response.json();
+            if (responseJSON.data) { return responseJSON.data }
+            else { return false }
+        } catch (error) {
+            console.error(error);
+            throw error
+        }
+    }
+}

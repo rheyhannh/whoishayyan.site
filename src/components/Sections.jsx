@@ -1,29 +1,49 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import AboutSection from "./about/AboutSection"
-import HomeSection from "./home/HomeSection"
-import QualificationSection from "./qualification/QualificationSection"
-import { FetchData } from '@/components/_ClientHelper';
+import HomeSection from "./home/Home"
+import AboutSection from "./about/About"
+import QualificationSection from "./qualification/Qualification"
+import getData from './_ServerHelper';
 
 export default function Sections() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        FetchData(null, setData, null, null);
+        const localData = localStorage.getItem('_data');
+
+        const applyLocalData = () => {
+            try {
+                const dataJson = JSON.parse(localData);
+                setData(dataJson);
+            } catch (error) {
+                console.error('Failed to use local data');
+                fetchData();
+            }
+        }
+
+        const fetchData = async () => {
+            try {
+                const result = await getData(localData ? localData : null);
+                if (result) {
+                    setData(result);
+                    localStorage.setItem(`_data`, JSON.stringify(result))
+                } else {
+                    applyLocalData();
+                }
+            } catch (error) {
+                console.error("Failed to fetch new data from server");
+            }
+        }
+
+        fetchData()
     }, []);
 
     return (
         <>
-            <HomeSection 
-                initdata={data && data.home}
-            />
-            <AboutSection
-                initdata={data && data.about}
-            />
-            <QualificationSection
-                initdata={data && data.qualification}
-            />
+            <HomeSection initdata={data && data.home} />
+            <AboutSection initdata={data && data.about} />
+            <QualificationSection initdata={data && data.qualification}/>
         </>
     )
 }

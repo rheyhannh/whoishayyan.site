@@ -184,7 +184,7 @@ strong {
   }
 }
 
-@media screen and (max-width: 434px) {
+@media screen and (max-width: 446px) {
   body {
     font-size: var(--small-font-size);
   }
