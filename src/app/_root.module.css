@@ -413,7 +413,7 @@ li.nav__item:nth-child(1) {
   background: var(--skeleton-base);
   border: 2.75px solid var(--skeleton-base);
   transform: scale(.5);
-  animation: bounce 1.5s infinite;
+  animation: bounceSocialBox 1.5s infinite;
 }
 
 .social__box.skeleton.circle1 {
@@ -482,6 +482,10 @@ li.nav__item:nth-child(1) {
   margin-bottom: var(--mb-2);
 }
 
+.home__button:hover .button__icon {
+  animation: bounceIconRight 1.25s infinite;
+}
+
 .typed__text {
   color: var(--first-color);
 }
@@ -496,8 +500,6 @@ li.nav__item:nth-child(1) {
 .cursor.blink {
   animation: blink .8s ease-in-out infinite;
 }
-
-
 
 .home__scroll {
   display: none;
@@ -540,6 +542,7 @@ li.nav__item:nth-child(1) {
   padding: 1rem;
   border-radius: .5rem;
   font-weight: var(--font-medium);
+  transition: var(--transition-default);
 }
 
 .button.disabled {
@@ -554,16 +557,12 @@ li.nav__item:nth-child(1) {
   background-color: var(--first-color-alt);
 }
 
-.button:hover .button__icon {
-  transform: translateX(.1rem);
-}
-
 .button__icon {
   width: 20px;
   height: 20px;
   font-size: 1.25rem;
   vertical-align: middle;
-  margin-left: var(--mb-0-5);
+  margin-left: var(--mb-0-25);
   transition: var(--transition-default);
 }
 
@@ -572,7 +571,7 @@ li.nav__item:nth-child(1) {
   align-items: center;
 }
 
-.button--small {
+.button__small {
   padding: .75rem 1rem;
 }
 
@@ -673,6 +672,10 @@ li.nav__item:nth-child(1) {
   justify-content: center;
 }
 
+.about__button:hover .button__icon {
+  animation: bounceIconDown 1.25s infinite;
+}
+
 .skills__container {
   row-gap: 0;
 }
@@ -755,7 +758,7 @@ li.nav__item:nth-child(1) {
 }
 
 .qualification__container {
-  min-height: 285px;
+  min-height: 320px;
   padding: .5rem;
 }
 
@@ -869,13 +872,25 @@ li.nav__item:nth-child(1) {
 }
 
 .portfolio__content {
+  min-height: 400px;
   padding: 0 1.5rem;
 }
 
+.portfolio__content:has(.error__fetch) {
+  grid-template-columns: 1fr;
+}
+
 .portfolio__img {
-  width: 265px;
+  width: 250px;
   border-radius: .5rem;
   justify-self: center;
+}
+
+.portfolio__img.skeleton {
+  max-width: 250px;
+  max-height: 166px;
+  width: calc(100vw - 89px);
+  height: calc(60vw - 45px);
 }
 
 .portfolio__title {
@@ -885,51 +900,57 @@ li.nav__item:nth-child(1) {
 
 .portfolio__description {
   text-align: justify;
-  margin-bottom: var(--mb-0-75);
+  margin-bottom: var(--mb-1);
 }
 
 .portfolio__button {
+  justify-content: center;
+  align-content: center;
   cursor: pointer;
 }
 
 .portfolio__button .button__icon {
-  margin-left: .1rem;
+  transition: all var(--transition-default) ease;
 }
 
 .portfolio__button:hover .button__icon {
-  transform: rotate(360deg);
-  /* transform: translateX(.25rem); */
+  animation: bounceIconUp 1.25s infinite;
 }
 
-.swiper-button-prev::after,
-.swiper-button-next::after {
-  content: '';
+.swiper_button_prev,
+.swiper_button_next {
+  position: absolute;
+  top: 40%;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
 }
 
-.swiper-portfolio-icon {
-  font-size: 2rem;
+.swiper_portfolio_icon {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
   color: var(--first-color);
 }
 
-.swiper-button-prev {
+.swiper_button_prev {
   left: -.5rem;
 }
 
-.swiper-button-next {
+.swiper_button_next {
   right: -.5rem;
 }
 
-.swiper>.swiper-pagination-bullets {
-  bottom: -2.75rem;
+.portfolio.pagination {
+  position: relative;
+  bottom: -1.5rem;
 }
 
-.swiper-pagination-bullet {
-  background-color: var(--first-color);
-}
-
-.swiper-button-prev,
-.swiper-button-next,
-.swiper-pagination-bullet {
+.swiper_button_prev,
+.swiper_button_next {
   outline: none;
 }
 
@@ -1287,7 +1308,7 @@ li.nav__item:nth-child(1) {
   }
 }
 
-@keyframes bounce {
+@keyframes bounceSocialBox {
 
   0%,
   100% {
@@ -1297,6 +1318,63 @@ li.nav__item:nth-child(1) {
   50% {
     transform: scale(.8);
     background: var(--skeleton-highlight);
+  }
+}
+
+@keyframes bounceIconUp {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-.25rem);
+  }
+
+  60% {
+    transform: translateY(-.1rem);
+  }
+}
+
+@keyframes bounceIconDown {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(.25rem);
+  }
+
+  60% {
+    transform: translateY(.1rem);
+  }
+}
+
+@keyframes bounceIconRight {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(.25rem);
+  }
+
+  60% {
+    transform: translateX(.1rem);
   }
 }
 
@@ -1415,6 +1493,25 @@ li.nav__item:nth-child(1) {
   .contact__container,
   .footer__container {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .portfolio__content {
+    min-height: 225px;
+  }
+
+  .portfolio__img {
+    width: 100%;
+  }
+
+  .portfolio__img.skeleton {
+    max-width: 320px;
+    max-height: 213px;
+    width: calc(26.75vw + 89.17px);
+    height: calc(46.47vw - 131.66px);
+  }
+
+  .portfolio.pagination {
+    bottom: -2.5rem;
   }
 
   .qualification__sections {
@@ -1613,6 +1710,10 @@ li.nav__item:nth-child(1) {
 }
 
 @media screen and (min-width: 1024px) {
+  .container {
+    max-width: calc(100vw - 256px);
+  }
+  
   .section {
     padding: 6rem 0 6rem;
   }
@@ -1621,6 +1722,10 @@ li.nav__item:nth-child(1) {
   .main,
   .footer__container {
     padding: 0;
+  }
+
+  .home__content {
+    min-height: 535px;
   }
 
   .home__social {
@@ -1657,16 +1762,22 @@ li.nav__item:nth-child(1) {
     column-gap: 5rem;
   }
 
-  .swiper-portfolio-icon {
-    font-size: 3.5rem;
+  .swiper_button_prev,
+  .swiper_button_next {
+    width: 43px;
+    height: 43px;
   }
 
-  .swiper-button-prev {
+  .swiper_button_prev {
     left: -3.5rem;
   }
 
-  .swiper-button-next {
+  .swiper_button_next {
     right: -3.5rem;
+  }
+
+  .portfolio.pagination {
+    bottom: -4rem;
   }
 
   .contact__form {
@@ -1687,7 +1798,9 @@ li.nav__item:nth-child(1) {
 }
 
 @media screen and (min-width: 1440px) {
+  /* Still need improvement layout for 1024 & 1440px and up */
   .container {
-    max-width: 1024px;
+    /* Set container max-width to prevent layout messy */
+    max-width: 1184px; 
   }
 }
