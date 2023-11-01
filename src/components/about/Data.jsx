@@ -23,7 +23,7 @@ export default function AboutData({ data }) {
             <div className={styles.about__buttons}>
                 <Button
                     href={'/#contact'}
-                    className={`${styles.button} ${styles.button__flex}`}
+                    className={`${styles.button} ${styles.button__flex} ${styles.about__button}`}
                     text="Download CV"
                     icon={<UilDownloadAlt className={styles.button__icon} />}
                 />
