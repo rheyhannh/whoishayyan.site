@@ -36,7 +36,7 @@ export default function HomeData({ data, part, unicons }) {
 
                 <Button
                     href="/#contact"
-                    className={`${styles.button} ${styles.button__flex}`}
+                    className={`${styles.button} ${styles.button__flex} ${styles.home__button}`}
                     text="Contact Me"
                     icon={getIcons('UilMessage', 'button__icon')}
                 />
