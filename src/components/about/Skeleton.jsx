@@ -8,7 +8,7 @@ export default function AboutSkeleton({ part }) {
             <>
                 <p className={styles.about__description}>
                     <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
-                        <Skeleton width={'100%'} count={5} style={{ marginBottom: 'var(--mb-0-5)' }} />
+                        <Skeleton width={'100%'} count={4} style={{ marginBottom: 'var(--mb-0-5)' }} />
                     </SkeletonTheme>
                 </p>
 
