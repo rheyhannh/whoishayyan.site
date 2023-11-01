@@ -8,7 +8,7 @@ export default function HomeSkeleton({ part, loadingClick }) {
             <>
                 <h1 className={styles.home__title}>
                     <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
-                        <Skeleton width={'100%'} count={1} />
+                        <Skeleton width={'90%'} count={1} />
                     </SkeletonTheme>
                 </h1>
 
@@ -20,7 +20,7 @@ export default function HomeSkeleton({ part, loadingClick }) {
 
                 <p className={styles.home__description}>
                     <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
-                        <Skeleton style={{marginBottom: 'var(--mb-0-5)'}} width={'90%'} count={3} />
+                        <Skeleton style={{marginBottom: 'var(--mb-0-5)'}} width={'100%'} count={3} />
                     </SkeletonTheme>
                 </p>
 
