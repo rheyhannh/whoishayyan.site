@@ -1,15 +1,22 @@
+import { useEffect, useState } from 'react';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
-export default function HomeData({ data, part, unicons }) {
-    const getIcons = (iconName, className) => {
-        const Icon = unicons[iconName];
-        if (!Icon) {
+export default function HomeData({ data, part }) {
+    const [icons, setIcons] = useState([]);
+    const [socialIcons, setSocialIcons] = useState([]);
+
+    const getIcons = async (iconName, className) => {
+        const iconsModule = await import('@iconscout/react-unicons');
+        if (iconName in iconsModule) {
+            const Icon = iconsModule[iconName];
+
+            return (
+                <Icon className={className ? styles[className] : ''} />
+            );
+        } else {
             return null;
         }
-        return (
-            <Icon className={className ? styles[className] : ''} />
-        )
     }
 
     const homeSocials = [
@@ -17,6 +24,33 @@ export default function HomeData({ data, part, unicons }) {
         { href: 'https://github.com/rheyhannh/', uil: 'UilGithub' },
         { href: 'https://www.instagram.com/rheyhannh/', uil: 'UilInstagram' },
     ]
+
+    const otherIcons = [
+        { uil: 'UilMessage', className: 'button__icon' },
+        { uil: 'UilMouseAlt', className: 'home__scroll_mouse' },
+        { uil: 'UilArrowDown', className: 'home__scroll_arrow' },
+    ]
+    
+    useEffect(() => {
+        const loadIcons = async () => {
+            const socialIcons = await Promise.all(
+                homeSocials.map(async (item) => {
+                    const icon = await getIcons(item.uil, 'home__social_icon');
+                    return icon;
+                })
+            );
+            const icons = await Promise.all(
+                otherIcons.map(async (item) => {
+                    const icon = await getIcons(item.uil, item.className);
+                    return icon;
+                })
+            );
+            setIcons(icons);
+            setSocialIcons(socialIcons);
+        };
+
+        loadIcons();
+    }, [])
 
     if (part === "content") {
         return (
@@ -38,14 +72,14 @@ export default function HomeData({ data, part, unicons }) {
                     href="/#contact"
                     className={`${styles.button} ${styles.button__flex} ${styles.home__button}`}
                     text="Contact Me"
-                    icon={getIcons('UilMessage', 'button__icon')}
+                    icon={icons[0]}
                 />
 
                 <div className={styles.home__scroll}>
                     <a href="#about" className={`${styles.home__scroll_button} ${styles.button__flex}`}>
-                        {getIcons('UilMouseAlt', 'home__scroll_mouse')}
+                        {icons[1]}
                         <span className={styles.home__scroll_name}>Scroll down</span>
-                        {getIcons('UilArrowDown', 'home__scroll_arrow')}
+                        {icons[2]}
                     </a>
                 </div>
             </>
@@ -59,7 +93,7 @@ export default function HomeData({ data, part, unicons }) {
                         <Button
                             href={item.href}
                             target="_blank"
-                            icon={getIcons(item.uil, 'home__social_icon')}
+                            icon={socialIcons[index]}
                         />
                     </div>
                 ))}

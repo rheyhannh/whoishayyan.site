@@ -9,21 +9,19 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export default function ProjectSection({ initdata }) {
     const [data, setData] = useState(null);
-    const [icons, setIcons] = useState(null);
+    const [swiperReady, setSwiperReady] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        import('@iconscout/react-unicons').then((Unicons) => {
-            setIcons(Unicons);
-            setData(initdata && initdata);
-            setLoading(false);
-            setError(!initdata && true);
-        });
-    }, [initdata])
+        setData(initdata && initdata);
+        setLoading(swiperReady ? false : true);
+        setError(!initdata && true);
+    }, [initdata, swiperReady])
 
     const toggleLoading = () => {
         setLoading((current) => (current === true ? false : true));
+        setData((current) => (current ? null : initdata));
     };
 
     const toggleError = () => {
@@ -80,10 +78,10 @@ export default function ProjectSection({ initdata }) {
                 </>
             }
             {loading && <ProjectSkeleton />}
-            {icons && !loading && !error &&
+            {data && !error &&
                 <ProjectData
                     data={data}
-                    unicons={icons}
+                    swiper={setSwiperReady}
                 />
             }
         </section>

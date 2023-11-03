@@ -8,7 +8,7 @@ import styles from '@/app/_root.module.css'
 const AboutData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
-export default function AboutSection({ initdata, unicons }) {
+export default function AboutSection({ initdata }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -79,7 +79,6 @@ export default function AboutSection({ initdata, unicons }) {
                             height={200}
                             quality={100}
                             alt={'About Image'}
-                            priority={true}
                         />
                     </div>
                 }

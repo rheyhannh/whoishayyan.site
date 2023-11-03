@@ -1,16 +1,40 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from '@/app/_root.module.css'
 
-export default function QualificationData({ data, unicons, part, tab, tabclick }) {
-    const getIcons = (iconName, className) => {
-        const Icon = unicons[iconName];
-        if (!Icon) {
+export default function QualificationData({ data, part, tab, tabclick }) {
+    const [icons, setIcons] = useState();
+    const [tabIcons, setTabIcons] = useState([]);
+
+    const getIcons = async (iconName, className) => {
+        const iconsModule = await import('@iconscout/react-unicons');
+        if (iconName in iconsModule) {
+            const Icon = iconsModule[iconName];
+
+            return (
+                <Icon className={className ? styles[className] : ''} />
+            );
+        } else {
             return null;
         }
-        return (
-            <Icon className={className ? styles[className] : ''} />
-        )
     }
+
+    useEffect(() => {
+        const loadIcons = async () => {
+            const tabIcons = await Promise.all(
+                data.map(async (item) => {
+                    const icon = await getIcons(item.icon, 'qualification__icon');
+                    return icon;
+                })
+            );
+            const icons = await getIcons('UilCalendarAlt');
+
+            setIcons(icons);
+            setTabIcons(tabIcons);
+        };
+
+        loadIcons();
+    }, [])
 
     if (part === "tabs") {
         return (
@@ -20,7 +44,7 @@ export default function QualificationData({ data, unicons, part, tab, tabclick }
                         className={`${styles.qualification__button} ${styles.button__flex} ${tab === index ? styles.qualification__active : ""}`}
                         onClick={() => tabclick(index)} key={crypto.randomUUID()}
                     >
-                        {getIcons(item.icon, 'qualification__icon')}
+                        {tabIcons[index]}
                         {item.title}
                     </div>
                 )
@@ -51,7 +75,7 @@ export default function QualificationData({ data, unicons, part, tab, tabclick }
                                         </h3>
                                         <span className={styles.qualification__subtitle}>{value.subtitle}</span>
                                         <div className={styles.qualification__calendar}>
-                                            {getIcons('UilCalendarAlt')}
+                                            {icons}
                                             {value.date}
                                         </div>
                                     </div>
@@ -81,7 +105,7 @@ export default function QualificationData({ data, unicons, part, tab, tabclick }
                                         </h3>
                                         <span className={styles.qualification__subtitle}>{value.subtitle}</span>
                                         <div className={styles.qualification__calendar}>
-                                            {getIcons('UilCalendarAlt')}
+                                            {icons}
                                             {value.date}
                                         </div>
                                     </div>

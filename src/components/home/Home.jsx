@@ -10,17 +10,13 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export default function HomeSection({ initdata }) {
     const [data, setData] = useState(null);
-    const [icons, setIcons] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        import('@iconscout/react-unicons').then((Unicons) => { 
-            setIcons(Unicons);
-            setData(initdata && initdata);
-            setLoading(false);
-            setError(!initdata && true);
-        });
+        setData(initdata && initdata);
+        setLoading(false);
+        setError(!initdata && true);
     }, [initdata])
 
     const toggleLoading = () => {
@@ -74,12 +70,12 @@ export default function HomeSection({ initdata }) {
 
                     <div className={styles.home__social}>
                         {loading && <HomeSkeleton part={'social'} />}
-                        {data && icons && !loading && !error && <HomeData data={data} part={'social'} unicons={icons} />}
+                        {data && !loading && !error && <HomeData data={data} part={'social'} />}
                     </div>
 
                     <div className={styles.home__img}>
                         {loading && <HomeSkeleton part={'blob'} loadingClick={toggleLoading} />}
-                        {data && icons && !loading && !error &&
+                        {data && !loading && !error &&
                             <div onClick={toggleLoading} className={styles.home__blob} id="home__blob">
                                 <Image
                                     src={'/profil-nobg-min.png'}
@@ -88,7 +84,6 @@ export default function HomeSection({ initdata }) {
                                     quality={100}
                                     alt={'Home Image'}
                                     className={styles.home__blob_img}
-                                    priority={true}
                                 />
                             </div>
                         }
@@ -96,7 +91,7 @@ export default function HomeSection({ initdata }) {
 
                     <div onClick={toggleError} className={styles.home__data}>
                         {loading && <HomeSkeleton part={'data'} />}
-                        {data && icons && !loading && !error && <HomeData data={data} part={'content'} unicons={icons} />}
+                        {data && !loading && !error && <HomeData data={data} part={'content'} />}
                     </div>
                 </div>
             </div>

@@ -1,23 +1,53 @@
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-
 import styles from '@/app/_root.module.css';
-
 import Button from '@/components/Button';
 
-export default function ProjectData({ data, unicons }) {
-    const getIcons = (iconName, className) => {
-        const Icon = unicons[iconName];
-        if (!Icon) {
+export default function ProjectData({ data, swiper }) {
+    const [icons, setIcons] = useState([]);
+    const [projectIcons, setProjectIcons] = useState([]);
+    
+    const getIcons = async (iconName, className) => {
+        const iconsModule = await import('@iconscout/react-unicons');
+        if (iconName in iconsModule) {
+            const Icon = iconsModule[iconName];
+
+            return (
+                <Icon className={className ? styles[className] : ''} />
+            );
+        } else {
             return null;
         }
-        return (
-            <Icon className={className ? styles[className] : ''} />
-        )
     }
+
+    useEffect(() => {
+        const loadIcons = async () => {
+            const projectIcons = await Promise.all(
+                data.map(async (item) => {
+                    const icon = await getIcons(item.button.iconName, item.button.iconClass);
+                    return icon;
+                })
+            );
+            const icons = await Promise.all(
+                otherIcons.map(async (item) => {
+                    const icon = await getIcons(item.uil, item.className);
+                    return icon;
+                })
+            );
+
+            setIcons(icons);
+            setProjectIcons(projectIcons)
+        };
+
+        loadIcons();
+    }, [data])
+
+    const otherIcons = [
+        { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
+        { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
+    ]
 
     return (
         <>
@@ -34,6 +64,7 @@ export default function ProjectData({ data, unicons }) {
                     clickable: true,
                 }}
                 className={`${styles.portfolio__container} ${styles.container}`}
+                onSwiper={() => { swiper(true) }}
             >
                 {data.map((item, index) => (
                     <>
@@ -48,7 +79,6 @@ export default function ProjectData({ data, unicons }) {
                                 quality={100}
                                 alt={item.image.alt}
                                 className={styles.portfolio__img}
-                                priority={true}
                             />
                             <div className={styles.portfolio__data}>
                                 <h3 className={styles.portfolio__title}>{item.title}</h3>
@@ -60,7 +90,7 @@ export default function ProjectData({ data, unicons }) {
                                     target={item.button.newTab ? '_blank' : '_self'}
                                     className={`${styles.button} ${styles.button__flex} ${styles.button__small} ${styles.portfolio__button}`}
                                     text={item.button.text}
-                                    icon={getIcons(`${item.button.iconName}`, `${item.button.iconClass}`)}
+                                    icon={projectIcons[index]}
                                 />
                             </div>
                         </SwiperSlide>
@@ -70,14 +100,14 @@ export default function ProjectData({ data, unicons }) {
                 {data.length > 1 &&
                     <>
                         <div className={styles.swiper_button_prev}>
-                            {getIcons('UilAngleLeftB', 'swiper_portfolio_icon')}
+                            {icons[0]}
                         </div>
                         <div className={styles.swiper_button_next}>
-                            {getIcons('UilAngleRightB', 'swiper_portfolio_icon')}
+                            {icons[1]}
                         </div>
 
                         <div className={`${styles.portfolio} ${styles.pagination}`}>
-                            <div class="swiper-pagination"></div>
+                            <div className="swiper-pagination"></div>
                         </div>
                     </>
                 }

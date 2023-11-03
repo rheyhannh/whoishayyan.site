@@ -9,18 +9,14 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export default function QualificationSection({ initdata }) {
     const [data, setData] = useState(null);
-    const [icons, setIcons] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
 
     useEffect(() => {
-        import('@iconscout/react-unicons').then((Unicons) => {
-            setIcons(Unicons);
-            setData(initdata && initdata);
-            setLoading(false);
-            setError(!initdata && true);
-        });
+        setData(initdata && initdata);
+        setLoading(false);
+        setError(!initdata && true);
     }, [initdata])
 
     const toggleLoading = () => {
@@ -81,10 +77,9 @@ export default function QualificationSection({ initdata }) {
                 {error && <ErrorFetch clickEvent={clickReload} type={'qualification'} />}
                 <div className={styles.qualification__tabs}>
                     {loading && <QualificationSkeleton part={'tabs'} />}
-                    {data && icons && !loading && !error &&
+                    {data && !loading && !error &&
                         <QualificationData
                             data={data}
-                            unicons={icons}
                             part="tabs"
                             tab={activeTab}
                             tabclick={clickTab}
@@ -94,10 +89,9 @@ export default function QualificationSection({ initdata }) {
 
                 <div className={styles.qualification__sections}>
                     {loading && <QualificationSkeleton part={'content'} />}
-                    {data && icons && !loading && !error &&
+                    {data && !loading && !error &&
                         <QualificationData
                             data={data}
-                            unicons={icons}
                             part="content"
                             tab={activeTab}
                         />

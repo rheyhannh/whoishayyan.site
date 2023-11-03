@@ -5,6 +5,7 @@ import HomeSection from "./home/Home"
 import AboutSection from "./about/About"
 import QualificationSection from "./qualification/Qualification"
 import ProjectSection from './project/Project';
+import SkillsSection from './skills/Skills';
 import getData from './_ServerHelper';
 
 export default function Sections() {
@@ -45,6 +46,7 @@ export default function Sections() {
             <HomeSection initdata={data && data.home}/>
             <AboutSection initdata={data && data.about} />
             <QualificationSection initdata={data && data.qualification} />
+            <SkillsSection initdata={data && data.skills}/>
             <ProjectSection initdata={data && data.project} />
         </>
     )

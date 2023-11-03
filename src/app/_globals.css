@@ -22,12 +22,14 @@
   --title-color: hsl(var(--hue-color), 8%, 15%);
   --text-color: hsl(var(--hue-color), 8%, 45%);
   --text-color-light: hsl(var(--hue-color), 8%, 65%);
+  --border-color-light: hsl(var(--hue-color), 8%, 85%);
   --input-color: hsl(var(--hue-color), 70%, 96%);
   --body-color: hsl(var(--hue-color), 60%, 99%);
   --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
   --skeleton-base: hsl(var(--hue-color), 8%, 92%);
   --skeleton-highlight: hsl(var(--hue-color), 8%, 99%);
+  --disabled-color: hsl(var(--hue-color), 12%, 30%);
 
   /* Custom Color */
   --container-color: #FFF;
@@ -78,7 +80,7 @@
   /* Box-Shaodw */
   --box-shadow-default: 0 0 5px rgba(0, 0, 0, 0.2);
   --box-shadow-active: 0 0 8px rgba(0, 0, 0, 0.4);
-  --eclipse-shadow-active: 0 3px 8px rgba(0, 0, 0, 0.4); 
+  --eclipse-shadow-active: 0 1px 8px rgba(0, 0, 0, 0.4); 
 
   /* Transition */
   --transition-default: .3s;
@@ -108,6 +110,7 @@
   --first-color-second: hsl(var(--hue-color), 30%, 8%);
   --title-color: hsl(var(--hue-color), 8%, 95%);
   --text-color: hsl(var(--hue-color), 8%, 75%);
+  --border-color-light: hsl(var(--hue-color), 8%, 15%);
   --input-color: hsl(var(--hue-color), 29%, 16%);
   --body-color: hsl(var(--hue-color), 28%, 12%);
   --container-color: hsl(var(--hue-color), 29%, 16%);
@@ -516,12 +519,13 @@ strong {
   justify-content: center;
   color: var(--swiper-navigation-color, var(--swiper-theme-color));
 }
-.swiper-button-prev.swiper-button-disabled,
-.swiper-button-next.swiper-button-disabled {
+
+.swiper-button-disabled {
   opacity: 0.35;
   cursor: auto;
   pointer-events: none;
 }
+
 .swiper-button-prev.swiper-button-hidden,
 .swiper-button-next.swiper-button-hidden {
   opacity: 0;

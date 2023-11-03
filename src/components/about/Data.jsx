@@ -1,10 +1,32 @@
+import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
-import {
-    UilDownloadAlt
-} from '@iconscout/react-unicons'
 import styles from '@/app/_root.module.css'
 
 export default function AboutData({ data }) {
+    const [icons, setIcons] = useState([]);
+
+    const getIcons = async (iconName, className) => {
+        const iconsModule = await import('@iconscout/react-unicons');
+        if (iconName in iconsModule) {
+            const Icon = iconsModule[iconName];
+
+            return (
+                <Icon className={className ? styles[className] : ''} />
+            );
+        } else {
+            return null;
+        }
+    }
+
+    useEffect(() => {
+        const loadIcons = async () => {
+            const icons = await getIcons('UilDownloadAlt', 'button__icon');
+            setIcons(icons);
+        };
+
+        loadIcons();
+    }, [])
+
     return (
         <>
             <p className={styles.about__description}>
@@ -25,7 +47,7 @@ export default function AboutData({ data }) {
                     href={'/#contact'}
                     className={`${styles.button} ${styles.button__flex} ${styles.about__button}`}
                     text="Download CV"
-                    icon={<UilDownloadAlt className={styles.button__icon} />}
+                    icon={icons}
                 />
             </div>
         </>

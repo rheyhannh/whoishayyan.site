@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import Link from 'next/link'
-import styles from '../app/_root.module.css'
+import { ThemeContext } from '@/components/Theme'
 import {
     UilUser,
     UilBookAlt,
@@ -15,17 +15,10 @@ import {
     UilSun,
     UilApps
 } from '@iconscout/react-unicons'
+import styles from '../app/_root.module.css'
 
 export default function Header() {
-    const [theme, setTheme] = useState('light');
-
-    useEffect(() => {
-        const localTheme = localStorage.getItem('_theme');
-        if (localTheme === 'dark') {
-            setTheme(localTheme);
-            document.body.classList.add('dark-theme');
-        }
-    }, []);
+    const { theme, setTheme } = useContext(ThemeContext);
 
     const toggleTheme = () => {
         setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));

@@ -34,7 +34,6 @@ export default function ProjectSkeleton() {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
