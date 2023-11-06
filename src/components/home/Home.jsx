@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState, useEffect } from 'react';
 import getData from "@/components/_ServerHelper";
 import styles from '@/app/_root.module.css'
+import homePic from '../../../public/profil-nobg-min.png'
 
 const HomeData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
@@ -14,9 +15,17 @@ export default function HomeSection({ initdata }) {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        setData(initdata && initdata);
-        setLoading(false);
-        setError(!initdata && true);
+        if (!initdata) {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+                setError(true);
+            }, 10000);
+
+            return () => clearTimeout(timeout);
+        } else {
+            setData(initdata);
+            setLoading(false);
+        }
     }, [initdata])
 
     const toggleLoading = () => {
@@ -78,9 +87,7 @@ export default function HomeSection({ initdata }) {
                         {data && !loading && !error &&
                             <div onClick={toggleLoading} className={styles.home__blob} id="home__blob">
                                 <Image
-                                    src={'/profil-nobg-min.png'}
-                                    width={449}
-                                    height={556}
+                                    src={homePic}
                                     quality={100}
                                     alt={'Home Image'}
                                     className={styles.home__blob_img}

@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState, useEffect } from 'react';
 import getData from "@/components/_ServerHelper";
 import styles from '@/app/_root.module.css'
+import aboutPic from '../../../public/about-min.png'
 
 const AboutData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
@@ -14,9 +15,17 @@ export default function AboutSection({ initdata }) {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        setData(initdata && initdata);
-        setError(!initdata && true);
-        setLoading(false);
+        if (!initdata) {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+                setError(true);
+            }, 10000);
+
+            return () => clearTimeout(timeout);
+        } else {
+            setData(initdata);
+            setLoading(false);
+        }
     }, [initdata])
 
     const toggleLoading = () => {
@@ -74,9 +83,7 @@ export default function AboutSection({ initdata }) {
                 {data && !loading && !error &&
                     <div className={styles.about__img}>
                         <Image
-                            src={'/about-min.png'}
-                            width={315}
-                            height={200}
+                            src={aboutPic}
                             quality={100}
                             alt={'About Image'}
                         />

@@ -14,9 +14,17 @@ export default function QualificationSection({ initdata }) {
     const [activeTab, setActiveTab] = useState(0);
 
     useEffect(() => {
-        setData(initdata && initdata);
-        setLoading(false);
-        setError(!initdata && true);
+        if (!initdata) {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+                setError(true);
+            }, 10000);
+
+            return () => clearTimeout(timeout);
+        } else {
+            setData(initdata);
+            setLoading(false);
+        }
     }, [initdata])
 
     const toggleLoading = () => {
