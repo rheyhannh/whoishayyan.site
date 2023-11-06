@@ -64,9 +64,13 @@ export default function Header() {
                 <header className={styles.header} id="header">
 
                     <nav className={`${styles.nav} ${styles.container}`} id="header">
-                        <a href="#" className={`${styles.nav__logo} ${styles.active}`} id="logoText">
+                        <Link
+                            href="#home"
+                            className={`${styles.nav__logo} ${styles.active}`}
+                            id="logoText"
+                        >
                             <span>Hayyan</span>
-                        </a>
+                        </Link>
 
                         <div className={`${styles.nav__menu} ${menu ? styles.show_menu : ''}`} id="nav-menu">
                             <ul className={`${styles.nav__list} ${styles.grid}`}>
@@ -120,10 +124,10 @@ export default function Header() {
                                 }}
                                 type="range"
                                 min="0"
-                                max="359" 
+                                max="359"
                                 name='colorrange'
                                 id='colorrange'
-                                />
+                            />
                         </div>
 
                         <div className={styles.nav__btns}>
