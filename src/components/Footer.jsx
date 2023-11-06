@@ -8,9 +8,9 @@ import {
 
 export default function Footer() {
     const footerLinks = [
-        { href: '/#qualification', text: 'Qualification' },
-        { href: '/#portfolio', text: 'Project' },
-        { href: '/#contact', text: 'Contact' },
+        { href: '#qualification', text: 'Qualification' },
+        { href: '#project', text: 'Project' },
+        { href: '#contact', text: 'Contact' },
     ]
 
     const footerSocials = [

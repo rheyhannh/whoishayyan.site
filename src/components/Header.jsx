@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { ThemeContext } from '@/components/Theme'
 import {
     UilUser,
-    UilBookAlt,
     UilFileAlt,
     UilConstructor,
     UilBriefcaseAlt,
@@ -15,7 +14,8 @@ import {
     UilSun,
     UilApps,
     UilPalette,
-    UilCheckCircle
+    UilCheckCircle,
+    UilLightbulb,
 } from '@iconscout/react-unicons'
 import styles from '../app/_root.module.css'
 
@@ -47,10 +47,10 @@ export default function Header() {
     const navList = [
         { href: '#home', text: 'Home' },
         { href: '#about', text: 'About', uil: <UilUser /> },
-        { href: '#qualification', text: 'Qualification', uil: <UilBookAlt /> },
-        { href: '#skills', text: 'Skills', uil: <UilFileAlt /> },
-        { href: '#portfolio', text: 'Project', uil: <UilConstructor /> },
-        { href: '/pddikti', text: 'Pddikti', uil: <UilBriefcaseAlt /> },
+        { href: '#qualification', text: 'Qualification', uil: <UilFileAlt /> },
+        { href: '#stack', text: 'Stack', uil: <UilBriefcaseAlt /> },
+        { href: '#project', text: 'Project', uil: <UilConstructor /> },
+        { href: '#other', text: 'Other', uil: <UilLightbulb /> },
         { href: '#contact', text: 'Contact', uil: <UilMessage /> },
     ]
 

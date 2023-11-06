@@ -78,7 +78,7 @@ export default function ProjectSection({ initdata }) {
     }
 
     return (
-        <section className={`${styles.portfolio} ${styles.section}`} id="portfolio">
+        <section className={`${styles.portfolio} ${styles.section}`} id="project">
             <h2 onClick={toggleLoading} className={styles.section__title}>Project</h2>
             <span onClick={toggleError} className={styles.section__subtitle}>My Application Project</span>
             {error &&

@@ -101,7 +101,7 @@ export default function SkillsSection({ initdata }) {
     }
 
     return (
-        <section className={`${styles.skills} ${styles.section}`} id="skills">
+        <section className={`${styles.skills} ${styles.section}`} id="stack">
             <h2 onClick={toggleLoading} className={styles.section__title}>Stack</h2>
             <span onClick={toggleError} className={styles.section__subtitle}>My Development Stack</span>
             <div className={`${styles.skills__container} ${styles.container} ${styles.grid}`}>
