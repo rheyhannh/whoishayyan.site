@@ -5,9 +5,10 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { ThemeContext } from '@/components/Theme'
 import styles from '@/app/_root.module.css';
 
-export default function SkillsData({ data, swiper, swiperSections, box, boxClick }) {
+export default function SkillsData({ data, dataSections }) {
     const [icons, setIcons] = useState([]);
     const [match, setMatch] = useState(window.matchMedia('(min-width: 568px)').matches);
+    const [activeBox, setActiveBox] = useState(0);
     const { theme } = useContext(ThemeContext);
 
     const getIcons = async (iconName, className) => {
@@ -70,9 +71,8 @@ export default function SkillsData({ data, swiper, swiperSections, box, boxClick
                         clickable: true,
                     }}
                     style={match ? { width: '100%', order: 1 } : { width: '100%' }}
-                    onSwiper={() => { swiper(true) }}
                 >
-                    {swiperSections.map((section, sectionIndex) => (
+                    {dataSections.map((section, sectionIndex) => (
                         <SwiperSlide
                             className={`${styles.skills__list} ${styles.swiper}`}
                             key={crypto.randomUUID()}
@@ -80,8 +80,8 @@ export default function SkillsData({ data, swiper, swiperSections, box, boxClick
                             {section.map((item, index) => (
                                 <div
                                     key={crypto.randomUUID()}
-                                    className={`${styles.skills__box} ${box === item.no ? styles.active : ''}`}
-                                    onClick={() => { boxClick(item.no) }}
+                                    className={`${styles.skills__box} ${activeBox === item.no ? styles.active : ''}`}
+                                    onClick={() => { setActiveBox(item.no) }}
                                 >
                                     <Image
                                         src={theme === 'dark' && item.logoDark ? item.logoDark : item.logo}
@@ -117,8 +117,8 @@ export default function SkillsData({ data, swiper, swiperSections, box, boxClick
                     {data.map((item, index) => (
                         <div
                             key={crypto.randomUUID()}
-                            className={`${styles.skills__box} ${box === index ? styles.active : ''}`}
-                            onClick={() => { boxClick(index) }}
+                            className={`${styles.skills__box} ${activeBox === index ? styles.active : ''}`}
+                            onClick={() => { setActiveBox(index) }}
                         >
                             <Image
                                 src={theme === 'dark' && item.logoDark ? item.logoDark : item.logo}
@@ -127,7 +127,6 @@ export default function SkillsData({ data, swiper, swiperSections, box, boxClick
                                 quality={100}
                                 alt={`${item.title} Logo`}
                                 className={styles.skills__img}
-                                priority={true}
                             />
                         </div>
                     ))}
@@ -138,7 +137,7 @@ export default function SkillsData({ data, swiper, swiperSections, box, boxClick
             {data.map((item, index) => (
                 <div
                     key={crypto.randomUUID()}
-                    className={`${styles.skills__about} ${box === index ? styles.active : ''}`}
+                    className={`${styles.skills__about} ${activeBox === index ? styles.active : ''}`}
                 >
                     <h3>{item.title}</h3>
                     <p>{item.description}</p>

@@ -11,39 +11,58 @@ export default function SkillsSection({ initdata }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const [activeBox, setActiveBox] = useState(0);
-    const [swiperSections, setSwiperSections] = useState([]);
-    const [swiperReady, setSwiperReady] = useState(false);
 
     useEffect(() => {
-        setData(initdata && initdata);
-        setLoading(swiperReady ? false : true);
-        setError(!initdata && true);
-        if (initdata && initdata.length > 9) {
-            const swiperSections = [];
-            const numberedSkillsData = initdata.map((skill, index) => ({
-                ...skill,
-                no: index,
-            }));
-            const itemsPerSwiper = 9;
-        
-            for (let i = 0; i < initdata.length; i += itemsPerSwiper) {
-                const section = numberedSkillsData.slice(i, i + itemsPerSwiper);
-                swiperSections.push(section);
-            }
+        if (!initdata) {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+                setError(true);
+            }, 10000);
 
-            setSwiperSections(swiperSections)
+            return () => clearTimeout(timeout);
         }
-    }, [initdata, swiperReady])
+        else {
+            if (initdata.length > 9) {
+                handleData(initdata, getDataSections(initdata));
+            } else {
+                handleData(initdata, null);
+            }
+        }
+    }, [initdata])
 
     const toggleLoading = () => {
         setLoading((current) => (current === true ? false : true));
-        setData((current) => (current ? null : initdata));
     };
 
     const toggleError = () => {
         setError((current) => (current === true ? false : true));
     };
+
+    const getDataSections = (data) => {
+        const swiperSections = [];
+        const numberedSkillsData = data.map((skill, index) => ({
+            ...skill,
+            no: index,
+        }));
+        const itemsPerSwiper = 9;
+
+        for (let i = 0; i < data.length; i += itemsPerSwiper) {
+            const section = numberedSkillsData.slice(i, i + itemsPerSwiper);
+            swiperSections.push(section);
+        }
+
+        return swiperSections
+    }
+
+    const handleData = (data, dataSections) => {
+        const content =
+            <SkillsData
+                data={data}
+                dataSections={dataSections ? dataSections : null}
+            />;
+        setData(content);
+        setLoading(false);
+    }
 
     const clickReload = () => {
         setLoading(true); setError(false); setData(null);
@@ -53,8 +72,7 @@ export default function SkillsSection({ initdata }) {
             try {
                 const dataJson = JSON.parse(localData).skills;
                 if (dataJson) {
-                    setData(dataJson);
-                    setLoading(false);
+                    handleData(dataJson, getDataSections(dataJson));
                     return;
                 }
                 throw new Error('Local skills data not found');
@@ -71,7 +89,7 @@ export default function SkillsSection({ initdata }) {
         try {
             const result = await getData();
             if (result) {
-                setData(result.skills);
+                handleData(result.skills, getDataSections(result.skills));
                 localStorage.setItem(`_data`, JSON.stringify(result))
             }
         } catch (error) {
@@ -89,14 +107,8 @@ export default function SkillsSection({ initdata }) {
             <div className={`${styles.skills__container} ${styles.container} ${styles.grid}`}>
                 {error && <ErrorFetch clickEvent={clickReload} type={'skills'} />}
                 {loading && <SkillsSkeleton />}
-                {data && !error &&
-                    <SkillsData
-                        data={data}
-                        swiper={setSwiperReady}
-                        swiperSections={swiperSections}
-                        box={activeBox}
-                        boxClick={setActiveBox}
-                    />
+                {data && !loading && !error &&
+                    data
                 }
             </div>
         </section>
