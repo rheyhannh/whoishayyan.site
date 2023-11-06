@@ -67,6 +67,7 @@
   --mb-0-5: .5rem;
   --mb-0-75: .75rem;
   --mb-1: 1rem;
+  --mb-1-25: 1.25rem;
   --mb-1-5: 1.5rem;
   --mb-2: 2rem;
   --mb-2-5: 2.5rem;
@@ -80,7 +81,7 @@
   /* Box-Shaodw */
   --box-shadow-default: 0 0 5px rgba(0, 0, 0, 0.2);
   --box-shadow-active: 0 0 8px rgba(0, 0, 0, 0.4);
-  --eclipse-shadow-active: 0 1px 8px rgba(0, 0, 0, 0.4); 
+  --eclipse-shadow-active: 0 0px 8px var(--first-color); 
 
   /* Transition */
   --transition-default: .3s;
@@ -223,7 +224,7 @@ strong {
 }
 
 @media screen and (min-width: 1024px) {
-  :root {
+  /* :root {
     --blob-size: 320px;
     --big-font-size: 2.5rem;
     --h1-font-size: 1.725rem;
@@ -232,11 +233,11 @@ strong {
     --normal-font-size: 1.075rem;
     --small-font-size: .850rem;
     --smaller-font-size: .800rem;
-  }
+  } */
 }
 
 @media screen and (min-width: 1440px) {
-  :root {
+  /* :root {
     --blob-size: 375px;
     --big-font-size: 3rem;
     --h1-font-size: 2rem;
@@ -245,7 +246,7 @@ strong {
     --normal-font-size: 1.225rem;
     --small-font-size: 1.075rem;
     --smaller-font-size: .975rem;
-  }
+  } */
 }
 
 /* *

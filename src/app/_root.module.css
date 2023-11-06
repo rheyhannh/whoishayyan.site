@@ -1,17 +1,4 @@
 /* Init */
-@media screen and (max-width: 767px) {
-  .nav__menu {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    background-color: var(--body-color);
-    padding: 1rem 1.5rem 4rem;
-    box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
-    border-radius: 1.5rem 1.5rem 0 0;
-    transition: all var(--transition-default) ease;
-  }
-}
 
 /* Loader */
 .__content {
@@ -69,6 +56,12 @@
 .section__title,
 .section__subtitle {
   text-align: center;
+}
+
+.flex__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* End of Reusable Component */
@@ -156,14 +149,21 @@
   height: 20px;
 }
 
-
+.nav__list,
+.nav__list_hue {
+  grid-template-columns: repeat(3, 1fr);
+}
 
 .nav__list {
-  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
-.nav__link {
+.nav__list_hue {
+  gap: 1rem;
+}
+
+.nav__link,
+.nav__hue {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -172,10 +172,29 @@
   font-weight: var(--font-medium);
 }
 
+.nav__hue {
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: .25rem;
+  cursor: pointer;
+  opacity: .8;
+}
+
+.nav__hue svg {
+  color: var(--first-color-lighter);
+}
+
+.nav__hue.active {
+  opacity: 1;
+}
+
 .nav__link span,
 .nav__logo span {
   position: relative;
-  transition: .5s;
+  transition: var(--transition-default);
 }
 
 .nav__link span::after,
@@ -187,7 +206,7 @@
   top: 100%;
   left: 0;
   background-color: var(--first-color);
-  transition: transform .5s;
+  transition: transform var(--transition-default);
   transform: scaleX(0);
   transform-origin: right;
 }
@@ -202,8 +221,10 @@
   font-size: 1.2rem;
 }
 
-.nav__menu.show_menu {
+.nav__menu.show_menu,
+.nav__menu_hue.show_menu {
   bottom: 0;
+  transition: bottom var(--transition-default) ease-in-out;
 }
 
 .active_link {
@@ -222,7 +243,7 @@ li.nav__item:nth-child(1) {
 .change_theme {
   font-size: 1.25rem;
   color: var(--title-color);
-  margin-right: var(--mb-1);
+  margin-right: var(--mb-1-25);
   cursor: pointer;
 }
 
@@ -243,7 +264,6 @@ li.nav__item:nth-child(1) {
   outline: none;
   width: 100px;
   margin: 0.5rem auto;
-  transition: color 0.05s linear;
   background: linear-gradient(to right, rgb(255, 0, 0), rgb(255, 255, 0), rgb(0, 255, 0), rgb(0, 255, 255), rgb(0, 0, 255), rgb(255, 0, 255), rgb(255, 0, 0));
 }
 
@@ -314,11 +334,11 @@ li.nav__item:nth-child(1) {
 
 .nav__close {
   position: absolute;
-  right: 1.3rem;
   bottom: .5rem;
-  font-size: 1.5rem;
-  cursor: pointer;
   color: var(--first-color);
+  cursor: pointer;
+  right: 1.3rem;
+  font-size: 1.5rem;
 }
 
 /* End of Nav */
@@ -370,7 +390,7 @@ li.nav__item:nth-child(1) {
   background: var(--first-color);
   border: 2.75px solid transparent;
   border-radius: 50%;
-  transition: all .5s ease-in-out;
+  transition: all var(--transition-default) ease-in-out;
 }
 
 .social__box.skeleton {
@@ -714,6 +734,14 @@ li.nav__item:nth-child(1) {
   overflow: initial;
 }
 
+.portfolio__container.container {
+  display: none;
+}
+
+.portfolio__container.container:first-of-type {
+  display: block;
+}
+
 .portfolio__content {
   min-height: 400px;
   padding: 0 1.5rem;
@@ -802,6 +830,14 @@ li.nav__item:nth-child(1) {
   min-height: 450px;
 }
 
+.skills__container:has(.error__fetch) {
+  grid-template-columns: 1fr;
+}
+
+.skills__container:has(.error__fetch)>*:not(.error__fetch) {
+  display: none;
+}
+
 .skills__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -853,8 +889,8 @@ li.nav__item:nth-child(1) {
 }
 
 .skills__img {
-  width: 22.5px;
-  height: 22.5px;
+  width: 25px;
+  height: 25px;
 }
 
 .skills__box:not(.skeleton):not(.empty).active {
@@ -1175,18 +1211,21 @@ li.nav__item:nth-child(1) {
   bottom: -20%;
   background-color: var(--first-color);
   opacity: .8;
-  padding: 0 .3rem;
+  padding: .3rem;
   border-radius: .4rem;
   z-index: var(--z-tooltip);
-  transition: .4s;
+  transition: .4s ease-in-out;
 }
 
 .scrollup_icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
   font-size: 1.5rem;
   color: var(--white-color);
 }
 
-.show-scroll {
+.show_scroll {
   bottom: 5rem;
 }
 
@@ -1434,7 +1473,10 @@ li.nav__item:nth-child(1) {
 
   .scrollup:hover {
     background-color: var(--first-color-alt);
-    transition: transform var(--transition-default);
+  }
+
+  .scrollup:hover .scrollup_icon {
+    animation: bounceIconUp 1.25s infinite;
   }
 }
 
@@ -1452,7 +1494,8 @@ li.nav__item:nth-child(1) {
     padding: 1rem .25rem 3.25rem;
   }
 
-  .nav__list {
+  .nav__list,
+  .nav__list_hue {
     column-gap: 0;
   }
 
@@ -1610,6 +1653,33 @@ li.nav__item:nth-child(1) {
   }
 }
 
+@media screen and (max-width: 767px) {
+
+  .nav__menu,
+  .nav__menu_hue {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--body-color);
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, .15);
+    border-radius: 1.5rem 1.5rem 0 0;
+    transition: bottom var(--transition-default) ease-in-out;
+  }
+
+  .nav__menu {
+    padding: 1rem 1.5rem 4rem;
+  }
+
+  .nav__menu_hue {
+    padding: 1rem 1.5rem 4rem;
+  }
+
+  .nav__slider {
+    display: none;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .container {
     margin-left: auto;
@@ -1665,13 +1735,21 @@ li.nav__item:nth-child(1) {
     column-gap: 2rem;
   }
 
+  .nav__menu_hue {
+    display: none;
+  }
+
+  .change_theme.hue {
+    display: none;
+  }
+
   .nav__menu {
     margin-left: auto;
   }
 
   .nav__link span::after,
   .nav__logo span::after {
-    transition: opacity .5s;
+    transition: opacity var(--transition-default);
     opacity: 0;
   }
 
@@ -1827,10 +1905,6 @@ li.nav__item:nth-child(1) {
 }
 
 @media screen and (min-width: 1024px) {
-  .container {
-    max-width: calc(100vw - 256px);
-  }
-
   .section {
     padding: 6rem 0 6rem;
   }
@@ -1926,8 +2000,8 @@ li.nav__item:nth-child(1) {
   }
 
   .skills__img {
-    width: 32.5px;
-    height: 32.5px;
+    width: 35px;
+    height: 35px;
   }
 
   .contact__form {
@@ -1939,19 +2013,15 @@ li.nav__item:nth-child(1) {
   }
 
   .scrollup {
-    padding: 0 .375rem;
+    padding: .375rem;
   }
 
   .scrollup_icon {
-    font-size: 1.75rem;
+    width: 28px;
+    height: 28px;
   }
 }
 
 @media screen and (min-width: 1440px) {
 
-  /* Still need improvement layout for 1024 & 1440px and up */
-  .container {
-    /* Set container max-width to prevent layout messy */
-    max-width: 1184px;
-  }
 }

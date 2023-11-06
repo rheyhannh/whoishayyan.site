@@ -10,5 +10,5 @@
 }
 
 .default * {
-    margin-bottom: .5rem;
+    margin: .5rem auto;
 }
