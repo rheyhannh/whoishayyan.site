@@ -30,7 +30,7 @@ export default function AboutSkeleton({ part }) {
     }
     else if (part === 'image') {
         return (
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div className={styles.flex__center}>
                 <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
                     <Skeleton width={'100%'} height={'100%'} containerClassName={`${styles.about__img} ${styles.skeleton}`} count={1} />
                 </SkeletonTheme>
