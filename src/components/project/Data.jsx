@@ -64,7 +64,6 @@ export default function ProjectData({ data, swiper }) {
                     clickable: true,
                 }}
                 className={`${styles.portfolio__container} ${styles.container}`}
-                onSwiper={() => { swiper(true) }}
             >
                 {data.map((item, index) => (
                     <>

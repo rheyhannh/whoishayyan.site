@@ -9,24 +9,39 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export default function ProjectSection({ initdata }) {
     const [data, setData] = useState(null);
-    const [swiperReady, setSwiperReady] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        setData(initdata && initdata);
-        setLoading(swiperReady ? false : true);
-        setError(!initdata && true);
-    }, [initdata, swiperReady])
+        if (!initdata) {
+            const timeout = setTimeout(() => {
+                setLoading(false);
+                setError(true);
+            }, 10000);
+
+            return () => clearTimeout(timeout);
+        }
+        else {
+            handleData(initdata);
+        }
+    }, [initdata])
 
     const toggleLoading = () => {
         setLoading((current) => (current === true ? false : true));
-        setData((current) => (current ? null : initdata));
     };
 
     const toggleError = () => {
         setError((current) => (current === true ? false : true));
     };
+
+    const handleData = (data) => {
+        const content =
+            <ProjectData
+                data={data}
+            />;
+        setData(content);
+        setLoading(false);
+    }
 
     const clickReload = () => {
         setLoading(true); setError(false); setData(null);
@@ -36,8 +51,7 @@ export default function ProjectSection({ initdata }) {
             try {
                 const dataJson = JSON.parse(localData).project;
                 if (dataJson) {
-                    setData(dataJson);
-                    setLoading(false);
+                    handleData(dataJson);
                     return;
                 }
                 throw new Error('Local project data not found');
@@ -52,7 +66,7 @@ export default function ProjectSection({ initdata }) {
         try {
             const result = await getData();
             if (result) {
-                setData(result.project);
+                handleData(result.project);
                 localStorage.setItem(`_data`, JSON.stringify(result))
             }
         } catch (error) {
@@ -67,7 +81,6 @@ export default function ProjectSection({ initdata }) {
         <section className={`${styles.portfolio} ${styles.section}`} id="portfolio">
             <h2 onClick={toggleLoading} className={styles.section__title}>Project</h2>
             <span onClick={toggleError} className={styles.section__subtitle}>My Application Project</span>
-
             {error &&
                 <>
                     <div className={`${styles.portfolio__container} ${styles.container}`}>
@@ -78,12 +91,13 @@ export default function ProjectSection({ initdata }) {
                 </>
             }
             {loading && <ProjectSkeleton />}
-            {data && !error &&
-                <ProjectData
-                    data={data}
-                    swiper={setSwiperReady}
-                />
+            {data && !loading && !error &&
+                data
             }
+            <div className={`${styles.portfolio__container} ${styles.container}`}>
+                <div className={`${styles.portfolio__content} ${styles.grid}`}>
+                </div>
+            </div>
         </section>
     )
 }
