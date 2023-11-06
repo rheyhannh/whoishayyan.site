@@ -90,6 +90,7 @@ export default function ProjectData({ data, swiper }) {
                                     className={`${styles.button} ${styles.button__flex} ${styles.button__small} ${styles.portfolio__button}`}
                                     text={item.button.text}
                                     icon={projectIcons[index]}
+                                    label='Details'
                                 />
                             </div>
                         </SwiperSlide>

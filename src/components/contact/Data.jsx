@@ -57,19 +57,20 @@ export default function ContactData({ data }) {
             <form className={`${styles.contact__form} ${styles.grid}`}>
                 <div className={`${styles.contact__inputs} ${styles.grid}`}>
                     <div className={styles.contact__content}>
-                        <label for={'name'} className={styles.contact__label}>Name</label>
-                        <input type={'text'} className={styles.contact__input} name={'nameInput'} id={'nameInput'} />
+                        <label htmlFor='name' className={styles.contact__label}>Name</label>
+                        <input type={'text'} className={styles.contact__input} name='name' id='name' autoComplete='off'/>
                     </div>
                     <div className={styles.contact__content}>
-                        <label className={styles.contact__label}>Email</label>
-                        <input type={'email'} className={styles.contact__input} name={'emailInput'} id={'emailInput'} />
+                        <label htmlFor='email' className={styles.contact__label}>Email</label>
+                        <input type={'email'} className={styles.contact__input} name='email' id='email' autoComplete='off' />
                     </div>
                 </div>
                 <div className={styles.contact__content}>
-                    <label className={styles.contact__label}>Message</label>
+                    <label htmlFor='message' className={styles.contact__label}>Message</label>
                     <textarea
-                        name={'messageInput'}
-                        id="messageInput"
+                        name='message'
+                        id='message'
+                        autoComplete='off'
                         cols="0"
                         rows="5"
                         className={styles.contact__input}

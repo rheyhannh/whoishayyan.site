@@ -26,6 +26,7 @@ export default function Scrollup() {
         <Link
             href={'#home'}
             className={`${styles.scrollup} ${scrollUp ? styles.show_scroll : ''}`}
+            aria-label='Scroll to Top'
         >
             <UilArrowUp className={styles.scrollup_icon} />
         </Link>

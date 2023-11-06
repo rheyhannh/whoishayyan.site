@@ -184,7 +184,7 @@
 }
 
 .nav__hue svg {
-  color: var(--first-color-lighter);
+  color: var(--first-color-trans);
 }
 
 .nav__hue.active {
@@ -467,7 +467,7 @@ li.nav__item:nth-child(1) {
 }
 
 .typed__text {
-  color: var(--first-color);
+  color: var(--first-color-lighter);
 }
 
 .cursor {
@@ -615,7 +615,7 @@ li.nav__item:nth-child(1) {
 
 .about__info_name {
   font-size: var(--h3-font-size);
-  color: var(--first-color);
+  color: var(--first-color-lighter);
 }
 
 .about__info_title,
@@ -727,7 +727,7 @@ li.nav__item:nth-child(1) {
 }
 
 .qualification__button.qualification__active {
-  color: var(--first-color);
+  color: var(--first-color-lighter);
 }
 
 .portfolio__container {
@@ -917,7 +917,7 @@ li.nav__item:nth-child(1) {
 }
 
 .skills__about h3 {
-  color: var(--first-color);
+  color: var(--first-color-lighter);
 }
 
 .skills__about.skeleton {
@@ -1479,7 +1479,7 @@ li.nav__item:nth-child(1) {
   }
 
   .qualification__button:hover {
-    color: var(--first-color);
+    color: var(--first-color-lighter);
   }
 
   #certifications h3.qualification__title:hover {
@@ -1508,11 +1508,11 @@ li.nav__item:nth-child(1) {
   }
 
   .footer__link:hover {
-    color: var(--first-color-lighter);
+    color: var(--first-color-trans);
   }
 
   .footer__social:hover {
-    color: var(--first-color-lighter);
+    color: var(--first-color-trans);
   }
 
   .scrollup:hover {

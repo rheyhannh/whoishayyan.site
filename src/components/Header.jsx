@@ -120,7 +120,10 @@ export default function Header() {
                                 }}
                                 type="range"
                                 min="0"
-                                max="359" />
+                                max="359" 
+                                name='colorrange'
+                                id='colorrange'
+                                />
                         </div>
 
                         <div className={styles.nav__btns}>

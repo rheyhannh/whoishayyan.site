@@ -20,9 +20,9 @@ export default function HomeData({ data, part }) {
     }
 
     const homeSocials = [
-        { href: 'https://www.linkedin.com/in/rheyhannh/', uil: 'UilLinkedin' },
-        { href: 'https://github.com/rheyhannh/', uil: 'UilGithub' },
-        { href: 'https://www.instagram.com/rheyhannh/', uil: 'UilInstagram' },
+        { label: 'Linkedin', href: 'https://www.linkedin.com/in/rheyhannh/', uil: 'UilLinkedin' },
+        { label: 'Instagram', href: 'https://github.com/rheyhannh/', uil: 'UilGithub' },
+        { label: 'Github', href: 'https://www.instagram.com/rheyhannh/', uil: 'UilInstagram' },
     ]
 
     const otherIcons = [
@@ -30,7 +30,7 @@ export default function HomeData({ data, part }) {
         { uil: 'UilMouseAlt', className: 'home__scroll_mouse' },
         { uil: 'UilArrowDown', className: 'home__scroll_arrow' },
     ]
-    
+
     useEffect(() => {
         const loadIcons = async () => {
             const socialIcons = await Promise.all(
@@ -73,6 +73,7 @@ export default function HomeData({ data, part }) {
                     className={`${styles.button} ${styles.button__flex} ${styles.home__button}`}
                     text="Contact Me"
                     icon={icons[0]}
+                    label="Contact Me"
                 />
 
                 <div className={styles.home__scroll}>
@@ -94,6 +95,7 @@ export default function HomeData({ data, part }) {
                             href={item.href}
                             target="_blank"
                             icon={socialIcons[index]}
+                            label={`My ${item.label}`}
                         />
                     </div>
                 ))}

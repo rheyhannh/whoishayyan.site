@@ -14,9 +14,9 @@ export default function Footer() {
     ]
 
     const footerSocials = [
-        { href: 'https://www.facebook.com/rheyhannh/', uil: <UilFacebookF/> },
-        { href: 'https://www.instagram.com/rheyhannh/', uil: <UilInstagram/> },
-        { href: 'https://twitter.com/rheyhannh', uil: <UilTwitterAlt/> },
+        { label: 'Facebook', href: 'https://www.facebook.com/rheyhannh/', uil: <UilFacebookF /> },
+        { label: 'Instagram', href: 'https://www.instagram.com/rheyhannh/', uil: <UilInstagram /> },
+        { label: 'Twitter', href: 'https://twitter.com/rheyhannh', uil: <UilTwitterAlt /> },
     ]
 
     return (
@@ -48,6 +48,7 @@ export default function Footer() {
                                 href={item.href}
                                 className={styles.footer__social}
                                 target="_blank"
+                                aria-label={`My ${item.label}`}
                             >
                                 <i>{item.uil}</i>
                             </Link>

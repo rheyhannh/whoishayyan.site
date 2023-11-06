@@ -48,6 +48,7 @@ export default function AboutData({ data }) {
                     className={`${styles.button} ${styles.button__flex} ${styles.about__button}`}
                     text="Download CV"
                     icon={icons}
+                    label="Download CV"
                 />
             </div>
         </>
