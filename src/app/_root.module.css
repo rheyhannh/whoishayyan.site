@@ -1103,7 +1103,16 @@ li.nav__item:nth-child(1) {
 }
 
 .contact__container {
+  min-height: 720px;
   row-gap: 3rem;
+}
+
+.contact__container:has(.error__fetch) {
+  grid-template-columns: 1fr;
+}
+
+.contact__container:has(.error__fetch)>*:not(.error__fetch) {
+  display: none;
 }
 
 .contact__information {
@@ -1112,9 +1121,26 @@ li.nav__item:nth-child(1) {
 }
 
 .contact__icon {
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  align-items: center;
   font-size: 2rem;
   color: var(--first-color);
   margin-right: var(--mb-0-75);
+  width: 28.8px;
+  height: 28.8px;
+}
+
+.contact__icon.skeleton {
+  width: 35px;
+  height: 35px;
+}
+
+.contact__icon svg {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
 .contact__lordicon {
@@ -1133,8 +1159,22 @@ li.nav__item:nth-child(1) {
 
 .contact__content {
   background-color: var(--input-color);
-  border-radius: .5rem;
+  border-radius: .25rem;
   padding: .75rem 1rem .25rem;
+}
+
+.contact__button_skeleton {
+  width: 165px;
+}
+
+.contact__content.skeleton {
+  background-color: var(--skeleton-base);
+  height: 65px;
+}
+
+.contact__content.textarea_skeleton {
+  background-color: var(--skeleton-base);
+  height: 160px;
 }
 
 .contact__label {
@@ -1463,6 +1503,10 @@ li.nav__item:nth-child(1) {
     transform: rotate(360deg);
   }
 
+  .contact__button:hover .button__icon {
+    animation: bounceIconRight 1.25s infinite;
+  }
+
   .footer__link:hover {
     color: var(--first-color-lighter);
   }
@@ -1568,6 +1612,15 @@ li.nav__item:nth-child(1) {
   .qualification__button {
     font-size: var(--normal-font-size);
   }
+
+  .contact__content.skeleton {
+    background-color: var(--skeleton-base);
+    height: 62px;
+  }
+
+  .contact__button_skeleton {
+    width: 154px;
+  }
 }
 
 @media screen and (min-width: 568px) {
@@ -1650,6 +1703,10 @@ li.nav__item:nth-child(1) {
     display: grid;
     grid-template-columns: .6fr;
     justify-content: center;
+  }
+
+  .contact__container {
+    min-height: 435px;
   }
 }
 
@@ -2008,6 +2065,15 @@ li.nav__item:nth-child(1) {
     width: 460px;
   }
 
+  .contact__content.skeleton {
+    height: 82px;
+  }
+
+  .contact__content.textarea_skeleton {
+    background-color: var(--skeleton-base);
+    height: 190px;
+  }
+
   .contact__inputs {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2020,8 +2086,10 @@ li.nav__item:nth-child(1) {
     width: 28px;
     height: 28px;
   }
+
+  .contact__container {
+    min-height: 385px;
+  }
 }
 
-@media screen and (min-width: 1440px) {
-
-}
+@media screen and (min-width: 1440px) {}

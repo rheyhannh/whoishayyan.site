@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import HomeSection from "./home/Home";
 import AboutSection from "./about/About";
 import QualificationSection from "./qualification/Qualification";
-import ProjectSection from './project/Project';
 import SkillsSection from './skills/Skills';
+import ProjectSection from './project/Project';
+import ContactSection from './contact/Contact';
 import getData from './_ServerHelper';
 import styles from '@/app/_root.module.css';
 
@@ -50,6 +51,7 @@ export default function Sections() {
             <QualificationSection initdata={data && data.qualification} />
             <SkillsSection initdata={data && data.skills} />
             <ProjectSection initdata={data && data.project} />
+            <ContactSection initdata={data && data.contact} />
         </main>
     )
 }
