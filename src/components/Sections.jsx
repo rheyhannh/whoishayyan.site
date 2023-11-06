@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import HomeSection from "./home/Home"
-import AboutSection from "./about/About"
-import QualificationSection from "./qualification/Qualification"
+import HomeSection from "./home/Home";
+import AboutSection from "./about/About";
+import QualificationSection from "./qualification/Qualification";
 import ProjectSection from './project/Project';
 import SkillsSection from './skills/Skills';
 import getData from './_ServerHelper';
+import styles from '@/app/_root.module.css';
 
 export default function Sections() {
     const [data, setData] = useState(null);
@@ -18,9 +19,9 @@ export default function Sections() {
             try {
                 const dataJson = JSON.parse(localData);
                 setData(dataJson);
+
             } catch (error) {
                 console.error('Failed to use local data');
-                fetchData();
             }
         }
 
@@ -35,19 +36,20 @@ export default function Sections() {
                 }
             } catch (error) {
                 console.error("Failed to fetch new data from server");
+                applyLocalData();
             }
         }
 
-        fetchData()
+        fetchData();
     }, []);
 
     return (
-        <>
-            <HomeSection initdata={data && data.home}/>
+        <main className={styles.main}>
+            <HomeSection initdata={data && data.home} />
             <AboutSection initdata={data && data.about} />
             <QualificationSection initdata={data && data.qualification} />
-            <SkillsSection initdata={data && data.skills}/>
+            <SkillsSection initdata={data && data.skills} />
             <ProjectSection initdata={data && data.project} />
-        </>
+        </main>
     )
 }
