@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '@/components/provider/Theme'
+import { ModalContext } from './provider/Modal'
 import {
     UilUser,
     UilFileAlt,
@@ -16,11 +17,13 @@ import {
     UilPalette,
     UilCheckCircle,
     UilLightbulb,
+    UilSetting,
 } from '@iconscout/react-unicons'
 import styles from '../app/_root.module.css'
 
 export default function Header() {
     const { theme, setTheme, hue, changeHue } = useContext(ThemeContext);
+    const { active, setActive, setType, handleModalClose } = useContext(ModalContext);
     const [menu, setMenu] = useState(false);
     const [hueMenu, setHueMenu] = useState(false);
 
@@ -38,6 +41,17 @@ export default function Header() {
     const toggleHueMenu = () => {
         if (menu) { setMenu(false) }
         setHueMenu((current) => (current === true ? false : true));
+    }
+
+    const toggleSettingModal = () => {
+        if (!active) {
+            setType('setting');
+            setTimeout(() => {
+                setActive(true);
+            }, 50)
+        } else {
+            handleModalClose();
+        }
     }
 
     const handleHue = (val) => {

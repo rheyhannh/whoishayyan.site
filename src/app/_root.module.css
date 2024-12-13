@@ -237,14 +237,16 @@ li.nav__item:nth-child(1) {
   align-items: center;
 }
 
-.change_theme {
+.change_theme,
+.config {
   font-size: 1.25rem;
   color: var(--title-color);
   margin-right: var(--mb-1-25);
   cursor: pointer;
 }
 
-.change_theme svg {
+.change_theme svg,
+.config svg {
   width: 20px;
   height: 20px;
 }
@@ -1399,7 +1401,8 @@ li.nav__item:nth-child(1) {
     color: var(--first-color-alt);
   }
 
-  .change_theme:hover {
+  .change_theme:hover,
+  .config:hover {
     color: var(--first-color);
   }
 
@@ -1816,7 +1819,13 @@ li.nav__item:nth-child(1) {
     width: 60px;
   }
 
-  .change_theme {
+  .nav__btns {
+    gap: var(--mb-1-25);
+    flex-direction: row-reverse;
+  }
+
+  .change_theme,
+  .config {
     margin: 0;
   }
 
