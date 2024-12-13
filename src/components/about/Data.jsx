@@ -1,3 +1,4 @@
+import { AboutSection as AboutSectionData } from '@/types/data/root';
 import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'

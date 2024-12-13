@@ -1,6 +1,9 @@
+import { AboutSection as AboutSectionData } from '@/types/data/root';
+import { SectionState } from '@/types/state';
 import AboutSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import Image from "next/image"
+import { useState, useEffect, useContext } from 'react';
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 import aboutPic from '../../../public/about-min.png'

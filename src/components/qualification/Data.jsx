@@ -1,3 +1,4 @@
+import { QualificationSection as QualificationSectionData } from '@/types/data/root';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from '@/app/_root.module.css'

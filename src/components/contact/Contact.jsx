@@ -1,5 +1,8 @@
+import { ContactSection as ContactSectionData } from '@/types/data/root';
+import { SectionState } from '@/types/state';
 import ContactSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
+import { useState, useEffect, useContext } from 'react';
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 

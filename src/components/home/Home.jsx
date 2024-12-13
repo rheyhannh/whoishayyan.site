@@ -1,6 +1,9 @@
+import { HomeSection as HomeSectionData } from '@/types/data/root';
+import { SectionState } from '@/types/state';
 import HomeSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import Image from "next/image"
+import { useState, useEffect, useContext } from 'react';
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 import homePic from '../../../public/profil-nobg-min.png'

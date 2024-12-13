@@ -1,5 +1,9 @@
+import { ProjectSection as ProjectSectionData } from '@/types/data/root';
+import { ProjectDataProps } from './Data'
+import { SectionState } from '@/types/state';
 import ProjectSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
+import React, { useState, useEffect, useContext } from 'react';
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 

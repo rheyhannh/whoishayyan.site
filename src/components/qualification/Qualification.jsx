@@ -1,5 +1,8 @@
+import { QualificationSection as QualificationSectionData } from '@/types/data/root';
+import { SectionState } from '@/types/state';
 import QualificationSkeleton from './Skeleton';
 import dynamic from 'next/dynamic';
+import { useState, useEffect, useContext } from 'react';
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 

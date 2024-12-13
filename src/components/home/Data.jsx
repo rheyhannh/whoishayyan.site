@@ -1,3 +1,4 @@
+import { HomeSection as HomeSectionData } from '@/types/data/root';
 import { useEffect, useState } from 'react';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'

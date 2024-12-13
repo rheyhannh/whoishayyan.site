@@ -1,5 +1,8 @@
+import { SkillSection as SkillSectionData } from '@/types/data/root';
+import { SectionState } from '@/types/state';
 import SkillsSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
+import { useEffect, useState, useContext } from "react";
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 

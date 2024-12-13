@@ -1,3 +1,4 @@
+import { ProjectSection as ProjectSectionData } from '@/types/data/root';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
