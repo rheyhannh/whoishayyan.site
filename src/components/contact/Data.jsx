@@ -36,7 +36,7 @@ export default function ContactData({ data }) {
         };
 
         loadIcons();
-    }, [])
+    }, [data])
 
     return (
         <>

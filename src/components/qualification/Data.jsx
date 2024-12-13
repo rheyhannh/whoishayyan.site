@@ -35,7 +35,7 @@ export default function QualificationData({ data, part, tab, tabclick }) {
         };
 
         loadIcons();
-    }, [])
+    }, [data])
 
     if (part === "tabs") {
         return (

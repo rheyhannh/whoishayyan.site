@@ -26,6 +26,11 @@ export default function SkillsData({ data, dataSections }) {
         }
     }
 
+    const otherIcons = [
+        { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
+        { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
+    ]
+
     useEffect(() => {
         const mediaQuery = window.matchMedia('(min-width: 568px)');
 
@@ -51,12 +56,7 @@ export default function SkillsData({ data, dataSections }) {
         return () => {
             mediaQuery.removeEventListener('change', handleMediaChange);
         }
-    }, [])
-
-    const otherIcons = [
-        { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
-        { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
-    ]
+    }, [otherIcons])
 
     return (
         <>

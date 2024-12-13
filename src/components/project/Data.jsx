@@ -23,6 +23,11 @@ export default function ProjectData({ data, swiper }) {
         }
     }
 
+    const otherIcons = [
+        { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
+        { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
+    ]
+
     useEffect(() => {
         const loadIcons = async () => {
             const projectIcons = await Promise.all(
@@ -43,12 +48,7 @@ export default function ProjectData({ data, swiper }) {
         };
 
         loadIcons();
-    }, [data])
-
-    const otherIcons = [
-        { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
-        { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
-    ]
+    }, [data, otherIcons])
 
     return (
         <>

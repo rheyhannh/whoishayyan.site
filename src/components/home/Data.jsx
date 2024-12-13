@@ -51,7 +51,7 @@ export default function HomeData({ data, part }) {
         };
 
         loadIcons();
-    }, [])
+    }, [homeSocials, otherIcons])
 
     if (part === "content") {
         return (
