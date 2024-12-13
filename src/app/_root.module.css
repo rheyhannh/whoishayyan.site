@@ -83,7 +83,6 @@
   left: 0;
   z-index: var(--z-fixed);
   background-color: var(--body-color);
-  transition: var(--transition-default);
 }
 
 .scroll_header {
