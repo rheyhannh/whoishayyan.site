@@ -49,7 +49,7 @@ export default function ProjectData({ data }) {
         };
 
         loadIcons();
-    }, [data, otherIcons])
+    }, [data])
 
     return (
         <Swiper

@@ -71,7 +71,7 @@ export default function SkillsData({ data, dataSections }) {
         return () => {
             mediaQuery.removeEventListener('change', handleMediaChange);
         }
-    }, [otherIcons])
+    }, [])
 
     return (
         <>
