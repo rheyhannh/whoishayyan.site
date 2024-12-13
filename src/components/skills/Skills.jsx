@@ -13,6 +13,9 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 export const itemsPerSwiper = 9;
 
 export default function SkillsSection({ initdata }) {
+    const [data, setData] = useState(/** @type {SectionState<SkillSectionData>['data']} */(null));
+    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
+    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
 
     const { forceLoadingState, forceErrorState } = useContext(RootPageContext);
 

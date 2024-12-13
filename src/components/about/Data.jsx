@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
 export default function AboutData({ data }) {
-    const [icons, setIcons] = useState([]);
+    const [icons, setIcons] = useState(/** @type {JSX.Element} */ (null));
 
     const getIcons = async (iconName, className) => {
         const iconsModule = await import('@iconscout/react-unicons');

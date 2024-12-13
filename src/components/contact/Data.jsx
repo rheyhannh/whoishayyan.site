@@ -4,7 +4,7 @@ import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
 export default function ContactData({ data }) {
-    const [icons, setIcons] = useState([]);
+    const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
     const [otherIcons, setOtherIcons] = useState(null);
 
     const getIcons = async (iconName, className) => {

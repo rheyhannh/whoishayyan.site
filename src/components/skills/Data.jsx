@@ -8,7 +8,7 @@ import { itemsPerSwiper } from './Skills';
 import styles from '@/app/_root.module.css';
 
 export default function SkillsData({ data, dataSections }) {
-    const [icons, setIcons] = useState([]);
+    const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
     const [match, setMatch] = useState(window.matchMedia('(min-width: 568px)').matches);
     const [activeBox, setActiveBox] = useState(0);
     const { theme } = useContext(ThemeContext);

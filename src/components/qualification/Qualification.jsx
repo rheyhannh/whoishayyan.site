@@ -11,9 +11,9 @@ const QualificationData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export default function QualificationSection({ initdata }) {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+    const [data, setData] = useState(/** @type {SectionState<QualificationSectionData>['data']} */(null));
+    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
+    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
     const [activeTab, setActiveTab] = useState(0);
 
     const { forceLoadingState, forceErrorState } = useContext(RootPageContext);

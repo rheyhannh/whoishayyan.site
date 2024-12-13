@@ -6,10 +6,10 @@ import { Navigation, Pagination } from 'swiper/modules';
 import styles from '@/app/_root.module.css';
 import Button from '@/components/Button';
 
-export default function ProjectData({ data, swiper }) {
-    const [icons, setIcons] = useState([]);
-    const [projectIcons, setProjectIcons] = useState([]);
-    
+export default function ProjectData({ data }) {
+    const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
+    const [projectIcons, setProjectIcons] = useState(/** @type {Array<JSX.Element>} */([]));
+
     const getIcons = async (iconName, className) => {
         const iconsModule = await import('@iconscout/react-unicons');
         if (iconName in iconsModule) {

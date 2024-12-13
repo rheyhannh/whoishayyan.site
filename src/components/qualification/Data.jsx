@@ -4,8 +4,8 @@ import Link from 'next/link';
 import styles from '@/app/_root.module.css'
 
 export default function QualificationData({ data, part, tab, tabclick }) {
-    const [icons, setIcons] = useState();
-    const [tabIcons, setTabIcons] = useState([]);
+    const [icons, setIcons] = useState(/** @type {JSX.Element} */(null));
+    const [tabIcons, setTabIcons] = useState(/** @type {Array<JSX.Element>} */([]));
 
     const getIcons = async (iconName, className) => {
         const iconsModule = await import('@iconscout/react-unicons');
