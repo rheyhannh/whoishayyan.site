@@ -22,7 +22,7 @@ export default function AboutSection({ initdata }) {
     const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
     const [error, setError] = useState(/** @type {SectionState['error']} */(false));
 
-    const { forceLoadingState, forceErrorState } = useContext(RootPageContext);
+    const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 
     useEffect(() => {
         if (forceLoadingState) setLoading(true);
@@ -49,6 +49,12 @@ export default function AboutSection({ initdata }) {
     }, [initdata])
 
     const clickReload = () => {
+        if (forceLoadingState || forceErrorState) {
+            setForceLoadingState(false);
+            setForceErrorState(false);
+            return;
+        }
+
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
 

@@ -21,7 +21,7 @@ export default function QualificationSection({ initdata }) {
     const [error, setError] = useState(/** @type {SectionState['error']} */(false));
     const [activeTab, setActiveTab] = useState(0);
 
-    const { forceLoadingState, forceErrorState } = useContext(RootPageContext);
+    const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 
     useEffect(() => {
         if (forceLoadingState) setLoading(true);
@@ -48,6 +48,12 @@ export default function QualificationSection({ initdata }) {
     }, [initdata])
 
     const clickReload = () => {
+        if (forceLoadingState || forceErrorState) {
+            setForceLoadingState(false);
+            setForceErrorState(false);
+            return;
+        }
+        
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
 
