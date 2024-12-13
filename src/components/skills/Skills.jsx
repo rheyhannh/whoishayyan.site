@@ -10,6 +10,8 @@ import styles from '@/app/_root.module.css'
 const SkillsData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
+export const itemsPerSwiper = 9;
+
 export default function SkillsSection({ initdata }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -39,7 +41,6 @@ export default function SkillsSection({ initdata }) {
             ...skill,
             no: index,
         }));
-        const itemsPerSwiper = 9;
 
         for (let i = 0; i < data.length; i += itemsPerSwiper) {
             const section = numberedSkillsData.slice(i, i + itemsPerSwiper);
