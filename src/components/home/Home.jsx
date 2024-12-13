@@ -53,7 +53,7 @@ export default function HomeSection({ initdata }) {
 
     const fetchData = async () => {
         try {
-            const result = await getData();
+            const result = await getRootData();
             if (result) {
                 setData(result.home);
                 localStorage.setItem(`_data`, JSON.stringify(result))

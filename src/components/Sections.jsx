@@ -28,7 +28,7 @@ export default function Sections() {
 
         const fetchData = async () => {
             try {
-                const result = await getData(localData ? localData : null);
+                const result = await getRootData();
                 if (result) {
                     setData(result);
                     localStorage.setItem(`_data`, JSON.stringify(result))

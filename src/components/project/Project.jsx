@@ -60,7 +60,7 @@ export default function ProjectSection({ initdata }) {
 
     const fetchData = async () => {
         try {
-            const result = await getData();
+            const result = await getRootData();
             if (result) {
                 handleData(result.project);
                 localStorage.setItem(`_data`, JSON.stringify(result))

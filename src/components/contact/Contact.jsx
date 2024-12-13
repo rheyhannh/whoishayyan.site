@@ -51,7 +51,7 @@ export default function ContactSection({ initdata }) {
 
     const fetchData = async () => {
         try {
-            const result = await getData();
+            const result = await getRootData();
             if (result) {
                 setData(result.contact);
                 localStorage.setItem(`_data`, JSON.stringify(result))

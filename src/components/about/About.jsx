@@ -55,7 +55,7 @@ export default function AboutSection({ initdata }) {
 
     const fetchData = async () => {
         try {
-            const result = await getData();
+            const result = await getRootData();
             if (result) {
                 setData(result.about);
                 localStorage.setItem(`_data`, JSON.stringify(result))

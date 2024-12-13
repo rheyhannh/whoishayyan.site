@@ -83,7 +83,7 @@ export default function SkillsSection({ initdata }) {
 
     const fetchData = async () => {
         try {
-            const result = await getData();
+            const result = await getRootData();
             if (result) {
                 handleData(result.skills, getDataSections(result.skills));
                 localStorage.setItem(`_data`, JSON.stringify(result))

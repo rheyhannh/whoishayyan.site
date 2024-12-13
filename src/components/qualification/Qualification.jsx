@@ -58,7 +58,7 @@ export default function QualificationSection({ initdata }) {
 
     const fetchData = async () => {
         try {
-            const result = await getData();
+            const result = await getRootData();
             if (result) {
                 setData(result.qualification);
                 localStorage.setItem(`_data`, JSON.stringify(result))
