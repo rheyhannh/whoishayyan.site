@@ -30,14 +30,6 @@ export default function QualificationSection({ initdata }) {
         }
     }, [initdata])
 
-    const toggleLoading = () => {
-        setLoading((current) => (current === true ? false : true));
-    };
-
-    const toggleError = () => {
-        setError((current) => (current === true ? false : true));
-    };
-
     const clickReload = () => {
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
@@ -81,8 +73,8 @@ export default function QualificationSection({ initdata }) {
 
     return (
         <section className={`${styles.qualification} ${styles.section}`} id="qualification">
-            <h2 onClick={toggleLoading} className={styles.section__title}>Qualification</h2>
-            <span onClick={toggleError} className={styles.section__subtitle}>My Personal Journey</span>
+            <h2 className={styles.section__title}>Qualification</h2>
+            <span className={styles.section__subtitle}>My Personal Journey</span>
 
             <div className={`${styles.qualification__container} ${styles.container}`}>
                 {error && <ErrorFetch clickEvent={clickReload} type={'qualification'} />}

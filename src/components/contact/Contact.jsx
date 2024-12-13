@@ -29,14 +29,6 @@ export default function ContactSection({ initdata }) {
         }
     }, [initdata])
 
-    const toggleLoading = () => {
-        setLoading((current) => (current === true ? false : true));
-    };
-
-    const toggleError = () => {
-        setError((current) => (current === true ? false : true));
-    };
-
     const clickReload = () => {
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
@@ -74,14 +66,14 @@ export default function ContactSection({ initdata }) {
 
     return (
         <section className={`${styles.contact} ${styles.section}`} id="contact">
-            <h2 onClick={toggleLoading} className={styles.section__title}>Contact Me</h2>
-            <span onClick={toggleError} className={styles.section__subtitle}>Get In Touch</span>
+            <h2 className={styles.section__title}>Contact Me</h2>
+            <span className={styles.section__subtitle}>Get In Touch</span>
 
             <div className={`${styles.contact__container} ${styles.container} ${styles.grid}`}>
                 {error && <ErrorFetch clickEvent={clickReload} type={'contact'} />}
                 {loading && <ContactSkeleton />}
                 {data && !loading && !error &&
-                    <ContactData data={data}/>
+                    <ContactData data={data} />
                 }
             </div>
         </section>

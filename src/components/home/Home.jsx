@@ -31,14 +31,6 @@ export default function HomeSection({ initdata }) {
         }
     }, [initdata])
 
-    const toggleLoading = () => {
-        setLoading((current) => (current === true ? false : true));
-    };
-
-    const toggleError = () => {
-        setError((current) => (current === true ? false : true));
-    };
-
     const clickReload = () => {
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
@@ -86,9 +78,9 @@ export default function HomeSection({ initdata }) {
                     </div>
 
                     <div className={styles.home__img}>
-                        {loading && <HomeSkeleton part={'blob'} loadingClick={toggleLoading} />}
+                        {loading && <HomeSkeleton part={'blob'} />}
                         {data && !loading && !error &&
-                            <div onClick={toggleLoading} className={styles.home__blob} id="home__blob">
+                            <div className={styles.home__blob} id="home__blob">
                                 <Image
                                     src={homePic}
                                     quality={100}
@@ -99,7 +91,7 @@ export default function HomeSection({ initdata }) {
                         }
                     </div>
 
-                    <div onClick={toggleError} className={styles.home__data}>
+                    <div className={styles.home__data}>
                         {loading && <HomeSkeleton part={'data'} />}
                         {data && !loading && !error && <HomeData data={data} part={'content'} />}
                     </div>

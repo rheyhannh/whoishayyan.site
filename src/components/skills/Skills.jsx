@@ -33,14 +33,6 @@ export default function SkillsSection({ initdata }) {
         }
     }, [initdata])
 
-    const toggleLoading = () => {
-        setLoading((current) => (current === true ? false : true));
-    };
-
-    const toggleError = () => {
-        setError((current) => (current === true ? false : true));
-    };
-
     const getDataSections = (data) => {
         const swiperSections = [];
         const numberedSkillsData = data.map((skill, index) => ({
@@ -105,8 +97,8 @@ export default function SkillsSection({ initdata }) {
 
     return (
         <section className={`${styles.skills} ${styles.section}`} id="stack">
-            <h2 onClick={toggleLoading} className={styles.section__title}>Stack</h2>
-            <span onClick={toggleError} className={styles.section__subtitle}>My Development Stack</span>
+            <h2 className={styles.section__title}>Stack</h2>
+            <span className={styles.section__subtitle}>My Development Stack</span>
             <div className={`${styles.skills__container} ${styles.container} ${styles.grid}`}>
                 {error && <ErrorFetch clickEvent={clickReload} type={'skills'} />}
                 {loading && <SkillsSkeleton />}

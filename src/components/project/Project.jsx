@@ -30,14 +30,6 @@ export default function ProjectSection({ initdata }) {
         }
     }, [initdata])
 
-    const toggleLoading = () => {
-        setLoading((current) => (current === true ? false : true));
-    };
-
-    const toggleError = () => {
-        setError((current) => (current === true ? false : true));
-    };
-
     const handleData = (data) => {
         const content =
             <ProjectData
@@ -83,8 +75,8 @@ export default function ProjectSection({ initdata }) {
 
     return (
         <section className={`${styles.portfolio} ${styles.section}`} id="project">
-            <h2 onClick={toggleLoading} className={styles.section__title}>Project</h2>
-            <span onClick={toggleError} className={styles.section__subtitle}>My Application Project</span>
+            <h2 className={styles.section__title}>Project</h2>
+            <span className={styles.section__subtitle}>My Application Project</span>
             {error &&
                 <>
                     <div className={`${styles.portfolio__container} ${styles.container}`}>
