@@ -1,5 +1,6 @@
 import { HomeSection as HomeSectionData } from '@/types/data/root';
 import { useEffect, useState } from 'react';
+import getUniconsIcons from '@/utils/getUniconIcons';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
@@ -34,30 +35,17 @@ export default function HomeData({ data, part }) {
     const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
     const [socialIcons, setSocialIcons] = useState(/** @type {Array<JSX.Element>} */([]));
 
-    const getIcons = async (iconName, className) => {
-        const iconsModule = await import('@iconscout/react-unicons');
-        if (iconName in iconsModule) {
-            const Icon = iconsModule[iconName];
-
-            return (
-                <Icon className={className ? styles[className] : ''} />
-            );
-        } else {
-            return null;
-        }
-    }
-
     useEffect(() => {
         const loadIcons = async () => {
             const socialIcons = await Promise.all(
                 homeSocials.map(async (item) => {
-                    const icon = await getIcons(item.uil, 'home__social_icon');
+                    const icon = await getUniconsIcons(item.uil, styles.home__social_icon);
                     return icon;
                 })
             );
             const icons = await Promise.all(
                 otherIcons.map(async (item) => {
-                    const icon = await getIcons(item.uil, item.className);
+                    const icon = await getUniconsIcons(item.uil, item?.className ? styles[item.className] : null);
                     return icon;
                 })
             );

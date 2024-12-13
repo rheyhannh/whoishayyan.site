@@ -1,6 +1,7 @@
 import { SkillSection as SkillSectionData } from '@/types/data/root';
 import Image from "next/image";
 import { useState, useEffect, useContext } from 'react';
+import getUniconsIcons from '@/utils/getUniconIcons';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { ThemeContext } from '@/components/provider/Theme';
@@ -45,19 +46,6 @@ export default function SkillsData({ data, dataSections }) {
     const [activeBox, setActiveBox] = useState(0);
     const { theme } = useContext(ThemeContext);
 
-    const getIcons = async (iconName, className) => {
-        const iconsModule = await import('@iconscout/react-unicons');
-        if (iconName in iconsModule) {
-            const Icon = iconsModule[iconName];
-
-            return (
-                <Icon className={className ? styles[className] : ''} />
-            );
-        } else {
-            return null;
-        }
-    }
-
     useEffect(() => {
         const mediaQuery = window.matchMedia('(min-width: 568px)');
 
@@ -70,7 +58,7 @@ export default function SkillsData({ data, dataSections }) {
         const loadIcons = async () => {
             const icons = await Promise.all(
                 otherIcons.map(async (item) => {
-                    const icon = await getIcons(item.uil, item.className);
+                    const icon = await getUniconsIcons(item.uil, item?.className ? styles[item.className] : null);
                     return icon;
                 })
             );

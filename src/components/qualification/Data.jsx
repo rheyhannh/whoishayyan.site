@@ -1,5 +1,6 @@
 import { QualificationSection as QualificationSectionData } from '@/types/data/root';
 import { useEffect, useState } from 'react';
+import getUniconsIcons from '@/utils/getUniconIcons';
 import Link from 'next/link';
 import styles from '@/app/_root.module.css'
 
@@ -26,28 +27,15 @@ export default function QualificationData({ data, part, tab, tabclick }) {
     const [icons, setIcons] = useState(/** @type {JSX.Element} */(null));
     const [tabIcons, setTabIcons] = useState(/** @type {Array<JSX.Element>} */([]));
 
-    const getIcons = async (iconName, className) => {
-        const iconsModule = await import('@iconscout/react-unicons');
-        if (iconName in iconsModule) {
-            const Icon = iconsModule[iconName];
-
-            return (
-                <Icon className={className ? styles[className] : ''} />
-            );
-        } else {
-            return null;
-        }
-    }
-
     useEffect(() => {
         const loadIcons = async () => {
             const tabIcons = await Promise.all(
                 data.map(async (item) => {
-                    const icon = await getIcons(item.icon, 'qualification__icon');
+                    const icon = await getUniconsIcons(item.icon, styles.qualification__icon);
                     return icon;
                 })
             );
-            const icons = await getIcons('UilCalendarAlt');
+            const icons = await getUniconsIcons('UilCalendarAlt');
 
             setIcons(icons);
             setTabIcons(tabIcons);

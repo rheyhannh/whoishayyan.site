@@ -1,5 +1,6 @@
 import { AboutSection as AboutSectionData } from '@/types/data/root';
 import { useState, useEffect } from 'react';
+import getUniconsIcons from '@/utils/getUniconIcons';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
@@ -19,22 +20,9 @@ import styles from '@/app/_root.module.css'
 export default function AboutData({ data }) {
     const [icons, setIcons] = useState(/** @type {JSX.Element} */ (null));
 
-    const getIcons = async (iconName, className) => {
-        const iconsModule = await import('@iconscout/react-unicons');
-        if (iconName in iconsModule) {
-            const Icon = iconsModule[iconName];
-
-            return (
-                <Icon className={className ? styles[className] : ''} />
-            );
-        } else {
-            return null;
-        }
-    }
-
     useEffect(() => {
         const loadIcons = async () => {
-            const icons = await getIcons('UilDownloadAlt', 'button__icon');
+            const icons = await getUniconsIcons('UilDownloadAlt', styles.button__icon);
             setIcons(icons);
         };
 

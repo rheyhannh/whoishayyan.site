@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
+import getUniconsIcons from '@/utils/getUniconIcons';
 import styles from '@/app/_root.module.css';
 import Button from '@/components/Button';
 
@@ -28,30 +29,17 @@ export default function ProjectData({ data }) {
     const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
     const [projectIcons, setProjectIcons] = useState(/** @type {Array<JSX.Element>} */([]));
 
-    const getIcons = async (iconName, className) => {
-        const iconsModule = await import('@iconscout/react-unicons');
-        if (iconName in iconsModule) {
-            const Icon = iconsModule[iconName];
-
-            return (
-                <Icon className={className ? styles[className] : ''} />
-            );
-        } else {
-            return null;
-        }
-    }
-
     useEffect(() => {
         const loadIcons = async () => {
             const projectIcons = await Promise.all(
                 data.map(async (item) => {
-                    const icon = await getIcons(item.button.iconName, item.button.iconClass);
+                    const icon = await getUniconsIcons(item.button.iconName, item?.button?.iconClass ? styles[item.button.iconClass] : null);
                     return icon;
                 })
             );
             const icons = await Promise.all(
                 otherIcons.map(async (item) => {
-                    const icon = await getIcons(item.uil, item.className);
+                    const icon = await getUniconsIcons(item.uil, item?.className ? styles[item.className] : null);
                     return icon;
                 })
             );
