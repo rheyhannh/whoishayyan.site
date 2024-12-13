@@ -6,6 +6,11 @@ import { Navigation, Pagination } from 'swiper/modules';
 import styles from '@/app/_root.module.css';
 import Button from '@/components/Button';
 
+const otherIcons = [
+    { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
+    { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
+]
+
 /**
  * Component props for {@link ProjectData}
  * @typedef {Object} ProjectDataProps
@@ -35,11 +40,6 @@ export default function ProjectData({ data }) {
             return null;
         }
     }
-
-    const otherIcons = [
-        { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
-        { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
-    ]
 
     useEffect(() => {
         const loadIcons = async () => {

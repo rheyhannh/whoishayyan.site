@@ -3,6 +3,18 @@ import { useEffect, useState } from 'react';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
+const homeSocials = [
+    { label: 'Linkedin', href: 'https://www.linkedin.com/in/rheyhannh/', uil: 'UilLinkedin' },
+    { label: 'Instagram', href: 'https://github.com/rheyhannh/', uil: 'UilGithub' },
+    { label: 'Github', href: 'https://www.instagram.com/rheyhannh/', uil: 'UilInstagram' },
+]
+
+const otherIcons = [
+    { uil: 'UilMessage', className: 'button__icon' },
+    { uil: 'UilMouseAlt', className: 'home__scroll_mouse' },
+    { uil: 'UilArrowDown', className: 'home__scroll_arrow' },
+]
+
 /**
  * Component props for {@link HomeData}
  * @typedef {Object} HomeDataProps
@@ -34,18 +46,6 @@ export default function HomeData({ data, part }) {
             return null;
         }
     }
-
-    const homeSocials = [
-        { label: 'Linkedin', href: 'https://www.linkedin.com/in/rheyhannh/', uil: 'UilLinkedin' },
-        { label: 'Instagram', href: 'https://github.com/rheyhannh/', uil: 'UilGithub' },
-        { label: 'Github', href: 'https://www.instagram.com/rheyhannh/', uil: 'UilInstagram' },
-    ]
-
-    const otherIcons = [
-        { uil: 'UilMessage', className: 'button__icon' },
-        { uil: 'UilMouseAlt', className: 'home__scroll_mouse' },
-        { uil: 'UilArrowDown', className: 'home__scroll_arrow' },
-    ]
 
     useEffect(() => {
         const loadIcons = async () => {

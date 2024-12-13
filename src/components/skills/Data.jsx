@@ -7,6 +7,11 @@ import { ThemeContext } from '@/components/provider/Theme';
 import { itemsPerSwiper } from './Skills';
 import styles from '@/app/_root.module.css';
 
+const otherIcons = [
+    { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
+    { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
+]
+
 /**
  * Component props for {@link SkillsData}
  * @typedef {Object} SkillsDataProps
@@ -52,11 +57,6 @@ export default function SkillsData({ data, dataSections }) {
             return null;
         }
     }
-
-    const otherIcons = [
-        { uil: 'UilAngleLeftB', className: 'swiper_portfolio_icon' },
-        { uil: 'UilAngleRightB', className: 'swiper_portfolio_icon' },
-    ]
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(min-width: 568px)');
