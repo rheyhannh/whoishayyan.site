@@ -3,6 +3,7 @@ import { SectionState } from '@/types/state';
 import SkillsSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import { useEffect, useState, useContext } from "react";
+import { RootPageContext } from '../provider/RootPage';
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 
