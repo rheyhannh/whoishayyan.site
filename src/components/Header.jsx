@@ -2,7 +2,7 @@
 
 import { useContext, useState } from 'react'
 import Link from 'next/link'
-import { ThemeContext } from '@/components/Theme'
+import { ThemeContext } from '@/components/provider/Theme'
 import {
     UilUser,
     UilFileAlt,

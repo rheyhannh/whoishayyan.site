@@ -1,20 +1,21 @@
 'use client'
 
-import { createContext, useEffect, useState } from 'react'
+import { ThemeContextProps } from '@/types/context';
+import React, { createContext, useEffect, useState } from 'react'
 import isNumeric from 'validator/lib/isNumeric';
 import isInt from 'validator/lib/isInt';
 
-export const ThemeContext = createContext();
+export const ThemeContext = createContext(/** @type {ThemeContextProps} */ (null));
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('light');
-    const [hue, setHue] = useState(250);
+    const [theme, setTheme] = useState(/** @type {'dark' | 'light'} */ ('light'));
+    const [hue, setHue] = useState(/** @type {number} */ (250));
 
     const changeHue = (val) => {
         setHue(val);
         localStorage.setItem('_hue', val)
         document.documentElement.style.setProperty("--hue-color", val);
         document.documentElement.style.setProperty("--first-color", `hsl(var(--hue-color), 69%, 61%)`);
-    } 
+    }
 
     useEffect(() => {
         const localTheme = localStorage.getItem('_theme');

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState, useEffect, useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
-import { ThemeContext } from '@/components/Theme'
+import { ThemeContext } from '@/components/provider/Theme';
 import styles from '@/app/_root.module.css';
 
 export default function SkillsData({ data, dataSections }) {
