@@ -12,7 +12,15 @@ import aboutPic from '../../../public/about-min.png'
 const AboutData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
+/**
+ * Component that represent section `About` on root page
+ * @param {{initdata:AboutSectionData}} props AboutSection props
+ * @returns {React.ReactElement<{initdata:AboutSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ */
 export default function AboutSection({ initdata }) {
+    const [data, setData] = useState(/** @type {SectionState<AboutSectionData>['data']} */(null));
+    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
+    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
 
     const { forceLoadingState, forceErrorState } = useContext(RootPageContext);
 

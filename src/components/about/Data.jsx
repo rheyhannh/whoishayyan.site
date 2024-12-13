@@ -3,6 +3,19 @@ import { useState, useEffect } from 'react';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
+/**
+ * Component props for {@link AboutData}
+ * @typedef {Object} AboutDataProps
+ * @property {AboutSectionData} data
+ * Section data
+ */
+
+/**
+ * Component that represent section `About` on root page with provided data.
+ * This will be rendered after refered data fetched in client side.
+ * @param {AboutDataProps} props AboutData props
+ * @returns {React.ReactElement<AboutDataProps, HTMLDivElement>} Rendered component
+ */
 export default function AboutData({ data }) {
     const [icons, setIcons] = useState(/** @type {JSX.Element} */ (null));
 

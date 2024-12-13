@@ -12,6 +12,11 @@ import homePic from '../../../public/profil-nobg-min.png'
 const HomeData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
+/**
+ * Component that represent section `Home` on root page
+ * @param {{initdata:HomeSectionData}} props HomeSection props
+ * @returns {React.ReactElement<{initdata:HomeSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ */
 export default function HomeSection({ initdata }) {
     const [data, setData] = useState(/** @type {SectionState<HomeSectionData>['data']} */(null));
     const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));

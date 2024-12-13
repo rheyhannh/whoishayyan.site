@@ -11,6 +11,11 @@ import styles from '@/app/_root.module.css'
 const ProjectData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
+/**
+ * Component that represent section `Project` on root page
+ * @param {{initdata:ProjectSectionData}} props ProjectSection props
+ * @returns {React.ReactElement<{initdata:ProjectSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ */
 export default function ProjectSection({ initdata }) {
     const [data, setData] = useState(/** @type {React.ReactElement<ProjectDataProps, HTMLDivElement>} */(null));
     const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));

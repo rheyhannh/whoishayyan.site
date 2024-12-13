@@ -3,6 +3,19 @@ import { useEffect, useState } from 'react';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
+/**
+ * Component props for {@link ContactData}
+ * @typedef {Object} ContactDataProps
+ * @property {ContactSectionData} data
+ * Section data
+ */
+
+/**
+ * Component that represent section `Contact` on root page with provided data.
+ * This will be rendered after refered data fetched in client side.
+ * @param {ContactDataProps} props ContactData props
+ * @returns {React.ReactElement<ContactDataProps, HTMLDivElement>} Rendered component
+ */
 export default function ContactData({ data }) {
     const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
     const [otherIcons, setOtherIcons] = useState(null);

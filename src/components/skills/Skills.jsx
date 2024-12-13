@@ -12,6 +12,11 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export const itemsPerSwiper = 9;
 
+/**
+ * Component that represent section `Skills` on root page
+ * @param {{initdata:SkillSectionData}} props SkillsSection props
+ * @returns {React.ReactElement<{initdata:SkillSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ */
 export default function SkillsSection({ initdata }) {
     const [data, setData] = useState(/** @type {SectionState<SkillSectionData>['data']} */(null));
     const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));

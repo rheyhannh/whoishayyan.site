@@ -3,6 +3,25 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from '@/app/_root.module.css'
 
+/**
+ * Component props for {@link QualificationData}
+ * @typedef {Object} QualificationDataProps
+ * @property {QualificationSectionData} data
+ * Section data
+ * @property {'tabs' | 'content'} part
+ * Render a specific part of component
+ * @property {number} tab
+ * Active tab index
+ * @property {(x:number) => void} tabclick
+ * Tab click handler, this will update state on parent
+ */
+
+/**
+ * Component that represent section `Qualification` on root page with provided data.
+ * This will be rendered after refered data fetched in client side.
+ * @param {QualificationDataProps} props QualificationData props
+ * @returns {React.ReactElement<QualificationDataProps, HTMLDivElement>} Rendered component
+ */
 export default function QualificationData({ data, part, tab, tabclick }) {
     const [icons, setIcons] = useState(/** @type {JSX.Element} */(null));
     const [tabIcons, setTabIcons] = useState(/** @type {Array<JSX.Element>} */([]));

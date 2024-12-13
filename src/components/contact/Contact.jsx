@@ -10,6 +10,11 @@ import styles from '@/app/_root.module.css'
 const ContactData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
+/**
+ * Component that represent section `Contact` on root page
+ * @param {{initdata:ContactSectionData}} props ContactSection props
+ * @returns {React.ReactElement<{initdata:ContactSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ */
 export default function ContactSection({ initdata }) {
     const [data, setData] = useState(/** @type {SectionState<ContactSectionData>['data']} */(null));
     const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));

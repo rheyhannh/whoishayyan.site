@@ -7,6 +7,33 @@ import { ThemeContext } from '@/components/provider/Theme';
 import { itemsPerSwiper } from './Skills';
 import styles from '@/app/_root.module.css';
 
+/**
+ * Component props for {@link SkillsData}
+ * @typedef {Object} SkillsDataProps
+ * @property {SkillSectionData} data
+ * Section data
+ * @property {Array<SkillSectionData>} dataSections
+ * Array containing paginated {@link SkillsDataProps.data section data}
+ * 
+ * ```js
+ * const offset = 9;
+ * const data = [] // Assume this array has length 12
+ * const dataSection = [[], []] // Paginated data 
+ * 
+ * console.log(dataSection[0].length) // 9
+ * console.log(dataSection[1].length) // 3
+ * ```
+ * 
+ * See {@link itemsPerSwiper} what offset we use here.
+ * 
+ */
+
+/**
+ * Component that represent section `Skills` on root page with provided data.
+ * This will be rendered after refered data fetched in client side.
+ * @param {SkillsDataProps} props SkillsData props
+ * @returns {React.ReactElement<SkillsDataProps, HTMLDivElement>} Rendered component
+ */
 export default function SkillsData({ data, dataSections }) {
     const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
     const [match, setMatch] = useState(window.matchMedia('(min-width: 568px)').matches);

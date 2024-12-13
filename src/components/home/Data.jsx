@@ -3,9 +3,24 @@ import { useEffect, useState } from 'react';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
+/**
+ * Component props for {@link HomeData}
+ * @typedef {Object} HomeDataProps
+ * @property {HomeSectionData} data
+ * Section data
+ * @property {'social' | 'content'} part
+ * Render a specific part of component
+ */
+
+/**
+ * Component that represent section `Home` on root page with provided data.
+ * This will be rendered after refered data fetched in client side.
+ * @param {HomeDataProps} props HomeData props
+ * @returns {React.ReactElement<HomeDataProps, HTMLDivElement>} Rendered component
+ */
 export default function HomeData({ data, part }) {
     const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
-    const [socialIcons, setSocialIcons] = useState([]);
+    const [socialIcons, setSocialIcons] = useState(/** @type {Array<JSX.Element>} */([]));
 
     const getIcons = async (iconName, className) => {
         const iconsModule = await import('@iconscout/react-unicons');

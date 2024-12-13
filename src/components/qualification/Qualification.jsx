@@ -10,6 +10,11 @@ import styles from '@/app/_root.module.css'
 const QualificationData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
+/**
+ * Component that represent section `Qualification` on root page
+ * @param {{initdata:QualificationSectionData}} props QualificationSection props
+ * @returns {React.ReactElement<{initdata:QualificationSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ */
 export default function QualificationSection({ initdata }) {
     const [data, setData] = useState(/** @type {SectionState<QualificationSectionData>['data']} */(null));
     const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));

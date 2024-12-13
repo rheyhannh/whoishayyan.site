@@ -6,6 +6,19 @@ import { Navigation, Pagination } from 'swiper/modules';
 import styles from '@/app/_root.module.css';
 import Button from '@/components/Button';
 
+/**
+ * Component props for {@link ProjectData}
+ * @typedef {Object} ProjectDataProps
+ * @property {ProjectSectionData} data
+ * Section data
+ */
+
+/**
+ * Component that represent section `Project` on root page with provided data.
+ * This will be rendered after refered data fetched in client side.
+ * @param {ProjectDataProps} props ProjectData props
+ * @returns {React.ReactElement<ProjectDataProps, HTMLDivElement>} Rendered component
+ */
 export default function ProjectData({ data }) {
     const [icons, setIcons] = useState(/** @type {Array<JSX.Element>} */([]));
     const [projectIcons, setProjectIcons] = useState(/** @type {Array<JSX.Element>} */([]));
