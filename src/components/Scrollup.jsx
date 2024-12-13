@@ -21,7 +21,8 @@ export default function Scrollup() {
         return () => {
             window.removeEventListener('scroll', handleScrollUp);
         }
-    })
+    }, [])
+
     return (
         <Link
             href={'#home'}

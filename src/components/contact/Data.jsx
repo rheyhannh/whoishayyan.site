@@ -72,7 +72,7 @@ export default function ContactData({ data }) {
                 <div className={`${styles.contact__inputs} ${styles.grid}`}>
                     <div className={styles.contact__content}>
                         <label htmlFor='name' className={styles.contact__label}>Name</label>
-                        <input type={'text'} className={styles.contact__input} name='name' id='name' autoComplete='off'/>
+                        <input type={'text'} className={styles.contact__input} name='name' id='name' autoComplete='off' />
                     </div>
                     <div className={styles.contact__content}>
                         <label htmlFor='email' className={styles.contact__label}>Email</label>
