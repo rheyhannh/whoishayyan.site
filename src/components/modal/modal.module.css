@@ -21,6 +21,22 @@
     visibility: visible;
 }
 
+.layout {
+    padding: 0 .6rem;
+    overflow: auto;
+}
+
+.layout::-webkit-scrollbar {
+    visibility: hidden;
+    width: .30rem;
+    border-radius: .25rem;
+}
+
+.layout::-webkit-scrollbar-thumb {
+    border-radius: .25rem;
+    visibility: hidden;
+}
+
 .setting {
     display: grid;
     grid-template-rows: 30px 1fr;
@@ -47,7 +63,7 @@
     justify-content: space-between;
 }
 
-.setting .layout >.small {
+.setting .layout>.small {
     display: block;
     margin-bottom: 0.6rem;
 }
@@ -59,10 +75,6 @@
     border: 1.5px solid var(--text-color-light);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, .15);
     margin-bottom: 1rem;
-}
-
-.setting .layout .panel:last-child {
-    margin-bottom: 0;
 }
 
 .setting .layout .panel.active {
@@ -80,6 +92,25 @@
 
 .overlay.active .setting {
     transform: scale(1) translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .layout::-webkit-scrollbar-thumb:hover {
+        border-radius: .25rem;
+        visibility: hidden;
+    }
+
+    .setting:hover .layout::-webkit-scrollbar {
+        visibility: visible;
+    }
+
+    .setting:hover .layout::-webkit-scrollbar-thumb {
+        visibility: visible;
+    }
+
+    .setting:hover .layout::-webkit-scrollbar-thumb:hover {
+        visibility: visible;
+    }
 }
 
 @media screen and (max-width: 768px) {
