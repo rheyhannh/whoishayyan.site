@@ -16,6 +16,18 @@ export default function QualificationSection({ initdata }) {
     const [error, setError] = useState(false);
     const [activeTab, setActiveTab] = useState(0);
 
+    const { forceLoadingState, forceErrorState } = useContext(RootPageContext);
+
+    useEffect(() => {
+        if (forceLoadingState) setLoading(true);
+        else setLoading(false);
+    }, [forceLoadingState])
+
+    useEffect(() => {
+        if (forceErrorState) setError(true);
+        else setError(false);
+    }, [forceErrorState])
+
     useEffect(() => {
         if (!initdata) {
             const timeout = setTimeout(() => {

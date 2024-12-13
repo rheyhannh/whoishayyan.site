@@ -12,9 +12,18 @@ const ProjectData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 export default function ProjectSection({ initdata }) {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
+
+    const { forceLoadingState, forceErrorState } = useContext(RootPageContext);
+
+    useEffect(() => {
+        if (forceLoadingState) setLoading(true);
+        else setLoading(false);
+    }, [forceLoadingState])
+
+    useEffect(() => {
+        if (forceErrorState) setError(true);
+        else setError(false);
+    }, [forceErrorState])
 
     useEffect(() => {
         if (!initdata) {
