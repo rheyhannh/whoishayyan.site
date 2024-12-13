@@ -1,7 +1,7 @@
 'use client'
 
 import { ModalContextProps } from '@/types/context';
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import ModalSetting from '../modal/Setting';
 
 export const ModalContext = createContext(/** @type {ModalContextProps} */(null));
@@ -19,6 +19,11 @@ export const ModalProvider = ({ children }) => {
     const modalList = {
         setting: <ModalSetting />,
     }
+
+    useEffect(() => {
+        if (active) { document.body.classList.add('disable_scroll'); }
+        else { document.body.classList.remove('disable_scroll'); }
+    }, [active])
 
     return (
         <ModalContext.Provider

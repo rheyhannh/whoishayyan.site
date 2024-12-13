@@ -142,6 +142,10 @@ body {
   color: var(--text-color);
 }
 
+body.disable_scroll {
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3,
