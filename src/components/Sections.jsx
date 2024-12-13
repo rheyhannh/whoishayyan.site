@@ -7,7 +7,7 @@ import QualificationSection from "./qualification/Qualification";
 import SkillsSection from './skills/Skills';
 import ProjectSection from './project/Project';
 import ContactSection from './contact/Contact';
-import getData from './_ServerHelper';
+import getRootData from '../utils/getRootData';
 import styles from '@/app/_root.module.css';
 
 export default function Sections() {

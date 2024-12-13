@@ -1,7 +1,6 @@
 import ProjectSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
-import { useState, useEffect } from 'react';
-import getData from "@/components/_ServerHelper";
+import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 
 const ProjectData = dynamic(() => import("./Data"))

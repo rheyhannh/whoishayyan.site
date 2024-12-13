@@ -1,8 +1,7 @@
 import AboutSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import Image from "next/image"
-import { useState, useEffect } from 'react';
-import getData from "@/components/_ServerHelper";
+import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
 import aboutPic from '../../../public/about-min.png'
 
