@@ -12,9 +12,17 @@ import { isZodErrorLike, fromZodError } from 'zod-validation-error';
  * @param {string} message Sanitized error message
  * @param {any} error Error details
  */
-const handleClientError = (message, error) => {
+const handleClientError = (prefix, error) => {
     const isProduction = process.env.NODE_ENV === 'production';
     const thirdPartyLog = !!process.env.NEXT_PUBLIC_THIRDPARTY_LOG;
+
+    var message;
+
+    if (isZodErrorLike(error)) {
+        message = fromZodError(error, { prefix }).toString();
+    } else {
+        message = `${prefix}: ${error?.message ?? 'unknown error'}`
+    }
 
     if (isProduction) console.error(message);
     if (!isProduction) {
