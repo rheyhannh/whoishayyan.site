@@ -644,6 +644,7 @@ li.nav__item:nth-child(1) {
 
 .qualification__tabs {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   margin-bottom: var(--mb-2);
 }
