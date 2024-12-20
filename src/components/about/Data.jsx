@@ -19,6 +19,7 @@ import styles from '@/app/_root.module.css'
  */
 export default function AboutData({ data }) {
     const [icons, setIcons] = useState(/** @type {JSX.Element} */(null));
+    const [textIndex, setTextIndex] = useState(0);
 
     useEffect(() => {
         const loadIcons = async () => {
@@ -28,6 +29,23 @@ export default function AboutData({ data }) {
 
         loadIcons();
     }, [])
+
+    useEffect(() => {
+        if (data) {
+            const interval = setInterval(() => {
+                setTextIndex(x => {
+                    if (x + 1 >= data.interestedList.length) {
+                        return 0;
+                    }
+                    return x + 1
+                })
+            }, 2500)
+
+            return () => {
+                clearInterval(interval);
+            }
+        }
+    }, [data])
 
     return (
         <>
