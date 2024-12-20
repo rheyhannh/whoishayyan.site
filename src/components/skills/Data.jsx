@@ -92,11 +92,11 @@ export default function SkillsData({ data, dataSections }) {
                     {dataSections.map((section, sectionIndex) => (
                         <SwiperSlide
                             className={`${styles.skills__list} ${styles.swiper}`}
-                            key={crypto.randomUUID()}
+                            key={sectionIndex}
                         >
                             {section.map((item, index) => (
                                 <div
-                                    key={crypto.randomUUID()}
+                                    key={index}
                                     className={`${styles.skills__box} ${activeBox === item.no ? styles.active : ''}`}
                                     onClick={() => { setActiveBox(item.no) }}
                                 >
@@ -112,7 +112,7 @@ export default function SkillsData({ data, dataSections }) {
                             ))}
 
                             {Array.from({ length: Math.max(0, 9 - section.length) }).map((_, index) => (
-                                <div className={`${styles.skills__box} ${styles.empty}`} key={crypto.randomUUID()}></div>
+                                <div className={`${styles.skills__box} ${styles.empty}`} key={index}></div>
                             ))}
                         </SwiperSlide>
                     ))}
@@ -133,7 +133,7 @@ export default function SkillsData({ data, dataSections }) {
                 <div className={`${styles.skills__list}`}>
                     {data.map((item, index) => (
                         <div
-                            key={crypto.randomUUID()}
+                            key={index}
                             className={`${styles.skills__box} ${activeBox === index ? styles.active : ''}`}
                             onClick={() => { setActiveBox(index) }}
                         >
@@ -153,7 +153,7 @@ export default function SkillsData({ data, dataSections }) {
 
             {data.map((item, index) => (
                 <div
-                    key={crypto.randomUUID()}
+                    key={index}
                     className={`${styles.skills__about} ${activeBox === index ? styles.active : ''}`}
                 >
                     <h3>{item.title}</h3>
