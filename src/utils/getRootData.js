@@ -36,168 +36,206 @@ export default async function getData() {
         skills: [
             {
                 no: 1,
-                logo: '/logo/axios.png',
+                logo: '/logo/reactjs.png',
                 logoDark: null,
-                title: 'Axios',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Library', 'Frontend'],
+                url: 'https://react.dev/',
+                title: 'React',
+                description: 'Create interactive UIs with a component-based approach and declarative coding'
             },
             {
                 no: 2,
-                logo: '/logo/canva.png',
+                logo: '/logo/nextjs.png',
                 logoDark: null,
-                title: 'Canva',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Framework', 'Frontend', 'Backend'],
+                url: 'https://nextjs.org/',
+                title: 'Next.js',
+                description: 'Build lightning-fast web apps with the power of React and server-side rendering.'
             },
             {
                 no: 3,
                 logo: '/logo/express.png',
                 logoDark: '/logo/express-dark.png',
+                tags: ['Framework', 'Backend'],
+                url: 'https://expressjs.com/',
                 title: 'Express',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                description: 'Simplify backend development with this lightweight and flexible Node.js framework.'
             },
             {
                 no: 4,
-                logo: '/logo/icons8.png',
+                logo: '/logo/mysql.png',
                 logoDark: null,
-                title: 'Icons8',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Database'],
+                url: 'https://www.mysql.com/',
+                title: 'MySQL',
+                description: 'Reliable relational database for structured data and optimized queries.'
             },
             {
                 no: 5,
-                logo: '/logo/jquery.png',
+                logo: '/logo/postgresql.png',
                 logoDark: null,
-                title: 'Jquery',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Database'],
+                url: 'https://www.postgresql.org/',
+                title: 'PostgreSQL',
+                description: 'Advanced open-source database with strong performance and scalability.'
             },
             {
                 no: 6,
-                logo: '/logo/mongo.png',
+                logo: '/logo/supabase.png',
                 logoDark: null,
-                title: 'MongoDB',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Database', 'Backend'],
+                url: 'https://supabase.com/',
+                title: 'Supabase',
+                description: 'Instant backend with real-time database and authentication capabilities.'
             },
             {
                 no: 7,
-                logo: '/logo/mysql.png',
+                logo: '/logo/postman.png',
                 logoDark: null,
-                title: 'MySQL',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Tool', 'API Testing'],
+                url: '',
+                title: 'Postman',
+                description: 'API testing made simple with an intuitive interface and robust features.'
             },
             {
                 no: 8,
-                logo: '/logo/postman.png',
+                logo: '/logo/swagger.png',
                 logoDark: null,
-                title: 'Postman',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Tool', 'API Documentation'],
+                url: 'https://www.postman.com/',
+                title: 'Swagger',
+                description: 'Design, document, and explore APIs with this powerful toolset.'
             },
             {
                 no: 9,
-                logo: '/logo/axios.png',
+                logo: '/logo/swr.png',
                 logoDark: null,
-                title: 'Axios',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Utility', 'Data Fetching'],
+                url: 'https://swr.vercel.app/',
+                title: 'swr',
+                description: 'React hooks for data fetching with caching and revalidation built-in.'
             },
             {
                 no: 10,
-                logo: '/logo/canva.png',
+                logo: '/logo/motion.png',
                 logoDark: null,
-                title: 'Canva',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['UI/UX', 'Animation'],
+                url: 'https://motion.dev/',
+                title: 'Motion',
+                description: 'Add stunning animations and transitions with ease in React.'
             },
             {
                 no: 11,
-                logo: '/logo/express.png',
-                logoDark: '/logo/express-dark.png',
-                title: 'Express',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                logo: '/logo/ahooks.png',
+                logoDark: null,
+                tags: ['Utility', 'React Hooks'],
+                url: 'https://ahooks.js.org/',
+                title: 'ahooks',
+                description: 'Advanced React hooks to supercharge your development workflow.'
             },
             {
                 no: 12,
-                logo: '/logo/icons8.png',
-                logoDark: null,
-                title: 'Icons8',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                logo: '/logo/swiper.png',
+                logoDark: '/logo/express-dark.png',
+                tags: ['UI/UX', 'Carousel'],
+                url: 'https://swiperjs.com/',
+                title: 'Swiper',
+                description: 'Build sleek and responsive carousels for a dynamic user experience.'
             },
             {
                 no: 13,
-                logo: '/logo/jquery.png',
+                logo: '/logo/recharts.png',
                 logoDark: null,
-                title: 'Jquery',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Visualization', 'Charts'],
+                url: 'https://recharts.org/',
+                title: 'Recharts',
+                description: 'Beautiful and customizable charts for your data visualization needs.'
             },
             {
                 no: 14,
-                logo: '/logo/mongo.png',
+                logo: '/logo/joi.png',
                 logoDark: null,
-                title: 'MongoDB',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Validation'],
+                url: 'https://joi.dev/',
+                title: 'Joi',
+                description: 'Elegant schema validator for server-side data processing.'
             },
             {
                 no: 15,
-                logo: '/logo/mysql.png',
+                logo: '/logo/zod.png',
                 logoDark: null,
-                title: 'MySQL',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Validation'],
+                url: 'https://zod.dev/',
+                title: 'Zod',
+                description: 'Type-safe schema validation for JavaScript and TypeScript.'
             },
             {
                 no: 16,
-                logo: '/logo/postman.png',
+                logo: '/logo/hcaptcha.png',
                 logoDark: null,
-                title: 'Postman',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc volutpat sit amet nunc ac porttitor. Sed aliquet urna eget blandit.'
+                tags: ['Security', 'Bot Protection'],
+                url: 'https://www.hcaptcha.com/',
+                title: 'Hcaptcha',
+                description: 'Protect app from bots with a privacy-focused CAPTCHA solution.'
+            },
+            {
+                no: 17,
+                logo: '/logo/cypress.jpg',
+                logoDark: null,
+                tags: ['Testing'],
+                url: 'https://www.cypress.io/',
+                title: 'Cypress',
+                description: 'End-to-end testing made reliable, fast, and developer-friendly.'
+            },
+            {
+                no: 18,
+                logo: '/logo/bugsnag.png',
+                logoDark: null,
+                tags: ['Monitoring', 'Error Tracking'],
+                url: 'https://www.bugsnag.com/',
+                title: 'Bugsnag',
+                description: 'Error monitoring to detect and fix bugs with real-time insights.'
+            },
+            {
+                no: 19,
+                logo: '/logo/sentry.png',
+                logoDark: null,
+                tags: ['Monitoring', 'Performance'],
+                url: 'https://sentry.io/',
+                title: 'Sentry',
+                description: 'Comprehensive performance and error tracking for better app stability.'
+            },
+            {
+                no: 20,
+                logo: '/logo/vercel.png',
+                logoDark: null,
+                tags: ['Hosting', 'Deployment'],
+                url: 'https://vercel.com/',
+                title: 'Vercel',
+                description: 'The best platform for Next.js apps with seamless deployment and performance optimization.'
+            },
+            {
+                no: 21,
+                logo: '/logo/heroku.jpg',
+                logoDark: null,
+                tags: ['Hosting', 'Deployment'],
+                url: 'https://www.heroku.com/',
+                title: 'Heroku',
+                description: 'Deploy apps quickly with managed hosting and a user-friendly interface.'
             },
         ],
         project: [
             {
                 image: {
-                    src: '/portfolio1.jpg',
-                    alt: 'Portfolio Hayyan Pertama'
+                    src: '/sipk_mockup_full.png',
+                    alt: 'SIPK Mockup',
                 },
-                title: 'Portofolio 1',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula hendrerit libero. Fusce egestas tincidunt erat, nec luctus massa tempus vestibulum. Maecenas lacinia, tellus eu.',
+                title: 'SIPK App',
+                description: 'SIPK is an innovative web application designed to assist university students planning their academic journeys. It allows users to dynamically add, modify, or remove courses, forecast their GPA, and strategize their academic progress.',
                 button: {
-                    href: 'https://www.tiktok.com/',
+                    href: 'https://www.sipk.app/',
                     newTab: true,
-                    text: 'Explore'
-                }
-            },
-            {
-                image: {
-                    src: '/portfolio2.jpg',
-                    alt: 'Portfolio Hayyan Kedua'
-                },
-                title: 'Portofolio 2',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula hendrerit libero. Fusce egestas tincidunt erat, nec luctus massa tempus vestibulum. Maecenas lacinia, tellus eu.',
-                button: {
-                    href: 'https://www.tiktok.com/',
-                    newTab: true,
-                    text: 'Explore'
-                }
-            },
-            {
-                image: {
-                    src: '/portfolio3.jpg',
-                    alt: 'Portfolio Hayyan Ketiga'
-                },
-                title: 'Portofolio 3',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula hendrerit libero. Fusce egestas tincidunt erat, nec luctus massa tempus vestibulum. Maecenas lacinia, tellus eu.',
-                button: {
-                    href: 'https://www.tiktok.com/',
-                    newTab: true,
-                    text: 'Explore'
-                }
-            },
-            {
-                image: {
-                    src: '/portfolio4.jpg',
-                    alt: 'Portfolio Hayyan Keempat'
-                },
-                title: 'Portofolio 4',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vehicula hendrerit libero. Fusce egestas tincidunt erat, nec luctus massa tempus vestibulum. Maecenas lacinia, tellus eu.',
-                button: {
-                    href: 'https://www.tiktok.com/',
-                    newTab: true,
-                    text: 'Explore'
+                    text: 'Discover More'
                 }
             },
         ],
@@ -212,7 +250,7 @@ export default async function getData() {
                 {
                     uil: 'UilEnvelope',
                     title: 'Email',
-                    text: 'arirereoji@gmail.com',
+                    text: 'rheyhannh@gmail.com',
                     className: 'contact__icon'
                 },
                 {

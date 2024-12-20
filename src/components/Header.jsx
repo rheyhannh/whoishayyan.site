@@ -16,8 +16,8 @@ import {
     UilApps,
     UilPalette,
     UilCheckCircle,
-    UilLightbulb,
     UilSetting,
+    UilAtom,
 } from '@iconscout/react-unicons'
 import styles from '../app/_root.module.css'
 
@@ -64,7 +64,7 @@ export default function Header() {
         { href: '#qualification', text: 'Qualification', uil: <UilFileAlt /> },
         { href: '#stack', text: 'Stack', uil: <UilBriefcaseAlt /> },
         { href: '#project', text: 'Project', uil: <UilConstructor /> },
-        { href: '#other', text: 'Other', uil: <UilLightbulb /> },
+        { href: '/components', text: 'Components', uil: <UilAtom /> },
         { href: '#contact', text: 'Contact', uil: <UilMessage /> },
     ]
 
