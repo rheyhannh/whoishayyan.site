@@ -4,7 +4,7 @@ import ContactSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import { useState, useEffect, useContext } from 'react';
 import { useUpdateEffect } from 'ahooks';
-import { RootPageContext } from '../provider/RootPage';
+import { RootPageContext } from '@/components/provider/RootPage';
 import getRootData from "@/utils/getRootData";
 import handleClientError from '@/utils/handleClientError';
 import { contactSectionDataSchema } from '@/schema/page/root';

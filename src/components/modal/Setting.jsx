@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { ModalContext } from "../provider/Modal"
-import { RootPageContext } from "../provider/RootPage";
+import { ModalContext } from "@/components/provider/Modal"
+import { RootPageContext } from "@/components/provider/RootPage";
 import {
     UilTimes
 } from '@iconscout/react-unicons'

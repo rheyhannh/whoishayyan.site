@@ -3,7 +3,7 @@
 import { useContext, useState } from 'react'
 import Link from 'next/link'
 import { ThemeContext } from '@/components/provider/Theme'
-import { ModalContext } from './provider/Modal'
+import { ModalContext } from '@/components/provider/Modal'
 import {
     UilUser,
     UilFileAlt,

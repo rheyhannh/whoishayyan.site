@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image"
 import { useState, useEffect, useContext } from 'react';
 import { useUpdateEffect } from 'ahooks';
-import { RootPageContext } from '../provider/RootPage';
+import { RootPageContext } from '@/components/provider/RootPage';
 import getRootData from "@/utils/getRootData";
 import handleClientError from '@/utils/handleClientError';
 import { homeSectionDataSchema } from '@/schema/page/root';
