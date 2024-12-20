@@ -1,13 +1,21 @@
 'use client'
 
-import { ModalContextProps } from '@/types/context';
 import React, { createContext, useState, useEffect } from 'react'
-import ModalSetting from '../modal/Setting';
+import ModalSetting from '@/components/modal/Setting';
 
-export const ModalContext = createContext(/** @type {ModalContextProps} */(null));
+export const ModalContext = createContext(
+    /** @type {import('@/schema/context').modalContextProps} */
+    (null)
+);
 export const ModalProvider = ({ children }) => {
-    const [active, setActive] = useState(/** @type {ModalContextProps['active']} */(false));
-    const [type, setType] = useState(/** @type {ModalContextProps['type']} */(null));
+    const [active, setActive] = useState(
+        /** @type {import('@/schema/context').modalContextProps['active']} */
+        (false)
+    );
+    const [type, setType] = useState(
+        /** @type {import('@/schema/context').modalContextProps['type']} */
+        (null)
+    );
 
     const handleModalClose = () => {
         setActive(false);
