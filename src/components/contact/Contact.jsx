@@ -1,4 +1,3 @@
-import { ContactSection as ContactSectionData } from '@/types/data/root';
 import { SectionState } from '@/types/state';
 import ContactSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
@@ -15,13 +14,22 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 /**
  * Component that represent section `Contact` on root page
- * @param {{initdata:ContactSectionData}} props ContactSection props
- * @returns {React.ReactElement<{initdata:ContactSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ * @param {{initdata:import('@/schema/page/root').contactSectionDataType}} props ContactSection props
+ * @returns {React.ReactElement<{initdata:import('@/schema/page/root').contactSectionDataType}, JSX.IntrinsicElements['section']>} Rendered component
  */
 export default function ContactSection({ initdata }) {
-    const [data, setData] = useState(/** @type {SectionState<ContactSectionData>['data']} */(null));
-    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
-    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
+    const [data, setData] = useState(
+        /** @type {SectionState<import('@/schema/page/root').contactSectionDataType>['data']} */
+        (null)
+    );
+    const [loading, setLoading] = useState(
+        /** @type {SectionState['loading']} */
+        (true)
+    );
+    const [error, setError] = useState(
+        /** @type {SectionState['error']} */
+        (false)
+    );
 
     const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 

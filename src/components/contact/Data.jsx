@@ -1,4 +1,3 @@
-import { ContactSection as ContactSectionData } from '@/types/data/root';
 import { useEffect, useState } from 'react';
 import getUniconsIcons from '@/utils/getUniconIcons';
 import Button from '@/components/Button';
@@ -7,7 +6,7 @@ import styles from '@/app/_root.module.css'
 /**
  * Component props for {@link ContactData}
  * @typedef {Object} ContactDataProps
- * @property {ContactSectionData} data
+ * @property {import('@/schema/page/root').contactSectionDataType} data
  * Section data
  */
 

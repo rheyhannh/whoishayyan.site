@@ -1,4 +1,3 @@
-import { HomeSection as HomeSectionData } from '@/types/data/root';
 import { useEffect, useState } from 'react';
 import getUniconsIcons from '@/utils/getUniconIcons';
 import Button from '@/components/Button';
@@ -19,7 +18,7 @@ const otherIcons = [
 /**
  * Component props for {@link HomeData}
  * @typedef {Object} HomeDataProps
- * @property {HomeSectionData} data
+ * @property {import('@/schema/page/root').homeSectionDataType} data
  * Section data
  * @property {'social' | 'content'} part
  * Render a specific part of component

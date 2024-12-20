@@ -1,4 +1,3 @@
-import { QualificationSection as QualificationSectionData } from '@/types/data/root';
 import { SectionState } from '@/types/state';
 import QualificationSkeleton from './Skeleton';
 import dynamic from 'next/dynamic';
@@ -15,13 +14,22 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 /**
  * Component that represent section `Qualification` on root page
- * @param {{initdata:QualificationSectionData}} props QualificationSection props
- * @returns {React.ReactElement<{initdata:QualificationSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ * @param {{initdata:import('@/schema/page/root').qualificationSectionDataType}} props QualificationSection props
+ * @returns {React.ReactElement<{initdata:import('@/schema/page/root').qualificationSectionDataType}, JSX.IntrinsicElements['section']>} Rendered component
  */
 export default function QualificationSection({ initdata }) {
-    const [data, setData] = useState(/** @type {SectionState<QualificationSectionData>['data']} */(null));
-    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
-    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
+    const [data, setData] = useState(
+        /** @type {SectionState<import('@/schema/page/root').qualificationSectionDataType>['data']} */
+        (null)
+    );
+    const [loading, setLoading] = useState(
+        /** @type {SectionState['loading']} */
+        (true)
+    );
+    const [error, setError] = useState(
+        /** @type {SectionState['error']} */
+        (false)
+    );
     const [activeTab, setActiveTab] = useState(0);
 
     const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
@@ -63,7 +71,7 @@ export default function QualificationSection({ initdata }) {
             setForceErrorState(false);
             return;
         }
-        
+
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
 

@@ -1,4 +1,3 @@
-import { AboutSection as AboutSectionData } from '@/types/data/root';
 import { SectionState } from '@/types/state';
 import AboutSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
@@ -17,13 +16,20 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 /**
  * Component that represent section `About` on root page
- * @param {{initdata:AboutSectionData}} props AboutSection props
- * @returns {React.ReactElement<{initdata:AboutSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ * @param {{initdata:import('@/schema/page/root').aboutSectionDataType}} props AboutSection props
+ * @returns {React.ReactElement<{initdata:import('@/schema/page/root').aboutSectionDataType}, JSX.IntrinsicElements['section']>} Rendered component
  */
 export default function AboutSection({ initdata }) {
-    const [data, setData] = useState(/** @type {SectionState<AboutSectionData>['data']} */(null));
-    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
-    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
+    const [data, setData] = useState(
+        /** @type {SectionState<import('@/schema/page/root').aboutSectionDataType>['data']} */
+        (null)
+    );
+    const [loading, setLoading] = useState(
+        /** @type {SectionState['loading']} */(true)
+    );
+    const [error, setError] = useState(
+        /** @type {SectionState['error']} */(false)
+    );
 
     const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 

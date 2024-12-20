@@ -1,4 +1,3 @@
-import { ProjectSection as ProjectSectionData } from '@/types/data/root';
 import { ProjectDataProps } from './Data'
 import { SectionState } from '@/types/state';
 import ProjectSkeleton from "./Skeleton";
@@ -16,8 +15,8 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 /**
  * Component that represent section `Project` on root page
- * @param {{initdata:ProjectSectionData}} props ProjectSection props
- * @returns {React.ReactElement<{initdata:ProjectSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ * @param {{initdata:import('@/schema/page/root').projectSectionDataType}} props ProjectSection props
+ * @returns {React.ReactElement<{initdata:import('@/schema/page/root').projectSectionDataType}, JSX.IntrinsicElements['section']>} Rendered component
  */
 export default function ProjectSection({ initdata }) {
     const [data, setData] = useState(/** @type {React.ReactElement<ProjectDataProps, HTMLDivElement>} */(null));

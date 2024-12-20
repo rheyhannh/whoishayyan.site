@@ -1,4 +1,3 @@
-import { SkillSection as SkillSectionData } from '@/types/data/root';
 import { SectionState } from '@/types/state';
 import SkillsSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
@@ -17,13 +16,22 @@ export const itemsPerSwiper = 9;
 
 /**
  * Component that represent section `Skills` on root page
- * @param {{initdata:SkillSectionData}} props SkillsSection props
- * @returns {React.ReactElement<{initdata:SkillSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ * @param {{initdata:import('@/schema/page/root').skillSectionDataType}} props SkillsSection props
+ * @returns {React.ReactElement<{initdata:import('@/schema/page/root').skillSectionDataType}, JSX.IntrinsicElements['section']>} Rendered component
  */
 export default function SkillsSection({ initdata }) {
-    const [data, setData] = useState(/** @type {SectionState<SkillSectionData>['data']} */(null));
-    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
-    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
+    const [data, setData] = useState(
+        /** @type {SectionState<import('@/schema/page/root').skillSectionDataType>['data']} */
+        (null)
+    );
+    const [loading, setLoading] = useState(
+        /** @type {SectionState['loading']} */
+        (true)
+    );
+    const [error, setError] = useState(
+        /** @type {SectionState['error']} */
+        (false)
+    );
 
     const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 
@@ -102,7 +110,7 @@ export default function SkillsSection({ initdata }) {
                 if (!dataJson) throw new Error('Data not found');
 
                 const verifiedData = skillSectionDataSchema.parse(dataJson);
-            
+
                 handleData(verifiedData, getDataSections(verifiedData));
             } catch (error) {
                 handleClientError('Failed load local skills data', error);

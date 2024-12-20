@@ -1,4 +1,3 @@
-import { SkillSection as SkillSectionData } from '@/types/data/root';
 import Image from "next/image";
 import { useState, useEffect, useContext } from 'react';
 import getUniconsIcons from '@/utils/getUniconIcons';
@@ -16,9 +15,9 @@ const otherIcons = [
 /**
  * Component props for {@link SkillsData}
  * @typedef {Object} SkillsDataProps
- * @property {SkillSectionData} data
+ * @property {import('@/schema/page/root').skillSectionDataType} data
  * Section data
- * @property {Array<SkillSectionData>} dataSections
+ * @property {Array<import('@/schema/page/root').skillSectionDataType>} dataSections
  * Array containing paginated {@link SkillsDataProps.data section data}
  * 
  * ```js

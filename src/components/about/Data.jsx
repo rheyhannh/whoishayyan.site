@@ -1,4 +1,3 @@
-import { AboutSection as AboutSectionData } from '@/types/data/root';
 import { useState, useEffect } from 'react';
 import getUniconsIcons from '@/utils/getUniconIcons';
 import Button from '@/components/Button';
@@ -7,7 +6,7 @@ import styles from '@/app/_root.module.css'
 /**
  * Component props for {@link AboutData}
  * @typedef {Object} AboutDataProps
- * @property {AboutSectionData} data
+ * @property {import('@/schema/page/root').aboutSectionDataType} data
  * Section data
  */
 

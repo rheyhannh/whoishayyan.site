@@ -1,4 +1,3 @@
-import { QualificationSection as QualificationSectionData } from '@/types/data/root';
 import { useEffect, useState } from 'react';
 import getUniconsIcons from '@/utils/getUniconIcons';
 import Link from 'next/link';
@@ -7,7 +6,7 @@ import styles from '@/app/_root.module.css'
 /**
  * Component props for {@link QualificationData}
  * @typedef {Object} QualificationDataProps
- * @property {QualificationSectionData} data
+ * @property {import('@/schema/page/root').qualificationSectionDataType} data
  * Section data
  * @property {'tabs' | 'content'} part
  * Render a specific part of component

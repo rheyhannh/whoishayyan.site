@@ -1,4 +1,3 @@
-import { HomeSection as HomeSectionData } from '@/types/data/root';
 import { SectionState } from '@/types/state';
 import HomeSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
@@ -17,13 +16,22 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
 
 /**
  * Component that represent section `Home` on root page
- * @param {{initdata:HomeSectionData}} props HomeSection props
- * @returns {React.ReactElement<{initdata:HomeSectionData}, JSX.IntrinsicElements['section']>} Rendered component
+ * @param {{initdata:import('@/schema/page/root').homeSectionDataType}} props HomeSection props
+ * @returns {React.ReactElement<{initdata:import('@/schema/page/root').homeSectionDataType}, JSX.IntrinsicElements['section']>} Rendered component
  */
 export default function HomeSection({ initdata }) {
-    const [data, setData] = useState(/** @type {SectionState<HomeSectionData>['data']} */(null));
-    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
-    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
+    const [data, setData] = useState(
+        /** @type {SectionState<import('@/schema/page/root').homeSectionDataType>['data']} */
+        (null)
+    );
+    const [loading, setLoading] = useState(
+        /** @type {SectionState['loading']} */
+        (true)
+    );
+    const [error, setError] = useState(
+        /** @type {SectionState['error']} */
+        (false)
+    );
 
     const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 

@@ -1,4 +1,3 @@
-import { ProjectSection as ProjectSectionData } from '@/types/data/root';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,7 +14,7 @@ const otherIcons = [
 /**
  * Component props for {@link ProjectData}
  * @typedef {Object} ProjectDataProps
- * @property {ProjectSectionData} data
+ * @property {import('@/schema/page/root').projectSectionDataType} data
  * Section data
  */
 
