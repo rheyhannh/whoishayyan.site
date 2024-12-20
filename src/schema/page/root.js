@@ -162,3 +162,18 @@ export const allSectionDataSchema = z.object({
     /** Contact section data */
     contact: contactSectionDataSchema,
 })
+
+/**
+ * Object as value that shared by `RootPageProvider` context.
+ * @typedef {z.infer<typeof pageContextSchema>} pageProviderProps
+ */
+export const pageContextSchema = z.object({
+    /** Force each section in root page use `loading` state */
+    forceLoadingState: z.boolean(),
+    /** Dispatcher to update {@link pageProviderProps.forceLoadingState forceLoadingState} state that shared by `RootPageProvider` context */
+    setForceLoadingState: z.function().args(z.boolean()).returns(z.void()),    /** Force each section in root page use `loading` state */
+    /** Force each section in root page use `error` state */
+    forceErrorState: z.boolean(),
+    /** Dispatcher to update {@link pageProviderProps.forceErrorState forceErrorState} state that shared by `RootPageProvider` context */
+    setForceErrorState: z.function().args(z.boolean()).returns(z.void()),
+})
