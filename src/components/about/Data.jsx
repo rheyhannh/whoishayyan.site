@@ -58,7 +58,7 @@ export default function AboutData({ data }) {
                     <span className={styles.about__info_title}>Im interested in</span>
                 </div>
                 <div>
-                    <span className={styles.about__info_name} id="interestedText">{data.interestedList[0]}</span>
+                    <span className={styles.about__info_name} id="interestedText">{data.interestedList[textIndex]}</span>
                 </div>
             </div>
 
