@@ -7,6 +7,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useUpdateEffect } from 'ahooks';
 import { RootPageContext } from '../provider/RootPage';
 import getRootData from "@/utils/getRootData";
+import handleClientError from '@/utils/handleClientError';
+import { projectSectionDataSchema } from '@/schema/page/root';
 import styles from '@/app/_root.module.css'
 
 const ProjectData = dynamic(() => import("./Data"))
@@ -44,7 +46,13 @@ export default function ProjectSection({ initdata }) {
             return () => clearTimeout(timeout);
         }
         else {
-            handleData(initdata);
+            try {
+                const verifiedData = projectSectionDataSchema.parse(initdata);
+                handleData(verifiedData);
+            } catch (error) {
+                handleClientError('Failed load local project data', error);
+                setError(true);
+            }
         }
     }, [initdata])
 
@@ -57,29 +65,32 @@ export default function ProjectSection({ initdata }) {
         setLoading(false);
     }
 
+
     const clickReload = () => {
         if (forceLoadingState || forceErrorState) {
             setForceLoadingState(false);
             setForceErrorState(false);
             return;
         }
-        
+
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
 
         if (localData) {
             try {
-                const dataJson = JSON.parse(localData).project;
-                if (dataJson) {
-                    handleData(dataJson);
-                    return;
-                }
-                throw new Error('Local project data not found');
+                const dataJson = JSON.parse(localData)?.project;
+                if (!dataJson) throw new Error('Data not found');
+
+                const verifiedData = projectSectionDataSchema.parse(dataJson);
+
+                handleData(verifiedData);
             } catch (error) {
-                console.error('Failed load local project data');
+                handleClientError('Failed load local project data', error);
                 fetchData();
             }
-        } else { fetchData() }
+        } else {
+            fetchData()
+        }
     }
 
     const fetchData = async () => {
@@ -90,7 +101,7 @@ export default function ProjectSection({ initdata }) {
                 localStorage.setItem(`_data`, JSON.stringify(result))
             }
         } catch (error) {
-            console.error("Failed to fetch new data from server");
+            handleClientError('Failed to fetch new data from server', error);
             setError(true);
         } finally {
             setLoading(false);

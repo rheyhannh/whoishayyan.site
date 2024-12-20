@@ -6,6 +6,8 @@ import { useEffect, useState, useContext } from "react";
 import { useUpdateEffect } from 'ahooks';
 import { RootPageContext } from '../provider/RootPage';
 import getRootData from "@/utils/getRootData";
+import handleClientError from '@/utils/handleClientError';
+import { skillSectionDataSchema } from '@/schema/page/root';
 import styles from '@/app/_root.module.css'
 
 const SkillsData = dynamic(() => import("./Data"))
@@ -45,10 +47,16 @@ export default function SkillsSection({ initdata }) {
             return () => clearTimeout(timeout);
         }
         else {
-            if (initdata.length > 9) {
-                handleData(initdata, getDataSections(initdata));
-            } else {
-                handleData(initdata, null);
+            try {
+                const verifiedData = skillSectionDataSchema.parse(initdata);
+                if (verifiedData.length > 9) {
+                    handleData(verifiedData, getDataSections(verifiedData));
+                } else {
+                    handleData(verifiedData, null);
+                }
+            } catch (error) {
+                handleClientError('Failed load local skills data', error);
+                setError(true);
             }
         }
     }, [initdata])
@@ -84,20 +92,20 @@ export default function SkillsSection({ initdata }) {
             setForceErrorState(false);
             return;
         }
-        
+
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
 
         if (localData) {
             try {
-                const dataJson = JSON.parse(localData).skills;
-                if (dataJson) {
-                    handleData(dataJson, getDataSections(dataJson));
-                    return;
-                }
-                throw new Error('Local skills data not found');
+                const dataJson = JSON.parse(localData)?.skills;
+                if (!dataJson) throw new Error('Data not found');
+
+                const verifiedData = skillSectionDataSchema.parse(dataJson);
+            
+                handleData(verifiedData, getDataSections(verifiedData));
             } catch (error) {
-                console.error('Failed load local skills data');
+                handleClientError('Failed load local skills data', error);
                 fetchData();
             }
         } else {
@@ -113,7 +121,7 @@ export default function SkillsSection({ initdata }) {
                 localStorage.setItem(`_data`, JSON.stringify(result))
             }
         } catch (error) {
-            console.error("Failed to fetch new data from server");
+            handleClientError('Failed to fetch new data from server', error);
             setError(true);
         } finally {
             setLoading(false);

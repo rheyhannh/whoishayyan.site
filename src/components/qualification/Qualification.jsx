@@ -6,6 +6,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useUpdateEffect } from 'ahooks';
 import { RootPageContext } from '../provider/RootPage';
 import getRootData from "@/utils/getRootData";
+import handleClientError from '@/utils/handleClientError';
+import { qualificationSectionDataSchema } from '@/schema/page/root';
 import styles from '@/app/_root.module.css'
 
 const QualificationData = dynamic(() => import("./Data"))
@@ -43,8 +45,15 @@ export default function QualificationSection({ initdata }) {
 
             return () => clearTimeout(timeout);
         } else {
-            setData(initdata);
-            setLoading(false);
+            try {
+                const verifiedData = qualificationSectionDataSchema.parse(initdata);
+                setData(verifiedData);
+            } catch (error) {
+                handleClientError('Failed load local qualification data', error);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
         }
     }, [initdata])
 
@@ -60,15 +69,15 @@ export default function QualificationSection({ initdata }) {
 
         if (localData) {
             try {
-                const dataJson = JSON.parse(localData).qualification;
-                if (dataJson) {
-                    setData(dataJson);
-                    setLoading(false);
-                    return;
-                }
-                throw new Error('Local qualification data not found');
+                const dataJson = JSON.parse(localData)?.qualification;
+                if (!dataJson) throw new Error('Data not found');
+
+                const verifiedData = qualificationSectionDataSchema.parse(dataJson);
+
+                setData(verifiedData);
+                setLoading(false);
             } catch (error) {
-                console.error('Failed load local qualification data');
+                handleClientError('Failed load local qualification data', error);
                 fetchData();
             }
         } else {
@@ -88,7 +97,7 @@ export default function QualificationSection({ initdata }) {
                 localStorage.setItem(`_data`, JSON.stringify(result))
             }
         } catch (error) {
-            console.error("Failed to fetch new data from server");
+            handleClientError('Failed to fetch new data from server', error);
             setError(true);
         } finally {
             setLoading(false);

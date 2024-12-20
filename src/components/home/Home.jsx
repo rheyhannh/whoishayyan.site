@@ -7,6 +7,8 @@ import { useState, useEffect, useContext } from 'react';
 import { useUpdateEffect } from 'ahooks';
 import { RootPageContext } from '../provider/RootPage';
 import getRootData from "@/utils/getRootData";
+import handleClientError from '@/utils/handleClientError';
+import { homeSectionDataSchema } from '@/schema/page/root';
 import styles from '@/app/_root.module.css'
 import homePic from '../../../public/profil-nobg-min.png'
 
@@ -44,8 +46,15 @@ export default function HomeSection({ initdata }) {
 
             return () => clearTimeout(timeout);
         } else {
-            setData(initdata);
-            setLoading(false);
+            try {
+                const verifiedData = homeSectionDataSchema.parse(initdata);
+                setData(verifiedData);
+            } catch (error) {
+                handleClientError('Failed load local home data', error);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
         }
     }, [initdata])
 
@@ -55,24 +64,26 @@ export default function HomeSection({ initdata }) {
             setForceErrorState(false);
             return;
         }
-        
+
         setLoading(true); setError(false); setData(null);
         const localData = localStorage.getItem('_data');
 
         if (localData) {
             try {
-                const dataJson = JSON.parse(localData).home;
-                if (dataJson) {
-                    setData(dataJson);
-                    setLoading(false);
-                    return;
-                }
-                throw new Error('Local home data not found');
+                const dataJson = JSON.parse(localData)?.home;
+                if (!dataJson) throw new Error('Data not found');
+
+                const verifiedData = homeSectionDataSchema.parse(dataJson);
+
+                setData(verifiedData);
+                setLoading(false);
             } catch (error) {
-                console.error('Failed load local home data');
+                handleClientError('Failed load local home data', error);
                 fetchData();
             }
-        } else { fetchData() }
+        } else {
+            fetchData()
+        }
     }
 
     const fetchData = async () => {
@@ -83,7 +94,7 @@ export default function HomeSection({ initdata }) {
                 localStorage.setItem(`_data`, JSON.stringify(result))
             }
         } catch (error) {
-            console.error("Failed to fetch new data from server");
+            handleClientError('Failed to fetch new data from server', error);
             setError(true);
         } finally {
             setLoading(false);

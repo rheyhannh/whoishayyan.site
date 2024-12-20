@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import handleClientError from '@/utils/handleClientError';
 import HomeSection from "./home/Home";
 import AboutSection from "./about/About";
 import QualificationSection from "./qualification/Qualification";
@@ -22,26 +23,23 @@ export default function Sections() {
                 setData(dataJson);
 
             } catch (error) {
-                console.error('Failed to use local data');
+                handleClientError('Failed to use local data', error)
             }
         }
 
         const fetchData = async () => {
             try {
                 const result = await getRootData();
-                if (result) {
-                    setData(result);
-                    localStorage.setItem(`_data`, JSON.stringify(result))
-                } else {
-                    applyLocalData();
-                }
+                setData(result);
+                localStorage.setItem(`_data`, JSON.stringify(result))
             } catch (error) {
-                console.error("Failed to fetch new data from server");
+                handleClientError('Failed to fetch new data from server', error)
                 applyLocalData();
             }
         }
 
-        fetchData();
+        if (localData) applyLocalData();
+        else fetchData();
     }, []);
 
     return (
