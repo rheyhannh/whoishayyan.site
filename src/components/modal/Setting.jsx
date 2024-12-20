@@ -1,7 +1,9 @@
 import { useContext } from "react"
 import { ModalContext } from "../provider/Modal"
 import { RootPageContext } from "../provider/RootPage";
-
+import {
+    UilTimes
+} from '@iconscout/react-unicons'
 import styles from './modal.module.css'
 
 /**
@@ -17,7 +19,11 @@ export default function ModalSetting() {
             <div className={styles.setting}>
                 <h2 className={styles.heading}>
                     <span>Setting</span>
-                    <span onClick={() => { handleModalClose() }}>X</span>
+                    <span
+                        style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                        onClick={() => { handleModalClose() }}>
+                        <UilTimes />
+                    </span>
                 </h2>
                 <div className={styles.layout}>
                     <span className={styles.small}>Page State</span>
