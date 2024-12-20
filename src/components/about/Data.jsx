@@ -18,7 +18,7 @@ import styles from '@/app/_root.module.css'
  * @returns {React.ReactElement<AboutDataProps, HTMLDivElement>} Rendered component
  */
 export default function AboutData({ data }) {
-    const [icons, setIcons] = useState(/** @type {JSX.Element} */ (null));
+    const [icons, setIcons] = useState(/** @type {JSX.Element} */(null));
 
     useEffect(() => {
         const loadIcons = async () => {
