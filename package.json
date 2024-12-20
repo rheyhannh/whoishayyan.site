@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@iconscout/react-unicons": "^2.0.2",
+    "ahooks": "^3.8.4",
     "crypto-js": "^4.1.1",
     "next": "13.5.6",
     "react": "^18",
