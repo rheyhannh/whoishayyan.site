@@ -4,6 +4,7 @@ import HomeSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import Image from "next/image"
 import { useState, useEffect, useContext } from 'react';
+import { useUpdateEffect } from 'ahooks';
 import { RootPageContext } from '../provider/RootPage';
 import getRootData from "@/utils/getRootData";
 import styles from '@/app/_root.module.css'
@@ -24,12 +25,12 @@ export default function HomeSection({ initdata }) {
 
     const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 
-    useEffect(() => {
+    useUpdateEffect(() => {
         if (forceLoadingState) setLoading(true);
         else setLoading(false);
     }, [forceLoadingState])
 
-    useEffect(() => {
+    useUpdateEffect(() => {
         if (forceErrorState) setError(true);
         else setError(false);
     }, [forceErrorState])
