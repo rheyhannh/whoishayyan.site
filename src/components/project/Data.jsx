@@ -81,7 +81,7 @@ export default function ProjectData({ data }) {
                     />
                     <div className={styles.portfolio__data}>
                         <h3 className={styles.portfolio__title}>{item.title}</h3>
-                        <p className={`${styles.portfolio__description} ${styles.text__justify}`} >
+                        <p className={styles.portfolio__description} >
                             {item.description}
                         </p>
                         <Button

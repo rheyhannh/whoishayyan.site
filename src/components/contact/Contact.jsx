@@ -107,7 +107,7 @@ export default function ContactSection({ initdata }) {
     }
 
     return (
-        <section className={`${styles.contact} ${styles.section}`} id="contact">
+        <section className={styles.section} id="contact">
             <h2 className={styles.section__title}>Contact Me</h2>
             <span className={styles.section__subtitle}>Get In Touch</span>
 

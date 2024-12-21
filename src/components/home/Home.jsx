@@ -109,7 +109,7 @@ export default function HomeSection({ initdata }) {
     }
 
     return (
-        <section className={`${styles.home} ${styles.section}`} id="home">
+        <section className={styles.section} id="home">
             <div className={`${styles.container} ${styles.grid}`}>
                 <div className={`${styles.home__content} ${styles.grid}`}>
                     {error && <ErrorFetch clickEvent={clickReload} type={'home'} />}

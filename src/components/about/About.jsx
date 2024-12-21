@@ -107,7 +107,7 @@ export default function AboutSection({ initdata }) {
     }
 
     return (
-        <section className={`${styles.about} ${styles.section}`} id="about">
+        <section className={styles.section} id="about">
             <h2 className={styles.section__title}>About Me</h2>
             <span className={styles.section__subtitle}>My Introduction</span>
             <div className={`${styles.about__container} ${styles.container} ${styles.grid}`}>
