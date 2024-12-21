@@ -42,7 +42,7 @@ export default function ContactData({ data }) {
         <>
             <div>
                 {data.content.map((item, index) => (
-                    <div className={styles.contact__information} key={crypto.randomUUID()}>
+                    <div className={styles.contact__information} key={index}>
                         <div className={styles.contact__icon}>
                             {icons[index]}
                         </div>

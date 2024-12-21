@@ -93,7 +93,7 @@ export default function HomeData({ data, part }) {
         return (
             <>
                 {homeSocials.map((item, index) => (
-                    <div className={styles.social__box} key={crypto.randomUUID()}>
+                    <div className={styles.social__box} key={index}>
                         <Button
                             href={item.href}
                             target="_blank"

@@ -68,7 +68,7 @@ export default function ProjectData({ data }) {
             {data.map((item, index) => (
                 <SwiperSlide
                     className={`${styles.portfolio__content} ${styles.grid}`}
-                    key={crypto.randomUUID()}
+                    key={index}
                 >
                     <Image
                         src={item.image.src}

@@ -49,7 +49,7 @@ export default function QualificationData({ data, part, tab, tabclick }) {
                 {data.map((item, index) => (
                     <div
                         className={`${styles.qualification__button} ${styles.button__flex} ${tab === index ? styles.qualification__active : ""}`}
-                        onClick={() => tabclick(index)} key={crypto.randomUUID()}
+                        onClick={() => tabclick(index)} key={index}
                     >
                         {tabIcons[index]}
                         {item.title}
@@ -66,11 +66,11 @@ export default function QualificationData({ data, part, tab, tabclick }) {
                     <div
                         className={tab === index ? styles.qualification__active : styles.qualification}
                         tabsdata={index}
-                        key={crypto.randomUUID()}
+                        key={index}
                     >
                         {item.data.map((value, index) => (
                             index % 2 === 0 ? (
-                                <div className={styles.qualification__data} key={crypto.randomUUID()}>
+                                <div className={styles.qualification__data} key={index}>
                                     <div>
                                         <h3 className={styles.qualification__title}>
                                             <Link
@@ -93,7 +93,7 @@ export default function QualificationData({ data, part, tab, tabclick }) {
                                     <div></div>
                                 </div>
                             ) : (
-                                <div className={styles.qualification__data} key={crypto.randomUUID()}>
+                                <div className={styles.qualification__data} key={index}>
                                     <div></div>
 
                                     <div>
