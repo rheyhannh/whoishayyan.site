@@ -137,6 +137,12 @@ export const skillSectionDataSchema = z.array(
          * - Ex : `/logo/axios.png`
         */
         logoDark: z.string().nullable(),
+        /** Item tags */
+        tags: z.array(z.string()),
+        /** Item url
+         * - Ex : `'https://react.dev/'`
+         */
+        url: z.array(z.string()),
         /** Item title */
         title: z.string(),
         /** Item description */
