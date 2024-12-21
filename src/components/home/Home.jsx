@@ -9,7 +9,7 @@ import getRootData from "@/utils/getRootData";
 import handleClientError from '@/utils/handleClientError';
 import { homeSectionDataSchema } from '@/schema/page/root';
 import styles from '@/app/_root.module.css'
-import homePic from '../../../public/profil-nobg-min.png'
+import homePic from '@assets/profil-nobg-min.png'
 
 const HomeData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))

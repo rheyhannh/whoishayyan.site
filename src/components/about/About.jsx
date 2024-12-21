@@ -9,7 +9,7 @@ import getRootData from "@/utils/getRootData";
 import handleClientError from '@/utils/handleClientError';
 import { aboutSectionDataSchema } from '@/schema/page/root';
 import styles from '@/app/_root.module.css'
-import aboutPic from '../../../public/about-min.png'
+import aboutPic from '@assets/about-min.png'
 
 const AboutData = dynamic(() => import("./Data"))
 const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
