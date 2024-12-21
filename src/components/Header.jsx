@@ -1,6 +1,7 @@
 'use client'
 
 import { useContext, useState, useEffect, useRef } from 'react'
+import { useClickAway } from 'ahooks'
 import Link from 'next/link'
 import { ThemeContext } from '@/components/provider/Theme'
 import { ModalContext } from '@/components/provider/Modal'
@@ -41,6 +42,9 @@ export default function Header() {
     const [menu, setMenu] = useState(false);
     const [hueMenu, setHueMenu] = useState(false);
     const [matchQuery, setMatchQuery] = useState(false);
+
+    const menuBtn = useRef(null);
+    const hueMenuBtn = useRef(null);
 
     const toggleTheme = () => {
         setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
@@ -102,9 +106,9 @@ export default function Header() {
                     <span>Hayyan</span>
                 </Link>
 
-                <NavMenu menu={menu} toggleMenu={toggleMenu} matchQuery={matchQuery} />
+                <NavMenu menu={menu} toggleMenu={toggleMenu} matchQuery={matchQuery} menuBtn={menuBtn} />
 
-                <HueMenu hue={hue} hueMenu={hueMenu} toggleHueMenu={toggleHueMenu} handleHue={handleHue} />
+                <HueMenu hue={hue} hueMenu={hueMenu} toggleHueMenu={toggleHueMenu} handleHue={handleHue} hueMenuBtn={hueMenuBtn} />
 
                 <div className={styles.nav__slider}>
                     <input
@@ -144,6 +148,7 @@ export default function Header() {
                     </i>
 
                     <i
+                        ref={hueMenuBtn}
                         tabIndex={'0'}
                         className={`${styles.change_theme} ${styles.hue}`}
                         onClick={toggleHueMenu}
@@ -153,6 +158,7 @@ export default function Header() {
                     </i>
 
                     <div
+                        ref={menuBtn}
                         tabIndex={'0'}
                         className={styles.nav__toggle}
                         onClick={toggleMenu}
@@ -167,7 +173,7 @@ export default function Header() {
     )
 }
 
-function NavMenu({ menu, toggleMenu, matchQuery }) {
+function NavMenu({ menu, toggleMenu, matchQuery, menuBtn }) {
     const navMenuRef = useRef(
         /** @type {HTMLDivElement} */
         (null)
@@ -176,6 +182,10 @@ function NavMenu({ menu, toggleMenu, matchQuery }) {
     useEffect(() => {
         if (menu && navMenuRef.current) navMenuRef.current.focus();
     }, [menu])
+
+    useClickAway(() => {
+        if (menu) toggleMenu();
+    }, [navMenuRef, menuBtn])
 
     return (
         <div
@@ -212,7 +222,7 @@ function NavMenu({ menu, toggleMenu, matchQuery }) {
     )
 }
 
-function HueMenu({ hue, hueMenu, toggleHueMenu, handleHue }) {
+function HueMenu({ hue, hueMenu, toggleHueMenu, handleHue, hueMenuBtn }) {
     const hueMenuRef = useRef(
         /** @type {HTMLDivElement} */
         (null)
@@ -221,6 +231,10 @@ function HueMenu({ hue, hueMenu, toggleHueMenu, handleHue }) {
     useEffect(() => {
         if (hueMenu && hueMenuRef.current) hueMenuRef.current.focus();
     }, [hueMenu])
+
+    useClickAway(() => {
+        if (hueMenu) toggleHueMenu();
+    }, [hueMenuRef, hueMenuBtn])
 
     return (
         <div
