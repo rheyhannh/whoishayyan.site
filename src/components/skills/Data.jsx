@@ -90,29 +90,40 @@ export default function SkillsData({ data, dataSections }) {
                 >
                     {dataSections.map((section, sectionIndex) => (
                         <SwiperSlide
-                            className={`${styles.skills__list} ${styles.swiper}`}
                             key={sectionIndex}
+                            className={`${styles.skills__list} ${styles.swiper}`}
                         >
-                            {section.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={`${styles.skills__box} ${activeBox === item.no ? styles.active : ''}`}
-                                    onClick={() => { setActiveBox(item.no) }}
-                                >
-                                    <Image
-                                        src={theme === 'dark' && item.logoDark ? item.logoDark : item.logo}
-                                        width={120}
-                                        height={120}
-                                        quality={100}
-                                        alt={`${item.title} Logo`}
-                                        className={styles.skills__img}
-                                    />
-                                </div>
-                            ))}
+                            {({ isActive }) => (
+                                <>
+                                    {section.map((item, index) => (
+                                        <div
+                                            key={index}
+                                            tabIndex={isActive ? '0' : '-1'}
+                                            className={`${styles.skills__box} ${activeBox === item.no ? styles.active : ''}`}
+                                            onClick={() => setActiveBox(item.no)}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') setActiveBox(item.no);
+                                            }}
+                                        >
+                                            <Image
+                                                src={theme === 'dark' && item.logoDark ? item.logoDark : item.logo}
+                                                width={120}
+                                                height={120}
+                                                quality={100}
+                                                alt={`${item.title} Logo`}
+                                                className={styles.skills__img}
+                                            />
+                                        </div>
+                                    ))}
 
-                            {Array.from({ length: Math.max(0, 9 - section.length) }).map((_, index) => (
-                                <div className={`${styles.skills__box} ${styles.empty}`} key={index}></div>
-                            ))}
+                                    {Array.from({ length: Math.max(0, 9 - section.length) }).map((_, index) => (
+                                        <div
+                                            key={index}
+                                            className={`${styles.skills__box} ${styles.empty}`}
+                                        />
+                                    ))}
+                                </>
+                            )}
                         </SwiperSlide>
                     ))}
 

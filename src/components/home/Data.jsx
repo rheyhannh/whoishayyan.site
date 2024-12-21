@@ -93,14 +93,14 @@ export default function HomeData({ data, part }) {
         return (
             <>
                 {homeSocials.map((item, index) => (
-                    <div className={styles.social__box} key={index}>
-                        <Button
-                            href={item.href}
-                            target="_blank"
-                            icon={socialIcons[index]}
-                            label={`My ${item.label}`}
-                        />
-                    </div>
+                    <Button
+                        key={index}
+                        href={item.href}
+                        target="_blank"
+                        icon={socialIcons[index]}
+                        label={`My ${item.label}`}
+                        className={styles.social__box}
+                    />
                 ))}
             </>
         )

@@ -48,8 +48,11 @@ export default function QualificationData({ data, part, tab, tabclick }) {
             <>
                 {data.map((item, index) => (
                     <div
+                        key={index}
+                        tabIndex={'0'}
                         className={`${styles.qualification__button} ${styles.button__flex} ${tab === index ? styles.qualification__active : ""}`}
-                        onClick={() => tabclick(index)} key={index}
+                        onClick={() => tabclick(index)}
+                        onKeyDown={(e) => { if (e.key === 'Enter') { tabclick(index) } }}
                     >
                         {tabIcons[index]}
                         {item.title}
