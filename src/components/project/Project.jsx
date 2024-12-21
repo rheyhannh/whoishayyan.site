@@ -1,5 +1,4 @@
 import { ProjectDataProps } from './Data'
-import { SectionState } from '@/types/state';
 import ProjectSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import React, { useState, useEffect, useContext } from 'react';
@@ -20,8 +19,8 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
  */
 export default function ProjectSection({ initdata }) {
     const [data, setData] = useState(/** @type {React.ReactElement<ProjectDataProps, HTMLDivElement>} */(null));
-    const [loading, setLoading] = useState(/** @type {SectionState['loading']} */(true));
-    const [error, setError] = useState(/** @type {SectionState['error']} */(false));
+    const [loading, setLoading] = useState(/** @type {import('@/types/state').SectionState['loading']} */(true));
+    const [error, setError] = useState(/** @type {import('@/types/state').SectionState['error']} */(false));
 
     const { forceLoadingState, forceErrorState, setForceLoadingState, setForceErrorState } = useContext(RootPageContext);
 

@@ -1,4 +1,3 @@
-import { SectionState } from '@/types/state';
 import QualificationSkeleton from './Skeleton';
 import dynamic from 'next/dynamic';
 import { useState, useEffect, useContext } from 'react';
@@ -19,15 +18,15 @@ const ErrorFetch = dynamic(() => import("@/components/ErrorFetch"))
  */
 export default function QualificationSection({ initdata }) {
     const [data, setData] = useState(
-        /** @type {SectionState<import('@/schema/page/root').qualificationSectionDataType>['data']} */
+        /** @type {import('@/types/state').SectionState<import('@/schema/page/root').qualificationSectionDataType>['data']} */
         (null)
     );
     const [loading, setLoading] = useState(
-        /** @type {SectionState['loading']} */
+        /** @type {import('@/types/state').SectionState['loading']} */
         (true)
     );
     const [error, setError] = useState(
-        /** @type {SectionState['error']} */
+        /** @type {import('@/types/state').SectionState['error']} */
         (false)
     );
     const [activeTab, setActiveTab] = useState(0);

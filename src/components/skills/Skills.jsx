@@ -1,4 +1,3 @@
-import { SectionState } from '@/types/state';
 import SkillsSkeleton from "./Skeleton";
 import dynamic from "next/dynamic";
 import { useEffect, useState, useContext } from "react";
@@ -21,15 +20,15 @@ export const itemsPerSwiper = 9;
  */
 export default function SkillsSection({ initdata }) {
     const [data, setData] = useState(
-        /** @type {SectionState<import('@/schema/page/root').skillSectionDataType>['data']} */
+        /** @type {import('@/types/state').SectionState<import('@/schema/page/root').skillSectionDataType>['data']} */
         (null)
     );
     const [loading, setLoading] = useState(
-        /** @type {SectionState['loading']} */
+        /** @type {import('@/types/state').SectionState['loading']} */
         (true)
     );
     const [error, setError] = useState(
-        /** @type {SectionState['error']} */
+        /** @type {import('@/types/state').SectionState['error']} */
         (false)
     );
 
