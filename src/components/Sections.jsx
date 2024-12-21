@@ -38,8 +38,7 @@ export default function Sections() {
             }
         }
 
-        if (localData) applyLocalData();
-        else fetchData();
+        fetchData();
     }, []);
 
     return (
