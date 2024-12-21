@@ -142,7 +142,7 @@ export const skillSectionDataSchema = z.array(
         /** Item url
          * - Ex : `'https://react.dev/'`
          */
-        url: z.array(z.string()),
+        url: z.string(),
         /** Item title */
         title: z.string(),
         /** Item description */
