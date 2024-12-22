@@ -3,20 +3,8 @@
 🧙‍♂️ @rheyhannh personal website.
 </p>
 
-## 🔖 Description : 
-This repositories [whoishayyan.app](https://github.com/rheyhannh/whoishayyan.app) are migrated version from previous [whoishayyan](https://github.com/rheyhannh/whoishayyan) and handle Frontend stuff. 
-
-## ❗  Problem in previous repositories : 
-- Only using Express.js as backend and frontend to render pure HTML, CSS and Javascript pages code
-- Static data, need to deploy application every data changes
-- Bad benchmark results in Core Web Vitals
-
-## 🚀 Improvements from previous repositories: 
-- Seperating the Backend and Frontend stuff
-- Using Express.js only for Backend stuff (details: [hayyan.server](https://github.com/rheyhannh/hayyan.server))
-- Dynamic data, only need to use API Endpoint in server to get or update data in database
-- Using React, Next.js for Frontend stuff
-- Bundling the code using Webpack
-- Using browser local storage to save current new data
-- Improve benchmark results in Core Web Vitals
-- The rest should be the same, if there is anything different it will be mentioned in a further release
+## Future Updates 📅 
+- [ ] Migrate to [react-icons](https://react-icons.github.io/react-icons/)
+- [ ] Components showcase page
+- [ ] Create an error boundary or Next.js error page and not found page
+- [ ] Utilizing [prop-types](https://www.npmjs.com/package/prop-types) and maintain component props type like this [example ](https://stackoverflow.com/questions/71223891/react-and-jsdoc-how-to-document-a-react-component-properly)instead using JSDoc type definitions
