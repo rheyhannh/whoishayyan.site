@@ -7,6 +7,8 @@
  * @returns {Promise<JSX.Element|null>} A promise that resolves rendered icon component if the icon is found, or `null` if the icon does not exist
  */
 const getUniconsIcons = async (iconName, className) => {
+    if (!iconName) return null;
+
     const iconsModule = await import('@iconscout/react-unicons');
     if (iconName in iconsModule) {
         const Icon = iconsModule[iconName];
