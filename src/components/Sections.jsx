@@ -1,48 +1,26 @@
 'use client'
 
-import { useState, useEffect } from 'react';
-import handleClientError from '@/utils/handleClientError';
+import React, { useEffect } from 'react';
 import HomeSection from "./home/Home";
 import AboutSection from "./about/About";
 import QualificationSection from "./qualification/Qualification";
 import SkillsSection from './skills/Skills';
 import ProjectSection from './project/Project';
 import ContactSection from './contact/Contact';
-import getRootData from '../utils/getRootData';
 import styles from '@/app/_root.module.css';
 
-export default function Sections() {
-    const [data, setData] = useState(null);
-
+/**
+ * Render each section in root page and wrapped with main element
+ * @param {Omit<React.HTMLProps<React.JSX.IntrinsicElements['main']>, 'className'> & {data:import('@/schema/page/root').allSectionDataType}} props Sections props
+ * @returns {React.ReactElement<Omit<React.HTMLProps<React.JSX.IntrinsicElements['main']>, 'className'>, React.JSX.IntrinsicElements['main']>} Rendered component
+ */
+export default function Sections({ data, ...props }) {
     useEffect(() => {
-        const localData = localStorage.getItem('_data');
-
-        const applyLocalData = () => {
-            try {
-                const dataJson = JSON.parse(localData);
-                setData(dataJson);
-
-            } catch (error) {
-                handleClientError('Failed to use local data', error)
-            }
-        }
-
-        const fetchData = async () => {
-            try {
-                const result = await getRootData();
-                setData(result);
-                localStorage.setItem(`_data`, JSON.stringify(result))
-            } catch (error) {
-                handleClientError('Failed to fetch new data from server', error)
-                applyLocalData();
-            }
-        }
-
-        fetchData();
-    }, []);
+        if (data) localStorage.setItem('_data', JSON.stringify(data));
+    }, [data])
 
     return (
-        <main className={styles.main}>
+        <main className={styles.main} {...props}>
             <HomeSection initdata={data && data.home} />
             <AboutSection initdata={data && data.about} />
             <QualificationSection initdata={data && data.qualification} />

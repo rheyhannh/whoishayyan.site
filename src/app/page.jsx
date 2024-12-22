@@ -5,14 +5,17 @@ import Sections from '@/components/Sections'
 import Footer from '@/components/Footer'
 import Scrollup from '@/components/Scrollup'
 import styles from '@/app/_root.module.css'
+import getRootData from '@/utils/getRootData'
 
-export default function Home() {
+export default async function Home() {
+  const data = await getRootData();
+
   return (
     <RootPageProvider>
       <ModalProvider>
         <Base>
           <Header />
-          <Sections />
+          <Sections data={data} />
           <Footer />
           <Scrollup />
         </Base>
