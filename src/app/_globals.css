@@ -132,10 +132,10 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
-  margin: 0 0 var(--header-height) 0;
   font-family: var(--poppins-font);
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
@@ -203,25 +203,11 @@ strong {
   :root {
     --blob-size: 180px;
   }
-
-  body {
-    font-size: var(--small-font-size);
-  }
-}
-
-@media screen and (max-width: 446px) {
-  body {
-    font-size: var(--small-font-size);
-  }
 }
 
 @media screen and (min-width: 768px) {
   :root {
     --blob-size: 250px;
-  }
-
-  body {
-    margin: 0;
   }
 }
 

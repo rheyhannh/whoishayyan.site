@@ -90,6 +90,10 @@
 
 /* End of Layout */
 
+.base {
+  margin: 0 0 var(--header-height) 0;
+}
+
 .error__fetch {
   display: flex;
   justify-content: center;
@@ -1581,6 +1585,10 @@ li.nav__item:nth-child(1) {
 }
 
 @media screen and (max-width: 350px) {
+  .base {
+    font-size: var(--small-font-size);
+  }
+
   .section__title {
     font-size: var(--h2-font-size);
   }
@@ -1655,6 +1663,10 @@ li.nav__item:nth-child(1) {
 }
 
 @media screen and (max-width: 446px) {
+  .base {
+    font-size: var(--small-font-size);
+  }
+
   .section__title {
     font-size: var(--h2-font-size);
   }
@@ -1798,6 +1810,10 @@ li.nav__item:nth-child(1) {
 }
 
 @media screen and (min-width: 768px) {
+  .base {
+    margin: 0;
+  }
+
   .container {
     margin-left: auto;
     margin-right: auto;
