@@ -50,7 +50,7 @@ export default function ProjectData({ data }) {
         loadIcons();
     }, [data])
 
-    return (
+    return data.length > 1 ? (
         <Swiper
             modules={[Navigation, Pagination]}
             loop={data.length > 2 ? true : false}
@@ -110,5 +110,33 @@ export default function ProjectData({ data }) {
                 </>
             }
         </Swiper>
+    ) : (
+        <div className={`${styles.portfolio__container} ${styles.container}`}>
+            <div className={`${styles.portfolio__content} ${styles.grid}`}>
+                <Image
+                    src={data[0].image.src}
+                    width={640}
+                    height={450}
+                    quality={80}
+                    alt={data[0].image.alt}
+                    className={styles.portfolio__img}
+                />
+
+                <div className={styles.portfolio__data}>
+                    <h3 className={styles.portfolio__title}>{data[0].title}</h3>
+                    <p className={styles.portfolio__description} >
+                        {data[0].description}
+                    </p>
+                    <Button
+                        href={data[0].button.href}
+                        target={data[0].button.newTab ? '_blank' : '_self'}
+                        className={`${styles.button} ${styles.button__flex} ${styles.button__small} ${styles.portfolio__button}`}
+                        text={data[0].button.text}
+                        icon={projectIcons[0]}
+                        label='Details'
+                    />
+                </div>
+            </div>
+        </div>
     )
 }
