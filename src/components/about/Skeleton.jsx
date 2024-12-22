@@ -1,0 +1,46 @@
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import styles from '@/app/_root.module.css'
+
+export default function AboutSkeleton({ part }) {
+    if (part === 'data') {
+        return (
+            <>
+                <p className={styles.about__description}>
+                    <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
+                        <Skeleton width={'100%'} count={4} style={{ marginBottom: 'var(--mb-0-5)' }} />
+                    </SkeletonTheme>
+                </p>
+
+                <div className={styles.about__info}>
+                    <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
+                        <Skeleton width={'60%'} containerClassName={styles.about__info_skeleton} count={1} />
+                    </SkeletonTheme>
+
+                    <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
+                        <Skeleton width={'80%'} containerClassName={styles.about__info_skeleton} count={1} />
+                    </SkeletonTheme>
+                </div>
+
+                <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
+                    <Skeleton width={'50%'} height={'40px'} containerClassName={styles.about__buttons} count={1} />
+                </SkeletonTheme>
+            </>
+        )
+    }
+    else if (part === 'image') {
+        return (
+            <div className={styles.flex__center}>
+                <SkeletonTheme baseColor="var(--skeleton-base)" highlightColor="var(--skeleton-highlight)">
+                    <Skeleton width={'100%'} height={'100%'} containerClassName={`${styles.about__img} ${styles.skeleton}`} count={1} />
+                </SkeletonTheme>
+            </div>
+        )
+    }
+    else {
+        return (
+            <>
+            </>
+        )
+    }
+}

@@ -1,0 +1,123 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: hsla(var(--hue-color), 7.5%, 12.5%, 0.75);
+    backdrop-filter: blur(2.5px) saturate(75%);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out, background 0s;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.layout {
+    padding: 0 .6rem;
+    overflow: auto;
+}
+
+.layout::-webkit-scrollbar {
+    visibility: hidden;
+    width: .30rem;
+    border-radius: .25rem;
+}
+
+.layout::-webkit-scrollbar-thumb {
+    border-radius: .25rem;
+    visibility: hidden;
+}
+
+.setting {
+    display: grid;
+    grid-template-rows: 30px 1fr;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+    max-height: 400px;
+    max-width: 425px;
+    background: var(--modal-bg);
+    padding: 2rem;
+    border: 1px solid var(--modal-border);
+    border-radius: 1rem;
+    transition: all 0.3s ease-in-out, background 0s;
+    transform: scale(.5) translateY(10%);
+}
+
+.setting .small {
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.setting .heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.setting .layout>.small {
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.setting .layout .panel {
+    cursor: pointer;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1.5px solid var(--text-color-light);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, .15);
+    margin-bottom: 1rem;
+}
+
+.setting .layout .panel.active {
+    border: 1.5px solid var(--first-color);
+}
+
+.setting .layout .panel span {
+    display: block;
+}
+
+.setting .layout .panel .title {
+    color: var(--title-color);
+    font-weight: 500;
+}
+
+.overlay.active .setting {
+    transform: scale(1) translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .layout::-webkit-scrollbar-thumb:hover {
+        border-radius: .25rem;
+        visibility: hidden;
+    }
+
+    .setting:hover .layout::-webkit-scrollbar {
+        visibility: visible;
+    }
+
+    .setting:hover .layout::-webkit-scrollbar-thumb {
+        visibility: visible;
+    }
+
+    .setting:hover .layout::-webkit-scrollbar-thumb:hover {
+        visibility: visible;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .setting {
+        max-height: none;
+        max-width: none;
+        padding: 2rem 1rem;
+        border-radius: 0;
+    }
+}
