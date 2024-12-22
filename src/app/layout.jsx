@@ -1,4 +1,5 @@
 import { Poppins } from 'next/font/google';
+import { ThemeProvider } from '@/components/provider/Theme'
 import './_globals.css'
 
 export const metadata = {
@@ -19,7 +20,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable}`}>
       <body>
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
