@@ -117,8 +117,9 @@ export default function AboutSection({ initdata }) {
                     <div className={styles.about__img}>
                         <Image
                             src={aboutPic}
-                            quality={100}
+                            quality={80}
                             alt={'About Image'}
+                            priority={true}
                         />
                     </div>
                 }

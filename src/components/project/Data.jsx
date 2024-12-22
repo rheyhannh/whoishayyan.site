@@ -72,12 +72,11 @@ export default function ProjectData({ data }) {
                 >
                     <Image
                         src={item.image.src}
-                        width={4000}
-                        height={2800}
-                        quality={100}
+                        width={640}
+                        height={450}
+                        quality={80}
                         alt={item.image.alt}
                         className={styles.portfolio__img}
-                        priority
                     />
                     <div className={styles.portfolio__data}>
                         <h3 className={styles.portfolio__title}>{item.title}</h3>

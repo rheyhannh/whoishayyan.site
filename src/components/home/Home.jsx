@@ -125,9 +125,10 @@ export default function HomeSection({ initdata }) {
                             <div className={styles.home__blob} id="home__blob">
                                 <Image
                                     src={homePic}
-                                    quality={100}
+                                    quality={80}
                                     alt={'Home Image'}
                                     className={styles.home__blob_img}
+                                    priority={true}
                                 />
                             </div>
                         }
