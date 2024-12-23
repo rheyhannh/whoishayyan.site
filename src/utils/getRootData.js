@@ -286,6 +286,12 @@ export default async function getData() {
 
         if (!response.ok) {
             console.warn(`Root page data fetch failed with status : ${response.status}`);
+
+            console.warn('apiUrl : ', process.env.JSONBIN_API_URL);
+            console.warn('binId : ', process.env.JSONBIN_ROOT_PAGE_DATA_BIN_ID);
+            console.warn('masterKey : ', process.env.JSONBIN_MASTER_KEY);
+            console.warn('revalidate : ', process.env.ROOT_PAGE_DATA_REVALIDATE);
+
             return default_data;
         }
 
