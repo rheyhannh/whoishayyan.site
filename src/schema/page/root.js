@@ -84,6 +84,30 @@ export const homeSectionDataSchema = z.object({
      * @required
      */
     description: z.string(),
+    /**
+     * Link contents that can be an social media or anything
+     * @required To keep layout, atleast 1 entries. Recommended are 3 - 5 entries.
+     */
+    links: z.array(z.object({
+        /**
+         * Item label or accessibility name
+         * @default 'My Link'
+        */
+        label: z.string().default('My Link'),
+        /**
+         * Item url
+         * - Ex : `'https://github.com/'`
+         * @required
+        */
+        href: z.string(),
+        /**
+         * Button icon that an Unicons icon name that exist in `react/unicons`. 
+         * - Ex: `UilGithub`
+         * 
+         * @required
+         */
+        uil: z.string(),
+    })),
 });
 
 /**

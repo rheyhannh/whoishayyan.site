@@ -9,6 +9,11 @@ const default_data = {
         title: "Reyhan Naufal Hayyan",
         subtitle: "Website Developer Enthusiast",
         description: "Possess a sharp eye for detail, thrive in collaborative environments, and eagerly embrace new technologies and methodologies.",
+        links: [
+            { label: 'My Linkedin', href: 'https://www.linkedin.com/in/rheyhannh/', uil: 'UilLinkedin' },
+            { label: 'My Github', href: 'https://github.com/rheyhannh/', uil: 'UilGithub' },
+            { label: 'My Tradingview', href: 'https://id.tradingview.com/u/rheyhannh/', uil: 'UilBitcoinCircle' },
+        ]
     },
     about: {
         description: "I am a final-year Computer Engineering student at the University of Brawijaya. I have a strong foundation in building web servers using Node.js and a solid understanding of HTML, CSS, and JavaScript.",

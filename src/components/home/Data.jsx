@@ -3,12 +3,6 @@ import getUniconsIcons from '@/utils/getUniconIcons';
 import Button from '@/components/Button';
 import styles from '@/app/_root.module.css'
 
-const homeSocials = [
-    { label: 'Linkedin', href: 'https://www.linkedin.com/in/rheyhannh/', uil: 'UilLinkedin' },
-    { label: 'Instagram', href: 'https://github.com/rheyhannh/', uil: 'UilGithub' },
-    { label: 'Github', href: 'https://www.instagram.com/rheyhannh/', uil: 'UilInstagram' },
-]
-
 const otherIcons = [
     { uil: 'UilMessage', className: 'button__icon' },
     { uil: 'UilMouseAlt', className: 'home__scroll_mouse' },
@@ -37,7 +31,7 @@ export default function HomeData({ data, part }) {
     useEffect(() => {
         const loadIcons = async () => {
             const socialIcons = await Promise.all(
-                homeSocials.map(async (item) => {
+                data.links.map(async (item) => {
                     const icon = await getUniconsIcons(item.uil, styles.home__social_icon);
                     return icon;
                 })
@@ -92,13 +86,13 @@ export default function HomeData({ data, part }) {
     else if (part === 'social') {
         return (
             <>
-                {homeSocials.map((item, index) => (
+                {data.links.map((item, index) => (
                     <Button
                         key={index}
                         href={item.href}
                         target="_blank"
                         icon={socialIcons[index]}
-                        label={`My ${item.label}`}
+                        label={item.label}
                         className={styles.social__box}
                     />
                 ))}
