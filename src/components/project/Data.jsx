@@ -72,9 +72,9 @@ export default function ProjectData({ data }) {
                 >
                     <Image
                         src={item.image.src}
-                        width={640}
-                        height={450}
-                        quality={80}
+                        width={4000}
+                        height={2800}
+                        quality={100}
                         alt={item.image.alt}
                         className={styles.portfolio__img}
                     />
@@ -115,9 +115,9 @@ export default function ProjectData({ data }) {
             <div className={`${styles.portfolio__content} ${styles.grid}`}>
                 <Image
                     src={data[0].image.src}
-                    width={640}
-                    height={450}
-                    quality={80}
+                    width={4000}
+                    height={2800}
+                    quality={100}
                     alt={data[0].image.alt}
                     className={styles.portfolio__img}
                 />

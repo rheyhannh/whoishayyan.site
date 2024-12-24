@@ -47,7 +47,7 @@ export default function HomeData({ data, part }) {
         };
 
         loadIcons();
-    }, [])
+    }, [data])
 
     if (part === "content") {
         return (
