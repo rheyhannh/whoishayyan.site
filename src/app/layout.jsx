@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import { Poppins } from 'next/font/google';
 import { ThemeProvider } from '@/components/provider/Theme'
 import './_globals.css'
@@ -31,6 +32,13 @@ export default function RootLayout({ children }) {
           {children}
         </ThemeProvider>
       </body>
+
+      {process.env.NODE_ENV === 'production' && (
+        <Script
+          strategy='afterInteractive'
+          src="https://cloud.umami.is/script.js"
+          data-website-id="08096a40-e37d-4393-8385-aa13afc80be2" />
+      )}
     </html>
   )
 }
